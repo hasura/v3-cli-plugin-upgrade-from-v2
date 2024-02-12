@@ -40,6 +40,12 @@ You can develop and use this application as a standalone go CLI app until you ar
 
 Once you are happy with your changes, you should update the CLI plugins index here: https://github.com/hasura/cli-plugins-index
 
+Development loop:
+
+```sh
+find . -name '*.go' | HASURA_V2_PROJECT=https://XYZ.hasura.app HASURA_V2_ADMIN_SECRET=XXX HASURA_V3_PROJECT=. entr make run
+```
+
 
 ## Links
 
