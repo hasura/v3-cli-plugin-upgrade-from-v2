@@ -23,12 +23,22 @@ Then it outputs:
 
 It will read configuration from the v3 project directory: `.upgrade-from-v2.yml` or create this file with defaults if not present.
 
+
+## TODO
+
+* [ ] Fetch All V2 Project information in v2api package
+* [ ] Encode Feature matrix
+* [ ] Output report
+* [ ] Output V3 Template
+* [ ] Update to new V3 format
+* [ ] Create TS implementations for actions
+* [ ] Create TS lib for Kriti
+
 ## Developing and Publishing
 
 You can develop and use this application as a standalone go CLI app until you are ready to distribute and publish your changes.
 
 Once you are happy with your changes, you should update the CLI plugins index here: https://github.com/hasura/cli-plugins-index
-
 
 
 ## Links
