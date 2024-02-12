@@ -2,12 +2,13 @@ package v2api
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-func FetchV2Info(v3URL string, adminSecret string) string {
+func FetchV2Info(v3URL string, adminSecret string) map[string]interface{} {
 
 	// Get the metadata API URL
 	apiURL := fmt.Sprintf("%s/v1/metadata", v3URL)
@@ -52,5 +53,13 @@ func FetchV2Info(v3URL string, adminSecret string) string {
 	fmt.Println(string(body))
 	fmt.Println("Status code:", response.StatusCode)
 
-	return "So much info TODO."
+	var result map[string]interface{}
+	err = json.Unmarshal(body, &result)
+
+	if err != nil {
+		errmsg := fmt.Sprintf("Response was not valid JSON: %s", err)
+		panic(errmsg)
+	}
+
+	return result
 }
