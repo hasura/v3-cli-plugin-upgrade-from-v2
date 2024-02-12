@@ -40,5 +40,5 @@ func init() {
 func main() {
 	fmt.Printf("V2 URL: %s\n", v2URL)
 	fmt.Printf("V3 Directory: %s\n", v3Directory)
-	fmt.Println(v2api.FetchV2Info())
+	fmt.Println(v2api.FetchV2Info(v2URL, v2AdminSecret))
 }
