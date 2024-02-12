@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"upgrade-from-v2/report"
 	"upgrade-from-v2/v2api"
 )
 
@@ -38,7 +39,24 @@ func init() {
 }
 
 func main() {
-	fmt.Printf("V2 URL: %s\n", v2URL)
-	fmt.Printf("V3 Directory: %s\n", v3Directory)
-	fmt.Println(v2api.FetchV2Info(v2URL, v2AdminSecret))
+	metadata := v2api.FetchV2Metadata(v2URL, v2AdminSecret)
+	// fmt.Println("")
+	// fmt.Println("Metadata API Response:")
+	// for k, _ := range metadata {
+	// 	fmt.Println("*", k)
+	// }
+
+	state := v2api.FetchV2InternalState(v2URL, v2AdminSecret)
+	// fmt.Println("")
+	// fmt.Println("Internale State API Response:")
+	// for k, _ := range state {
+	// 	fmt.Println("*", k)
+	// }
+
+	reportData := report.ReportData{Metadata: metadata, State: state}
+	fmt.Println("")
+	fmt.Println("Report:")
+	report.Report(reportData)
+
+	fmt.Println("")
 }

@@ -29,7 +29,7 @@ run: install ## Run your application
 .PHONY: dev
 dev:
 	@echo "Starting dev loop..."
-	find . -name '*.go' | entr make run
+	find . -name '*.go' -o -name '*.md' | entr make run
 
 .PHONY: usage
 usage: ## List available targets
