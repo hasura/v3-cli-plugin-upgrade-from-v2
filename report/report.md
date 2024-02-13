@@ -1,7 +1,7 @@
 
 # V2 to V3 Upgrade Report
 
-This report outlines the compatibility of your v2 project with Hasura V3.
+This report outlines the compatibility of your Hasura V2 project with Hasura V3.
 
 {{define "recur"}}
   {{if isMap .}}
@@ -35,13 +35,18 @@ This report outlines the compatibility of your v2 project with Hasura V3.
   * {{$key}}
 {{end}}
 
+### Actions
+
+{{range $item := .Metadata.metadata.actions -}}
+  * {{$item}}
+{{end}}
+
 
 ## Features
 
-{{range $feature := .Features -}}
-  {{ if randomBool -}}
-    * [x] {{$feature.Type}} ({{$feature.Category}}) [{{$feature.Feature}}] <{{$feature.SubFeature}}>
-  {{ else -}}
-    * [ ] {{$feature.Type}} ({{$feature.Category}}) [{{$feature.Feature}}] <{{$feature.SubFeature}}>
-  {{ end -}}
-{{end}}
+These are the features used by your project:
+
+{{if .CheckList.Actions.UsesActions }}
+* Actions [Supported] {{end -}}
+{{if .CheckList.Actions.UsesKriti}}
+  * Kriti [Unsupported] {{end -}}

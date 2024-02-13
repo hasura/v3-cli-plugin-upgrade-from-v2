@@ -11,9 +11,9 @@ import (
 const templatePath = "./report/report.md"
 
 type ReportData struct {
-	Metadata map[string]interface{}
-	State    map[string]interface{}
-	Features []features.Feature
+	Metadata  map[string]interface{}
+	State     map[string]interface{}
+	CheckList features.Checklist
 }
 
 func Report(data ReportData) {
@@ -24,7 +24,10 @@ func Report(data ReportData) {
 	}
 
 	// dataWithDepth := addDepth(data, 0)
-	t2.Execute(os.Stdout, data)
+	e3 := t2.Execute(os.Stdout, data)
+	if e3 != nil {
+		panic(fmt.Sprintf("Error executing template file %s: %s", templatePath, e3))
+	}
 }
 
 func isMap(value interface{}) bool {

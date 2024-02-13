@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"upgrade-from-v2/analysis"
 	"upgrade-from-v2/features"
 	"upgrade-from-v2/report"
 	"upgrade-from-v2/v2api"
@@ -54,7 +55,10 @@ func main() {
 	// 	fmt.Println("*", k)
 	// }
 
-	reportData := report.ReportData{Metadata: metadata, State: state, Features: features.Features}
+	reportData := report.ReportData{Metadata: metadata, State: state, CheckList: features.List}
+
+	analysis.Analysis(&reportData)
+
 	fmt.Println("")
 	fmt.Println("Report:")
 	report.Report(reportData)
