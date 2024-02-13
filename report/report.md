@@ -34,3 +34,14 @@ This report outlines the compatibility of your v2 project with Hasura V3.
 {{range $key, $value := .State -}}
   * {{$key}}
 {{end}}
+
+
+## Features
+
+{{range $feature := .Features -}}
+  {{ if randomBool -}}
+    * [x] {{$feature.Type}} ({{$feature.Category}}) [{{$feature.Feature}}] <{{$feature.SubFeature}}>
+  {{ else -}}
+    * [ ] {{$feature.Type}} ({{$feature.Category}}) [{{$feature.Feature}}] <{{$feature.SubFeature}}>
+  {{ end -}}
+{{end}}

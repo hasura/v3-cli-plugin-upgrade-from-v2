@@ -2,8 +2,10 @@ package report
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"text/template"
+	"upgrade-from-v2/features"
 )
 
 const templatePath = "./report/report.md"
@@ -11,6 +13,7 @@ const templatePath = "./report/report.md"
 type ReportData struct {
 	Metadata map[string]interface{}
 	State    map[string]interface{}
+	Features []features.Feature
 }
 
 func Report(data ReportData) {
@@ -34,6 +37,10 @@ func isArray(value interface{}) bool {
 	return ok
 }
 
+func randomBool() bool {
+	return rand.Intn(2) == 1
+}
+
 func addDepth(data interface{}, depth int) interface{} {
 	switch v := data.(type) {
 	case map[string]interface{}:
@@ -53,4 +60,4 @@ func addDepth(data interface{}, depth int) interface{} {
 	}
 }
 
-var funcs = template.FuncMap{"isMap": isMap, "isArray": isArray}
+var funcs = template.FuncMap{"isMap": isMap, "isArray": isArray, "randomBool": randomBool}

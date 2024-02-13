@@ -11,7 +11,7 @@ type Feature struct {
 	Present    bool
 }
 
-var features = []Feature{
+var Features = []Feature{
 	{"Metadata based", "Datasource", "URL from Environment/ Secrets", "", false, false},
 	{"Metadata based", "Datasource", "Advanced Connection Configurations", "SSL, Max Connections, TImeout etc.", false, false},
 	{"Metadata based", "Datasource", "GQL Customisations (DataSource level)", "", false, false},
