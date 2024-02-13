@@ -1,33 +1,29 @@
 package analysis
 
 import (
-	"fmt"
 	"upgrade-from-v2/features"
 	"upgrade-from-v2/report"
 )
 
 // Mutates the CheckList struct to set features that are used
 func Analysis(data *report.ReportData) {
-	fmt.Println("Debugging Analysis...")
-	Actions(&data.CheckList, data.Metadata)
+	md, exists := data.Metadata["metadata"]
+	if !exists {
+		panic("Invalid Metadata Format")
+	}
+
+	switch v := md.(type) {
+	case map[string]interface{}:
+		Actions(&data.CheckList, v)
+	default:
+		panic("Invalid Metadata Format")
+	}
 }
 
 func Actions(features *features.Checklist, metadata map[string]interface{}) {
-	fmt.Println("Debugging Actions...")
-	md, exists := metadata["metadata"]
+	_, exists := metadata["actions"]
 	if !exists {
 		return
 	}
-	fmt.Println("Debugging Metadata...")
-	switch v := md.(type) {
-	case map[string]interface{}:
-		_, exists := v["actions"]
-		if !exists {
-			return
-		}
-		fmt.Println("Found actions")
-		features.Actions.UsesActions = true
-	default:
-		return
-	}
+	features.Actions.UsesActions = true
 }

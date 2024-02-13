@@ -3,6 +3,8 @@
 
 This report outlines the compatibility of your Hasura V2 project with Hasura V3.
 
+{{/*
+
 {{define "recur"}}
   {{if isMap .}}
     Map:
@@ -41,6 +43,7 @@ This report outlines the compatibility of your Hasura V2 project with Hasura V3.
   * {{$item}}
 {{end}}
 
+*/}}
 
 ## Features
 
