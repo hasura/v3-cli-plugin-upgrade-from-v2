@@ -11,9 +11,10 @@ import (
 const templatePath = "./report/report.md"
 
 type ReportData struct {
-	Metadata  map[string]interface{}
-	State     map[string]interface{}
-	CheckList features.Checklist
+	Metadata    map[string]interface{}
+	State       map[string]interface{}
+	CheckList   features.Checklist
+	V3Directory string
 }
 
 func Report(data ReportData) {
@@ -29,6 +30,8 @@ func Report(data ReportData) {
 		panic(fmt.Sprintf("Error executing template file %s: %s", templatePath, e3))
 	}
 }
+
+// Helper functions - Not currently used.
 
 func isMap(value interface{}) bool {
 	_, ok := value.(map[string]interface{})

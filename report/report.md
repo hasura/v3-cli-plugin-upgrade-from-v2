@@ -3,48 +3,6 @@
 
 This report outlines the compatibility of your Hasura V2 project with Hasura V3.
 
-{{/*
-
-{{define "recur"}}
-  {{if isMap .}}
-    Map:
-    {{range $key, $value := . }}
-      * K: {{ $key }}
-      * V: {{template "recur" $value}}
-    {{end}}
-  {{else if isArray .}}
-    Array:
-    {{range $item := .}}
-      {{template "recur" $item}}
-    {{end}}
-  {{else if .}}
-    Value:
-      {{.}}
-  {{end}}
-{{end}}
-
-
-## Metadata
-
-{{range $key, $value := .Metadata.metadata -}}
-  * {{$key}}
-{{end}}
-
-
-## Internal State
-
-{{range $key, $value := .State -}}
-  * {{$key}}
-{{end}}
-
-### Actions
-
-{{range $item := .Metadata.metadata.actions -}}
-  * {{$item}}
-{{end}}
-
-*/}}
-
 ## Features
 
 These are the features used by your project:
@@ -64,4 +22,8 @@ The following features that you are using are not currently supported:
 
 * TODO
 
-Do you wish to create a V3 project to upgrade anyway? [Y/N] TODO
+{{if .V3Directory }}
+A copy of this report has been saved to {{.V3Directory}}/v2_upgrade_report.md
+{{else}}
+To save a copy of this report specify --v3-directory [V3_DIRECTORY]
+{{end}}
