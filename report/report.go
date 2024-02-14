@@ -44,23 +44,4 @@ func randomBool() bool {
 	return rand.Intn(2) == 1
 }
 
-func addDepth(data interface{}, depth int) interface{} {
-	switch v := data.(type) {
-	case map[string]interface{}:
-		result := make(map[string]interface{})
-		for key, value := range v {
-			result[key] = map[string]interface{}{"Depth": depth, "Value": value, "Children": addDepth(value, depth+1)}
-		}
-		return result
-	case []interface{}:
-		result := make([]interface{}, len(v))
-		for i, elem := range v {
-			result[i] = addDepth(elem, depth)
-		}
-		return result
-	default:
-		return data
-	}
-}
-
 var funcs = template.FuncMap{"isMap": isMap, "isArray": isArray, "randomBool": randomBool}

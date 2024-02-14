@@ -26,11 +26,14 @@ It will read configuration from the v3 project directory: `.upgrade-from-v2.yml`
 
 ## TODO
 
-* [ ] Fetch All V2 Project information in v2api package
-* [ ] Encode Feature matrix
-* [ ] Output report
+* [x] Fetch All V2 Project information in v2api package
+  * [x] Metadata
+  * [x] Schema Introspection Information (via "dump_internal_state")
+* [x] Encode Feature matrix
+* [x] Output report
 * [ ] Output V3 Template
 * [ ] Update to new V3 format
+* [ ] Schema diff
 * [ ] Create TS implementations for actions
 * [ ] Create TS lib for Kriti
 

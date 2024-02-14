@@ -21,6 +21,7 @@ func Analysis(debugging bool, data *report.ReportData) {
 		return fmt.Sprintf("Kriti: %s", name)
 	}
 	// TODO: Create a generic "usesFeature" somehow
+	// usesFeature := func(tag string, path ...string) string { ...
 	var funcs = template.FuncMap{"usesActions": usesActions, "usesKriti": usesKriti}
 
 	// Parse template

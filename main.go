@@ -51,8 +51,6 @@ func main() {
 	analysis.Analysis(debugging, &reportData)
 
 	fmt.Println("")
-	fmt.Println("Report:")
 	report.Report(reportData)
-
 	fmt.Println("")
 }
