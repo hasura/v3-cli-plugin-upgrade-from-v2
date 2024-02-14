@@ -52,4 +52,16 @@ These are the features used by your project:
 {{if .CheckList.Actions.UsesActions }}
 * Actions [Supported] {{end -}}
 {{if .CheckList.Actions.UsesKriti}}
-  * Kriti [Unsupported] {{end -}}
+  * Kriti [Unsupported]
+    Kriti is currently unsupported, but you can write your own request/response transformations with the TypeScript connector...
+{{end}}
+
+## Executive Summary
+
+Your project is partially supported. In order to use V3 you will need to write some custom TS.
+
+The following features that you are using are not currently supported:
+
+* TODO
+
+Do you wish to create a V3 project to upgrade anyway? [Y/N] TODO

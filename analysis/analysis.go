@@ -1,63 +1,48 @@
 package analysis
 
 import (
-	"upgrade-from-v2/features"
+	"fmt"
+	"os"
+	"text/template"
 	"upgrade-from-v2/report"
 )
 
 // Mutates the CheckList struct to set features that are used
-func Analysis(data *report.ReportData) {
-	md, exists := data.Metadata["metadata"]
-	if !exists {
-		panic("Invalid Metadata Format: Missing `metadata` key.")
+// Template based analysis - Sets flags in checklist of features
+func Analysis(debugging bool, data *report.ReportData) {
+
+	// Functions
+	usesActions := func(name string) string {
+		data.CheckList.Actions.UsesActions = true
+		return fmt.Sprintf("Action: %s", name)
+	}
+	usesKriti := func(name string) string {
+		data.CheckList.Actions.UsesKriti = true
+		return fmt.Sprintf("Kriti: %s", name)
+	}
+	// TODO: Create a generic "usesFeature" somehow
+	var funcs = template.FuncMap{"usesActions": usesActions, "usesKriti": usesKriti}
+
+	// Parse template
+	const templatePath = "./analysis/analysis.md"
+	t1 := template.New("analysis.md").Funcs(funcs)
+	t2, e2 := t1.ParseFiles(templatePath)
+	if e2 != nil {
+		panic(fmt.Sprintf("Couldn't parse template file %s: %s", templatePath, e2))
 	}
 
-	switch v := md.(type) {
-	case map[string]interface{}:
-		Actions(&data.CheckList, v)
-	default:
-		panic("Invalid Metadata Format: `metadata` field is not an object.")
-	}
-}
-
-func Actions(features *features.Checklist, metadata map[string]interface{}) {
-	actions, exists := metadata["actions"]
-	if !exists {
-		return
-	}
-	features.Actions.UsesActions = true
-
-	switch v := actions.(type) {
-	case []interface{}:
-		for _, a := range v {
-			switch w := a.(type) {
-			case map[string]interface{}:
-				Kriti(features, w)
-			default:
-				panic("Invalid Metadata Format: `action` is not an object.")
-			}
+	// Execute template
+	var e3 error
+	if debugging {
+		e3 = t2.Execute(os.Stdout, data) // If debugging
+	} else {
+		nullFile, err := os.Create(os.DevNull)
+		if err != nil {
+			panic(err)
 		}
-	default:
-		panic("Invalid Metadata Format: `actions` field is not an array.")
+		e3 = t2.Execute(nullFile, data)
 	}
-}
-
-func Kriti(features *features.Checklist, action map[string]interface{}) {
-	definition, exists := action["definition"]
-	if !exists {
-		panic("Action missing definition.")
-	}
-	switch d := definition.(type) {
-	case map[string]interface{}:
-		_, response_transform_exists := d["response_transform"]
-		if response_transform_exists {
-			features.Actions.UsesKriti = true
-		}
-		_, request_transform_exists := d["request_transform"]
-		if request_transform_exists {
-			features.Actions.UsesKriti = true
-		}
-	default:
-		panic("Action definition is not an object.")
+	if e3 != nil {
+		panic(fmt.Sprintf("Error executing template file %s: %s", templatePath, e3))
 	}
 }
