@@ -1,7 +1,7 @@
 
 # DEBUGGING: Analysis of Features
 
-This template is not used for user-facing output
+This template is not used for user-facing output but will be displayed if DEBUG=true.
 
 The go templating features are used for dynamic traversal of map[string]interface{} data structures.
 
@@ -13,4 +13,11 @@ The go templating features are used for dynamic traversal of map[string]interfac
   {{if $action.definition.response_transform -}}
     * {{ usesKriti "response_transform" }}
   {{- end }}
+{{end}}
+
+{{range $source := .Metadata.metadata.sources -}}
+  {{usesSources $source.name}}
+  {{if $source.configuration.connection_info.database_url.from_env -}}
+    * {{usesFromEnv $source.configuration.connection_info.database_url.from_env }}
+  {{end}}
 {{end}}

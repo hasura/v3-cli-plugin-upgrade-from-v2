@@ -8,10 +8,28 @@ This report outlines the compatibility of your Hasura V2 project with Hasura V3.
 These are the features used by your project:
 
 {{if .CheckList.Actions.UsesActions }}
-* Actions [Supported] {{end -}}
-{{if .CheckList.Actions.UsesKriti}}
+* Actions [Supported]
+  {{if .CheckList.Actions.UsesKriti -}}
   * Kriti [Unsupported]
     Kriti is currently unsupported, but you can write your own request/response transformations with the TypeScript connector...
+  {{end -}}
+{{end -}}
+
+{{if .CheckList.Sources.UsesSources }}
+* Sources [Supported]
+  {{- if .CheckList.Sources.UsesFromEnv}}
+  * FromENV [Supported]
+  * TODO: SSL
+  * TODO: Max Connections
+  * TODO: Timeout
+  * TODO: GQL Customisations (DataSource level)
+  * TODO: Read Replicas
+  * TODO: Dynamic Routing
+  * TODO: Latency Test
+  * TODO: Reload Datasource
+    * TODO: Introspect datasource
+    * TODO: Generate the DB schema
+  {{- end -}}
 {{end}}
 
 ## Executive Summary

@@ -11,11 +11,21 @@ var List = Checklist{
 
 type Checklist struct {
 	Actions ActionChecklist
+	Sources SourcesChecklist
 }
 
 type ActionChecklist struct {
 	UsesActions bool
 	UsesKriti   bool
+}
+
+type SourcesChecklist struct {
+	UsesSources   bool
+	UsesFromEnv   bool
+	UsesPG        bool
+	UsesSQLServer bool
+	UsesMySQL     bool
+	UsesMongo     bool
 }
 
 /*

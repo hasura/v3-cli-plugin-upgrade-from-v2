@@ -20,9 +20,22 @@ func Analysis(debugging bool, data *report.ReportData) {
 		data.CheckList.Actions.UsesKriti = true
 		return fmt.Sprintf("Kriti: %s", name)
 	}
+	usesSources := func(name string) string {
+		data.CheckList.Sources.UsesSources = true
+		return fmt.Sprintf("Source: %s", name)
+	}
+	usesFromEnv := func(name string) string {
+		data.CheckList.Sources.UsesFromEnv = true
+		return fmt.Sprintf("FromENV: %s", name)
+	}
 	// TODO: Create a generic "usesFeature" somehow
 	// usesFeature := func(tag string, path ...string) string { ...
-	var funcs = template.FuncMap{"usesActions": usesActions, "usesKriti": usesKriti}
+	var funcs = template.FuncMap{
+		"usesActions": usesActions,
+		"usesKriti":   usesKriti,
+		"usesFromEnv": usesFromEnv,
+		"usesSources": usesSources,
+	}
 
 	// Parse template
 	const templatePath = "./analysis/analysis.md"
