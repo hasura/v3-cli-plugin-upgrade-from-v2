@@ -32,6 +32,209 @@ These are the features used by your project:
   {{- end -}}
 {{end}}
 
+TODO: Tables/Models
+  * Track or Untrack Models(& Bulk)
+  * Track or Untrack Foreign Key Relationships(& Bulk)
+  * Track or Untrack Functions (& Bulk)
+  * Comments on Models (tables)
+  * Enum Tables
+  * Apollo federation
+
+TODO: Relationships
+  * Local Relationship with Foreign key
+  * Local Relationship without FK
+  * Remote Relationship 
+
+TODO: Queries & Mutations
+  * Auto-generated Query Features
+  * Query List
+  * Query by PK
+  * distinct_on
+  * where
+    * Basic Usage
+    * With Bool Expression
+    * All Operators -( Generic, Text, JSONB, Itree etc.)
+    * with aggregate expression
+  * Pagination
+  * limit
+  * offset
+  * order_by
+  * aggregate
+  * Simple Object query
+    * Scalar integer & Text
+    * Scalar JSON field
+    * Nested objects 
+    * Aggregate nested object
+  * Bool expressions
+  * Introspection
+  * Run SQL
+    * Ability to run DB queries, we solve this by using dbeaver
+  * Permission
+    * Column SELECT, UPDATE, DELETE Permisisons
+    * Permission rules
+
+TODO: Actions
+  * Support Functions (Query)
+  * Support Procedures (mutations)
+  * Ability to define types
+    * Custom types 
+    * Custom scalar types
+  * HTTP configuration
+    * Configure endpoints
+    * URL templating (kriti - from context)
+    * Request type
+    * Headers - Static
+    * Headers - Dynamic (Kriti)
+    * Forward Client headers on target HTTP request
+  * Async Actions
+  * Open API Import
+    * Single Import
+    * bulk import 
+    * error handling during import
+    * support yaml & JSON
+  * Code Gen
+    * Support multiple programming languages & frameworks
+  * Derive Actions
+  * Action Permissions
+    * Basic permissions
+  * Action Relationships
+    * Action to DB
+    * Action to RS
+    * Action to Action
+  * Transforms
+    * Request Transforms
+      * suppport all context objects
+      * Request Method
+      * Request URL
+      * Request Body
+    * Response Transforms
+      * Support all context objects
+      * Debugging mode (include transorm errors)
+    * Payload Transform
+      * Response Body Transforms
+  * Async Action logs cleanup (?)
+
+TODO: Remote Schemas
+  * Configuration
+    * URL & from env
+    * Timeout
+    * Headers
+    * Headers Dynamic
+  * Relationships
+    * RS to DB
+    * RS to RS
+    * Arg Presets
+  * Permissions
+  * Bypass Auth
+
+TODO: Event Triggers
+  * Trigger type
+    * Insert
+    * Update
+    * Delete
+    * Via console
+    * Column specific updates
+  * Trigger Protocols
+    * HTTP webhook
+  * Auto Cleanup Event Logs
+    * Make sure event logs are cleared periodically
+  * Request Transform
+    * Headers
+    * Request Method
+    * Request URL
+    * Request Body
+    * Context 
+  * Response Transform
+    * Transform response data
+  * Payload Transform
+    * Response Body Transforms
+  * Retry Logic
+    * Configuration
+  * Simulation
+    * Event triggers can be tested by manually triggering from console
+  * Codegen
+  * Observability
+  * Performance
+
+TODO: Authentication
+  * JWT
+    * JWT secret
+    * JWK
+  * Webhook
+  * Admin Role
+  * Unauthorised Access
+  * Multiple Admin Secrets
+  * Multiple JWTs
+
+TODO: Authz
+  * Role from Session variable
+  * Role based scheme generation
+  * Configure Row Permissions
+  * Column Permissions
+  * Aggregation permissions
+  * Row Fetch Limit
+  * Root Field Visibility
+  * Column Presets
+  * Backend Only Mutations
+  * Permissions Operators
+  * Permissions summary (on Console)
+  
+TODO: Relay
+  * Query
+    * Connection Objects, Nodes, Edges
+  * Subscription
+  * Mutation
+
+TODO: RESTified Endpoints
+  * Basic Graphql
+  * Arguments from payload body
+  * Arguments from URL params
+  * Different HTTP methods
+  * RESTified endpoint playground (like GraphiQL UI, to test REST endpoints)
+
+TODO: Caching
+  * Basic Caching with @cached
+  * With Custom TTL @cached(ttl: 120)
+  * forcing a refresh @cached(refresh: true)
+
+TODO: Allow LIst
+  * Configuer Query Collections with Role access
+  * Multiple Query Colections & Roles
+  * Caching Metrics
+  * EE Suppport (suppport custom Redis configurations)
+
+TODO: API Limits
+  * Rate limits
+  * Depth limits
+  * Node limits
+  * Time limits
+  * Batch Limits
+
+TODO: Dynamic Env Vars
+  * Secret resolution with zero downtime
+
+TODO:
+  * Metadata Consistency
+  * Schema Registry
+  * Federation
+    * Apollo Federation
+
+### TODO: Telemetry Detected Features
+
+TODO: Subscriptions		
+	* Cannot be determined by metadata or introspection 	
+
+TODO: Observability	Open Telemetry	Traces URL
+  * Metrics URL
+  * Trace Propogation (b3 or tracecontext)
+  * Headers
+  * Attrubutes
+	* APM Integrations	Prometheus
+		* Datadog
+		* New Relic
+		* Azure Monitor
+	* Query Tags (?)
+
 ## Executive Summary
 
 Your project is partially supported. In order to use V3 you will need to write some custom TS.
