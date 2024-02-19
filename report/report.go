@@ -12,6 +12,7 @@ const templatePath = "./report/report.md"
 type ReportData struct {
 	Metadata    map[string]interface{}
 	State       map[string]interface{}
+	Summary     map[string]int
 	CheckList   features.Checklist
 	V3Directory string
 }

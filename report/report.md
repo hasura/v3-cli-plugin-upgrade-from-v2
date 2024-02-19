@@ -283,6 +283,34 @@ It may not be possible to detect usage of this feature...
 
 {{if test .CheckList.RemoteSchemas.Used -}}
 ### Remote Schemas
+
+{{if test .CheckList.RemoteSchemas.Configuration.Used -}}
+#### Configuration [?]
+
+{{if test .CheckList.RemoteSchemas.Configuration.FromEnv -}}
+##### FromEnv [?]
+{{- end}}
+
+{{if test .CheckList.RemoteSchemas.Configuration.Timeout -}}
+##### Timeout [?]
+{{- end}}
+
+{{if test .CheckList.RemoteSchemas.Configuration.Headers -}}
+##### Headers [?]
+{{- end}}
+
+{{if test .CheckList.RemoteSchemas.Configuration.DynamicHeaders -}}
+##### Dynamic Headers [?]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.RemoteSchemas.Relationships.Used -}}
+#### Relationships [?]
+
+{{if test .CheckList.RemoteSchemas.Relationships.Used -}}
+##### Relationships [?]
+{{- end}}
+{{- end}}
 {{end}}
 
 {{if test .CheckList.EventTriggers.Used -}}
@@ -327,3 +355,9 @@ It may not be possible to detect usage of this feature...
 
 
 ## Executive Summary
+
+The following categories of feature support were detected in your Hasura V2 project:
+
+{{ range $k, $v := .Summary -}}
+| {{$k}} | {{$v}} |
+{{end}}

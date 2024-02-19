@@ -49,9 +49,15 @@ func init() {
 func main() {
 	metadata := v2api.FetchV2Metadata(v2URL, v2AdminSecret)
 	state := v2api.FetchV2InternalState(v2URL, v2AdminSecret)
-	reportData := report.ReportData{Metadata: metadata, State: state, CheckList: features.List, V3Directory: v3Directory}
+	reportData := report.ReportData{
+		Metadata:    metadata,
+		State:       state,
+		CheckList:   features.List,
+		V3Directory: v3Directory,
+	}
 
 	analysis.Analysis(debugging, &reportData)
+	reportData.Summary = features.SumCategories(reportData.CheckList)
 
 	fmt.Println("")
 	report.Report(detectEverything, reportData)

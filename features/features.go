@@ -1,21 +1,60 @@
 package features
 
+import (
+	"reflect"
+)
+
 // Taken from https://docs.google.com/spreadsheets/d/1CfTEmDsjnuh_flWhSFVZ6wqWR7m7egeyVD6BXppgCyE/edit#gid=1074788665
 
 // Default global checklist.
 // Helper template function for randomized testing.
 var List = Checklist{}
 
+func SumCategories(checklist interface{}) map[string]int {
+	categoryCounts := make(map[string]int)
+
+	checklistValue := reflect.ValueOf(checklist)
+	checklistType := checklistValue.Type()
+
+	for i := 0; i < checklistType.NumField(); i++ {
+		field := checklistType.Field(i)
+		fieldValue := checklistValue.Field(i)
+
+		if fieldValue.Kind() == reflect.Struct {
+			// Check for the "category" tag and increment count if true
+			if category, ok := field.Tag.Lookup("category"); ok {
+				categoryCounts[category]++
+			} else {
+				categoryCounts["Uncategorized"]++
+			}
+			// Nested struct, recursively process
+			nestedCounts := SumCategories(fieldValue.Interface())
+			for category, count := range nestedCounts {
+				categoryCounts[category] += count
+			}
+		} else {
+			// Check for the "category" tag and increment count if true
+			if category, ok := field.Tag.Lookup("category"); ok && fieldValue.Bool() {
+				categoryCounts[category]++
+			} else {
+				categoryCounts["Uncategorized"]++
+			}
+		}
+	}
+
+	return categoryCounts
+}
+
 type Checklist struct {
 	// TODO: Check this with Rahul? Do we care about backends for this report?
 	Sources struct {
-		Used      bool
+		Used      bool `category:"Supported"`
 		FromEnv   bool
-		PG        bool
+		PG        bool `category:"Supported2"`
 		SQLServer bool
 		MySQL     bool
 		Mongo     bool
-	}
+	} `category:"Supported"`
 
 	Tables struct {
 		Used bool
@@ -133,17 +172,17 @@ type Checklist struct {
 	RemoteSchemas struct {
 		Used          bool
 		Configuration struct {
-			UsesConfiguration bool
-			FromEnv           bool
-			Timeout           bool
-			Headers           bool
-			DynamicHeaders    bool
+			Used           bool
+			FromEnv        bool
+			Timeout        bool
+			Headers        bool
+			DynamicHeaders bool
 		}
 		Relationships struct {
-			UsesRelationships bool
-			ToDatabase        bool
-			ToRemoteSchema    bool
-			ArgumentPresets   bool
+			Used            bool
+			ToDatabase      bool
+			ToRemoteSchema  bool
+			ArgumentPresets bool
 		}
 		Permissions bool
 		BypassAuth  bool
