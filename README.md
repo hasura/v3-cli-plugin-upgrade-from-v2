@@ -37,6 +37,16 @@ It will read configuration from the v3 project directory: `.upgrade-from-v2.yml`
 * [ ] Create TS implementations for actions
 * [ ] Create TS lib for Kriti
 
+## Creating an HTML Report
+
+Create markdown:
+
+HASURA_V2_URL=https://foobar.hasura.app HASURA_V2_ADMIN_SECRET=XXX HASURA_V3_DIRECTORY=. make run > report.md
+
+Convert to HTML:
+
+> cat report.md | docker run -v (pwd)/report.md:/data/report.md pandoc/minimal -f markdown -t html --toc -s report.md > report.html
+
 ## Developing and Publishing
 
 You can develop and use this application as a standalone go CLI app until you are ready to distribute and publish your changes.

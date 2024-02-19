@@ -36,21 +36,3 @@ func Report(alwaysTrue bool, data ReportData) {
 		panic(fmt.Sprintf("Error executing template file %s: %s", templatePath, e3))
 	}
 }
-
-/*
-// Helper functions - Not currently used.
-
-func isMap(value interface{}) bool {
-	_, ok := value.(map[string]interface{})
-	return ok
-}
-
-func isArray(value interface{}) bool {
-	_, ok := value.([]interface{})
-	return ok
-}
-
-func randomBool() bool {
-	return rand.Intn(2) == 1
-}
-*/
