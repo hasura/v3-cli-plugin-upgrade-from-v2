@@ -10,19 +10,157 @@ These are the features used by your project:
 
 
 {{if test .CheckList.Sources.Used -}}
-### Sources
+### Sources [Supported]
+
+{{if test .CheckList.Sources.FromEnv -}}
+#### FromENV [?]
+{{- end}}
+
+{{if test .CheckList.Sources.PG -}}
+#### Postgres [?]
+{{- end}}
+
+{{if test .CheckList.Sources.SQLServer -}}
+#### SQL Server [?]
+{{- end}}
+
+{{if test .CheckList.Sources.MySQL -}}
+#### MySQL [?]
+{{- end}}
+
+{{if test .CheckList.Sources.Mongo -}}
+#### MongoDB [?]
+{{- end}}
 {{end}}
 
 {{if test .CheckList.Tables.Used -}}
 ### Tables
+
+{{if test .CheckList.Tables.CommentsOnModels -}}
+#### Comments On Models [?]
+{{- end}}
+
+{{if test .CheckList.Tables.EnumTables -}}
+#### Enum Tables [?]
+{{- end}}
+
+{{if test .CheckList.Tables.ApolloFederation -}}
+#### Apollo Federation [?]
+{{- end}}
 {{end}}
 
 {{if test .CheckList.Relationships.Used -}}
 ### Relationships
+
+{{if test .CheckList.Relationships.LocalRelationshipWithForeignKey -}}
+#### Local Relationships with Foreign Keys [?]
+{{- end}}
+
+{{if test .CheckList.Relationships.LocalRelationshipWithoutForeignKey -}}
+#### Local Relationships without Foreign Keys [?]
+{{- end}}
+
+{{if test .CheckList.Relationships.RemoteRelationship -}}
+#### Remote Relationships [?]
+{{- end}}
 {{end}}
 
 {{if test .CheckList.QueriesAndMutations.Used -}}
 ### Queries and Mutations
+
+{{if test .CheckList.QueriesAndMutations.QueryByPrimaryKey -}}
+#### Query by Primary Key [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.DistinctOn -}}
+#### Uses "DISTINCT ON" [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.UsesWhere -}}
+#### Uses "WHERE" [?]
+
+{{if test .CheckList.QueriesAndMutations.Where.BasicUsage -}}
+##### Basic Usage [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Where.WithBoolExpression -}}
+##### With Boolean Expressions [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Where.Operators -}}
+##### Operators [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Where.AggregateExpressions -}}
+##### Aggregate Expressions [?]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Pagination -}}
+#### Pagination [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Limit -}}
+#### Limits [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Offset -}}
+#### Offsets [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.OrderBy -}}
+#### Uses "ORDER BY" [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Aggregate -}}
+#### Aggregates [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.SimpleObjectQueries.Used -}}
+#### Simple Object Queries [?]
+
+{{if test .CheckList.QueriesAndMutations.SimpleObjectQueries.ScalarIntegerAndText -}}
+##### Scalar Integers and Text [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.SimpleObjectQueries.ScalarJSON -}}
+##### Scalar JSON [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.SimpleObjectQueries.NestedObjects -}}
+##### Nested Objects [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.SimpleObjectQueries.AggregateNestedObjects -}}
+##### Aggregate Nested Objects [?]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.BoolExpressions -}}
+#### Boolean Expressions [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Introspection -}}
+#### Introspection [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.RunSQL -}}
+#### RunSQL [?]
+
+It may not be possible to detect usage of this feature...
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Permissions.Used -}}
+#### Permissions [?]
+
+{{if test .CheckList.QueriesAndMutations.Permissions.ColumnPermisisons -}}
+##### Column Permisisons [?]
+{{- end}}
+
+{{if test .CheckList.QueriesAndMutations.Permissions.PermissionRules -}}
+##### Permission Rules [?]
+{{- end}}
+{{- end}}
 {{end}}
 
 {{if test .CheckList.Actions.Used -}}
