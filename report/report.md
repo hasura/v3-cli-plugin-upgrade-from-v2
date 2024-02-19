@@ -165,6 +165,120 @@ It may not be possible to detect usage of this feature...
 
 {{if test .CheckList.Actions.Used -}}
 ### Actions
+
+{{if test .CheckList.Actions.Queries -}}
+#### Query Actions [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Mutations -}}
+#### Mutation Actions [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Types.Used -}}
+#### Types [?]
+
+*Note: All V2 actions use custom types.*
+
+{{if test .CheckList.Actions.Types.CustomTypes -}}
+##### Custom Types [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Types.CustomScalarTypes -}}
+##### Custom Scalar Types [?]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.Actions.HttpConfiguration.Used -}}
+#### Http Configuration [?]
+
+{{if test .CheckList.Actions.HttpConfiguration.ConfiguredEndpoints -}}
+##### Endpoints [?]
+{{- end}}
+
+{{if test .CheckList.Actions.HttpConfiguration.URLTemplating -}}
+##### URL Templating [?]
+{{- end}}
+
+{{if test .CheckList.Actions.HttpConfiguration.RequestMethod -}}
+##### Request Method [?]
+{{- end}}
+
+{{if test .CheckList.Actions.HttpConfiguration.StaticHeaders -}}
+##### Static Headers [?]
+{{- end}}
+
+{{if test .CheckList.Actions.HttpConfiguration.DynamicHeaders -}}
+##### Dynamic Headers [?]
+{{- end}}
+
+{{if test .CheckList.Actions.HttpConfiguration.ForwardClientHeaders -}}
+##### Forward Client Headers [?]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.Actions.AsyncActions -}}
+#### Async Actions [?]
+{{- end}}
+
+{{if test .CheckList.Actions.BasicPermissions -}}
+#### Basic Permissions [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Relationships.Used -}}
+#### Relationships [?]
+
+{{if test .CheckList.Actions.Relationships.ActionToDB -}}
+##### To Database [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Relationships.ActionToRS -}}
+##### To Remote Schema [?]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.Actions.Transforms.Used -}}
+#### Transforms [?]
+
+{{if test .CheckList.Actions.Transforms.RequestTransforms.Used -}}
+##### Request Transforms [?]
+
+{{if test .CheckList.Actions.Transforms.RequestTransforms.ContextObjects -}}
+###### Context Objects [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Transforms.RequestTransforms.RequestMethod -}}
+###### Request Method [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Transforms.RequestTransforms.RequestURL -}}
+###### Request URL [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Transforms.RequestTransforms.RequestBody -}}
+###### Request Body [?]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.Actions.Transforms.ResponseTransforms.Used -}}
+##### Response Transforms [?]
+
+{{if test .CheckList.Actions.Transforms.ResponseTransforms.ContextObjects -}}
+###### Context Objects [?]
+{{- end}}
+
+{{if test .CheckList.Actions.Transforms.ResponseTransforms.DebuggingMode -}}
+###### Debugging Mode [?]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.Actions.Transforms.PayloadTransforms.Used -}}
+##### Payload Transforms [?]
+
+{{if test .CheckList.Actions.Transforms.PayloadTransforms.ResponseBodyTransforms -}}
+###### Response Body Transforms [?]
+{{- end}}
+{{- end}}
+{{- end}}
 {{end}}
 
 {{if test .CheckList.RemoteSchemas.Used -}}

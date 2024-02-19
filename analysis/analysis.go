@@ -17,7 +17,7 @@ func Analysis(debugging bool, data *report.ReportData) {
 		return fmt.Sprintf("Action: %s", name)
 	}
 	usesKriti := func(name string) string {
-		data.CheckList.Actions.Transforms.UsesTransforms = true
+		data.CheckList.Actions.Transforms.Used = true
 		return fmt.Sprintf("Kriti: %s", name)
 	}
 	usesSources := func(name string) string {

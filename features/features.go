@@ -77,11 +77,12 @@ type Checklist struct {
 		Queries   bool
 		Mutations bool
 		Types     struct {
-			UsesTypes         bool
+			Used              bool
 			CustomTypes       bool
 			CustomScalarTypes bool
 		}
 		HttpConfiguration struct {
+			Used                 bool
 			ConfiguredEndpoints  bool
 			URLTemplating        bool
 			RequestMethod        bool
@@ -102,27 +103,27 @@ type Checklist struct {
 		*/
 		BasicPermissions bool
 		Relationships    struct {
-			UsesRelationships bool
-			ActionToDB        bool
-			ActionToRS        bool
-			ActionToAction    bool
+			Used           bool
+			ActionToDB     bool
+			ActionToRS     bool
+			ActionToAction bool
 		}
 		Transforms struct {
-			UsesTransforms    bool // Subsumes Kriti Feature.
+			Used              bool // Subsumes Kriti Feature.
 			RequestTransforms struct {
-				UsesRequestTransforms bool
-				ContextObjects        bool
-				RequestMethod         bool
-				RequestURL            bool
-				RequestBody           bool
+				Used           bool
+				ContextObjects bool
+				RequestMethod  bool
+				RequestURL     bool
+				RequestBody    bool
 			}
 			ResponseTransforms struct {
-				UsesResponseTransforms bool
-				ContextObjects         bool
-				DebuggingMode          bool
+				Used           bool
+				ContextObjects bool
+				DebuggingMode  bool
 			}
 			PayloadTransforms struct {
-				UsesPayloadTransforms  bool
+				Used                   bool
 				ResponseBodyTransforms bool
 			}
 		}
