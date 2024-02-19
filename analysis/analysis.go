@@ -28,6 +28,10 @@ func Analysis(debugging bool, data *report.ReportData) {
 		data.CheckList.Sources.Used = true
 		return fmt.Sprintf("FromENV: %s", name)
 	}
+	usesPG := func(name string) string {
+		data.CheckList.Sources.PG = true
+		return fmt.Sprintf("PG: %s", name)
+	}
 	// TODO: Create a generic "usesFeature" somehow
 	// usesFeature := func(tag string, path ...string) string { ...
 
@@ -36,6 +40,7 @@ func Analysis(debugging bool, data *report.ReportData) {
 		"usesKriti":   usesKriti,
 		"usesFromEnv": usesFromEnv,
 		"usesSources": usesSources,
+		"usesPG":      usesPG,
 	}
 
 	// Parse template

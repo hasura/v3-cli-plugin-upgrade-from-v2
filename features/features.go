@@ -21,13 +21,8 @@ func SumCategories(checklist interface{}) map[string]int {
 		fieldValue := checklistValue.Field(i)
 
 		if fieldValue.Kind() == reflect.Struct {
-			// Check for the "category" tag and increment count if true
-			if category, ok := field.Tag.Lookup("category"); ok {
-				categoryCounts[category]++
-			} else {
-				categoryCounts["Uncategorized"]++
-			}
 			// Nested struct, recursively process
+			// Don't need a supported check, since they already have "Used"
 			nestedCounts := SumCategories(fieldValue.Interface())
 			for category, count := range nestedCounts {
 				categoryCounts[category] += count
@@ -50,11 +45,11 @@ type Checklist struct {
 	Sources struct {
 		Used      bool `category:"Supported"`
 		FromEnv   bool
-		PG        bool `category:"Supported2"`
+		PG        bool `category:"Supported"`
 		SQLServer bool
 		MySQL     bool
 		Mongo     bool
-	} `category:"Supported"`
+	}
 
 	Tables struct {
 		Used bool

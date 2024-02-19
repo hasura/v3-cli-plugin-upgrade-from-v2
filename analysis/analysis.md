@@ -15,9 +15,14 @@ The go templating features are used for dynamic traversal of map[string]interfac
   {{- end }}
 {{end}}
 
+{{.Metadata.metadata.sources}}
+
 {{range $source := .Metadata.metadata.sources -}}
   {{usesSources $source.name}}
   {{if $source.configuration.connection_info.database_url.from_env -}}
     * {{usesFromEnv $source.configuration.connection_info.database_url.from_env }}
+  {{end}}
+  {{if eq $source.kind "postgres" -}}
+    * {{usesPG $source.name }}
   {{end}}
 {{end}}
