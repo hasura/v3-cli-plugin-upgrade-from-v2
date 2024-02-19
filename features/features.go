@@ -3,6 +3,7 @@ package features
 // Taken from https://docs.google.com/spreadsheets/d/1CfTEmDsjnuh_flWhSFVZ6wqWR7m7egeyVD6BXppgCyE/edit#gid=1074788665
 
 // Default global checklist.
+// Helper template function for randomized testing.
 var List = Checklist{}
 
 type Checklist struct {

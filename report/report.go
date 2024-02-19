@@ -2,7 +2,6 @@ package report
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
 	"text/template"
 	"upgrade-from-v2/features"
@@ -17,7 +16,13 @@ type ReportData struct {
 	V3Directory string
 }
 
-func Report(data ReportData) {
+func Report(alwaysTrue bool, data ReportData) {
+
+	testBool := func(val bool) bool {
+		return alwaysTrue || val
+	}
+
+	var funcs = template.FuncMap{"test": testBool}
 	t1 := template.New("report.md").Funcs(funcs)
 	t2, e2 := t1.ParseFiles(templatePath)
 	if e2 != nil {
@@ -31,6 +36,7 @@ func Report(data ReportData) {
 	}
 }
 
+/*
 // Helper functions - Not currently used.
 
 func isMap(value interface{}) bool {
@@ -46,5 +52,4 @@ func isArray(value interface{}) bool {
 func randomBool() bool {
 	return rand.Intn(2) == 1
 }
-
-var funcs = template.FuncMap{"isMap": isMap, "isArray": isArray, "randomBool": randomBool}
+*/
