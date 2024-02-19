@@ -173,7 +173,182 @@ id="toc-v2-to-v3-upgrade-report">V2 to V3 Upgrade Report</a>
 <li><a href="#features" id="toc-features">Features</a>
 <ul>
 <li><a href="#sources-supported" id="toc-sources-supported">Sources
-[Supported]</a></li>
+[Supported]</a>
+<ul>
+<li><a href="#fromenv" id="toc-fromenv">FromENV [?]</a></li>
+<li><a href="#postgres" id="toc-postgres">Postgres [?]</a></li>
+<li><a href="#sql-server" id="toc-sql-server">SQL Server [?]</a></li>
+<li><a href="#mysql" id="toc-mysql">MySQL [?]</a></li>
+<li><a href="#mongodb" id="toc-mongodb">MongoDB [?]</a></li>
+</ul></li>
+<li><a href="#tables" id="toc-tables">Tables</a>
+<ul>
+<li><a href="#comments-on-models" id="toc-comments-on-models">Comments
+On Models [?]</a></li>
+<li><a href="#enum-tables" id="toc-enum-tables">Enum Tables [?]</a></li>
+<li><a href="#apollo-federation" id="toc-apollo-federation">Apollo
+Federation [?]</a></li>
+</ul></li>
+<li><a href="#relationships" id="toc-relationships">Relationships</a>
+<ul>
+<li><a href="#local-relationships-with-foreign-keys"
+id="toc-local-relationships-with-foreign-keys">Local Relationships with
+Foreign Keys [?]</a></li>
+<li><a href="#local-relationships-without-foreign-keys"
+id="toc-local-relationships-without-foreign-keys">Local Relationships
+without Foreign Keys [?]</a></li>
+<li><a href="#remote-relationships" id="toc-remote-relationships">Remote
+Relationships [?]</a></li>
+</ul></li>
+<li><a href="#queries-and-mutations"
+id="toc-queries-and-mutations">Queries and Mutations</a>
+<ul>
+<li><a href="#query-by-primary-key" id="toc-query-by-primary-key">Query
+by Primary Key [?]</a></li>
+<li><a href="#uses-distinct-on" id="toc-uses-distinct-on">Uses “DISTINCT
+ON” [?]</a></li>
+<li><a href="#uses-where" id="toc-uses-where">Uses “WHERE” [?]</a>
+<ul>
+<li><a href="#basic-usage" id="toc-basic-usage">Basic Usage [?]</a></li>
+<li><a href="#with-boolean-expressions"
+id="toc-with-boolean-expressions">With Boolean Expressions [?]</a></li>
+<li><a href="#operators" id="toc-operators">Operators [?]</a></li>
+<li><a href="#aggregate-expressions"
+id="toc-aggregate-expressions">Aggregate Expressions [?]</a></li>
+</ul></li>
+<li><a href="#pagination" id="toc-pagination">Pagination [?]</a></li>
+<li><a href="#limits" id="toc-limits">Limits [?]</a></li>
+<li><a href="#offsets" id="toc-offsets">Offsets [?]</a></li>
+<li><a href="#uses-order-by" id="toc-uses-order-by">Uses “ORDER BY”
+[?]</a></li>
+<li><a href="#aggregates" id="toc-aggregates">Aggregates [?]</a></li>
+<li><a href="#simple-object-queries"
+id="toc-simple-object-queries">Simple Object Queries [?]</a>
+<ul>
+<li><a href="#scalar-integers-and-text"
+id="toc-scalar-integers-and-text">Scalar Integers and Text [?]</a></li>
+<li><a href="#scalar-json" id="toc-scalar-json">Scalar JSON [?]</a></li>
+<li><a href="#nested-objects" id="toc-nested-objects">Nested Objects
+[?]</a></li>
+<li><a href="#aggregate-nested-objects"
+id="toc-aggregate-nested-objects">Aggregate Nested Objects [?]</a></li>
+</ul></li>
+<li><a href="#boolean-expressions" id="toc-boolean-expressions">Boolean
+Expressions [?]</a></li>
+<li><a href="#introspection" id="toc-introspection">Introspection
+[?]</a></li>
+<li><a href="#runsql" id="toc-runsql">RunSQL [?]</a></li>
+<li><a href="#permissions" id="toc-permissions">Permissions [?]</a>
+<ul>
+<li><a href="#column-permisisons" id="toc-column-permisisons">Column
+Permisisons [?]</a></li>
+<li><a href="#permission-rules" id="toc-permission-rules">Permission
+Rules [?]</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#actions" id="toc-actions">Actions</a>
+<ul>
+<li><a href="#query-actions" id="toc-query-actions">Query Actions
+[?]</a></li>
+<li><a href="#mutation-actions" id="toc-mutation-actions">Mutation
+Actions [?]</a></li>
+<li><a href="#types" id="toc-types">Types [?]</a>
+<ul>
+<li><a href="#custom-types" id="toc-custom-types">Custom Types
+[?]</a></li>
+<li><a href="#custom-scalar-types" id="toc-custom-scalar-types">Custom
+Scalar Types [?]</a></li>
+</ul></li>
+<li><a href="#http-configuration" id="toc-http-configuration">Http
+Configuration [?]</a>
+<ul>
+<li><a href="#endpoints" id="toc-endpoints">Endpoints [?]</a></li>
+<li><a href="#url-templating" id="toc-url-templating">URL Templating
+[?]</a></li>
+<li><a href="#request-method" id="toc-request-method">Request Method
+[?]</a></li>
+<li><a href="#static-headers" id="toc-static-headers">Static Headers
+[?]</a></li>
+<li><a href="#dynamic-headers" id="toc-dynamic-headers">Dynamic Headers
+[?]</a></li>
+<li><a href="#forward-client-headers"
+id="toc-forward-client-headers">Forward Client Headers [?]</a></li>
+</ul></li>
+<li><a href="#async-actions" id="toc-async-actions">Async Actions
+[?]</a></li>
+<li><a href="#basic-permissions" id="toc-basic-permissions">Basic
+Permissions [?]</a></li>
+<li><a href="#relationships-1" id="toc-relationships-1">Relationships
+[?]</a>
+<ul>
+<li><a href="#to-database" id="toc-to-database">To Database [?]</a></li>
+<li><a href="#to-remote-schema" id="toc-to-remote-schema">To Remote
+Schema [?]</a></li>
+</ul></li>
+<li><a href="#transforms" id="toc-transforms">Transforms [?]</a>
+<ul>
+<li><a href="#request-transforms" id="toc-request-transforms">Request
+Transforms [?]</a>
+<ul>
+<li><a href="#context-objects" id="toc-context-objects">Context Objects
+[?]</a></li>
+<li><a href="#request-method-1" id="toc-request-method-1">Request Method
+[?]</a></li>
+<li><a href="#request-url" id="toc-request-url">Request URL [?]</a></li>
+<li><a href="#request-body" id="toc-request-body">Request Body
+[?]</a></li>
+</ul></li>
+<li><a href="#response-transforms" id="toc-response-transforms">Response
+Transforms [?]</a>
+<ul>
+<li><a href="#context-objects-1" id="toc-context-objects-1">Context
+Objects [?]</a></li>
+<li><a href="#debugging-mode" id="toc-debugging-mode">Debugging Mode
+[?]</a></li>
+</ul></li>
+<li><a href="#payload-transforms" id="toc-payload-transforms">Payload
+Transforms [?]</a>
+<ul>
+<li><a href="#response-body-transforms"
+id="toc-response-body-transforms">Response Body Transforms [?]</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#remote-schemas" id="toc-remote-schemas">Remote Schemas</a>
+<ul>
+<li><a href="#configuration" id="toc-configuration">Configuration
+[?]</a>
+<ul>
+<li><a href="#fromenv-1" id="toc-fromenv-1">FromEnv [?]</a></li>
+<li><a href="#timeout" id="toc-timeout">Timeout [?]</a></li>
+<li><a href="#headers" id="toc-headers">Headers [?]</a></li>
+<li><a href="#dynamic-headers-1" id="toc-dynamic-headers-1">Dynamic
+Headers [?]</a></li>
+</ul></li>
+<li><a href="#relationships-2" id="toc-relationships-2">Relationships
+[?]</a>
+<ul>
+<li><a href="#relationships-3" id="toc-relationships-3">Relationships
+[?]</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#event-triggers" id="toc-event-triggers">Event
+Triggers</a></li>
+<li><a href="#authentication"
+id="toc-authentication">Authentication</a></li>
+<li><a href="#authorization"
+id="toc-authorization">Authorization</a></li>
+<li><a href="#relay" id="toc-relay">Relay</a></li>
+<li><a href="#restified-endpoints"
+id="toc-restified-endpoints">RESTified Endpoints</a></li>
+<li><a href="#allow-lists" id="toc-allow-lists">Allow Lists</a></li>
+<li><a href="#api-limits" id="toc-api-limits">API Limits</a></li>
+<li><a href="#dynamic-environment-variables"
+id="toc-dynamic-environment-variables">Dynamic Environment
+Variables</a></li>
+<li><a href="#subscriptions"
+id="toc-subscriptions">Subscriptions</a></li>
+<li><a href="#obervability" id="toc-obervability">Obervability</a></li>
 </ul></li>
 <li><a href="#executive-summary" id="toc-executive-summary">Executive
 Summary</a></li>
@@ -186,6 +361,95 @@ Hasura V3.</p>
 <h2 id="features">Features</h2>
 <p>These are the features used by your project:</p>
 <h3 id="sources-supported">Sources [Supported]</h3>
+<h4 id="fromenv">FromENV [?]</h4>
+<h4 id="postgres">Postgres [?]</h4>
+<h4 id="sql-server">SQL Server [?]</h4>
+<h4 id="mysql">MySQL [?]</h4>
+<h4 id="mongodb">MongoDB [?]</h4>
+<h3 id="tables">Tables</h3>
+<h4 id="comments-on-models">Comments On Models [?]</h4>
+<h4 id="enum-tables">Enum Tables [?]</h4>
+<h4 id="apollo-federation">Apollo Federation [?]</h4>
+<h3 id="relationships">Relationships</h3>
+<h4 id="local-relationships-with-foreign-keys">Local Relationships with
+Foreign Keys [?]</h4>
+<h4 id="local-relationships-without-foreign-keys">Local Relationships
+without Foreign Keys [?]</h4>
+<h4 id="remote-relationships">Remote Relationships [?]</h4>
+<h3 id="queries-and-mutations">Queries and Mutations</h3>
+<h4 id="query-by-primary-key">Query by Primary Key [?]</h4>
+<h4 id="uses-distinct-on">Uses “DISTINCT ON” [?]</h4>
+<h4 id="uses-where">Uses “WHERE” [?]</h4>
+<h5 id="basic-usage">Basic Usage [?]</h5>
+<h5 id="with-boolean-expressions">With Boolean Expressions [?]</h5>
+<h5 id="operators">Operators [?]</h5>
+<h5 id="aggregate-expressions">Aggregate Expressions [?]</h5>
+<h4 id="pagination">Pagination [?]</h4>
+<h4 id="limits">Limits [?]</h4>
+<h4 id="offsets">Offsets [?]</h4>
+<h4 id="uses-order-by">Uses “ORDER BY” [?]</h4>
+<h4 id="aggregates">Aggregates [?]</h4>
+<h4 id="simple-object-queries">Simple Object Queries [?]</h4>
+<h5 id="scalar-integers-and-text">Scalar Integers and Text [?]</h5>
+<h5 id="scalar-json">Scalar JSON [?]</h5>
+<h5 id="nested-objects">Nested Objects [?]</h5>
+<h5 id="aggregate-nested-objects">Aggregate Nested Objects [?]</h5>
+<h4 id="boolean-expressions">Boolean Expressions [?]</h4>
+<h4 id="introspection">Introspection [?]</h4>
+<h4 id="runsql">RunSQL [?]</h4>
+<p>It may not be possible to detect usage of this feature…</p>
+<h4 id="permissions">Permissions [?]</h4>
+<h5 id="column-permisisons">Column Permisisons [?]</h5>
+<h5 id="permission-rules">Permission Rules [?]</h5>
+<h3 id="actions">Actions</h3>
+<h4 id="query-actions">Query Actions [?]</h4>
+<h4 id="mutation-actions">Mutation Actions [?]</h4>
+<h4 id="types">Types [?]</h4>
+<p><em>Note: All V2 actions use custom types.</em></p>
+<h5 id="custom-types">Custom Types [?]</h5>
+<h5 id="custom-scalar-types">Custom Scalar Types [?]</h5>
+<h4 id="http-configuration">Http Configuration [?]</h4>
+<h5 id="endpoints">Endpoints [?]</h5>
+<h5 id="url-templating">URL Templating [?]</h5>
+<h5 id="request-method">Request Method [?]</h5>
+<h5 id="static-headers">Static Headers [?]</h5>
+<h5 id="dynamic-headers">Dynamic Headers [?]</h5>
+<h5 id="forward-client-headers">Forward Client Headers [?]</h5>
+<h4 id="async-actions">Async Actions [?]</h4>
+<h4 id="basic-permissions">Basic Permissions [?]</h4>
+<h4 id="relationships-1">Relationships [?]</h4>
+<h5 id="to-database">To Database [?]</h5>
+<h5 id="to-remote-schema">To Remote Schema [?]</h5>
+<h4 id="transforms">Transforms [?]</h4>
+<h5 id="request-transforms">Request Transforms [?]</h5>
+<h6 id="context-objects">Context Objects [?]</h6>
+<h6 id="request-method-1">Request Method [?]</h6>
+<h6 id="request-url">Request URL [?]</h6>
+<h6 id="request-body">Request Body [?]</h6>
+<h5 id="response-transforms">Response Transforms [?]</h5>
+<h6 id="context-objects-1">Context Objects [?]</h6>
+<h6 id="debugging-mode">Debugging Mode [?]</h6>
+<h5 id="payload-transforms">Payload Transforms [?]</h5>
+<h6 id="response-body-transforms">Response Body Transforms [?]</h6>
+<h3 id="remote-schemas">Remote Schemas</h3>
+<h4 id="configuration">Configuration [?]</h4>
+<h5 id="fromenv-1">FromEnv [?]</h5>
+<h5 id="timeout">Timeout [?]</h5>
+<h5 id="headers">Headers [?]</h5>
+<h5 id="dynamic-headers-1">Dynamic Headers [?]</h5>
+<h4 id="relationships-2">Relationships [?]</h4>
+<h5 id="relationships-3">Relationships [?]</h5>
+<h3 id="event-triggers">Event Triggers</h3>
+<h3 id="authentication">Authentication</h3>
+<h3 id="authorization">Authorization</h3>
+<h3 id="relay">Relay</h3>
+<h3 id="restified-endpoints">RESTified Endpoints</h3>
+<h3 id="allow-lists">Allow Lists</h3>
+<h3 id="api-limits">API Limits</h3>
+<h3 id="dynamic-environment-variables">Dynamic Environment
+Variables</h3>
+<h3 id="subscriptions">Subscriptions</h3>
+<h3 id="obervability">Obervability</h3>
 <h2 id="executive-summary">Executive Summary</h2>
 <p>The following categories of feature support were detected in your
 Hasura V2 project:</p>
