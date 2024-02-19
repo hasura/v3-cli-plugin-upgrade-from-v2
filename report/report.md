@@ -9,7 +9,7 @@ These are the features used by your project:
 
 {{if .CheckList.Actions.UsesActions }}
 * Actions [Supported]
-  {{if .CheckList.Actions.UsesKriti -}}
+  {{if .CheckList.Actions.Transforms.UsesTransforms -}}
   * Kriti [Unsupported]
     Kriti is currently unsupported, but you can write your own request/response transformations with the TypeScript connector...
   {{end -}}
@@ -132,7 +132,7 @@ These are the features used by your project:
 * Permissions
 * Bypass Auth
 
-###Event Triggers
+### Event Triggers
 
 * Trigger type
   * Insert
