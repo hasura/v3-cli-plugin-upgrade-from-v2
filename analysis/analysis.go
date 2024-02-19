@@ -13,7 +13,7 @@ func Analysis(debugging bool, data *report.ReportData) {
 
 	// Functions
 	usesActions := func(name string) string {
-		data.CheckList.Actions.UsesActions = true
+		data.CheckList.Actions.Used = true
 		return fmt.Sprintf("Action: %s", name)
 	}
 	usesKriti := func(name string) string {
@@ -21,15 +21,16 @@ func Analysis(debugging bool, data *report.ReportData) {
 		return fmt.Sprintf("Kriti: %s", name)
 	}
 	usesSources := func(name string) string {
-		data.CheckList.Sources.UsesSources = true
+		data.CheckList.Sources.Used = true
 		return fmt.Sprintf("Source: %s", name)
 	}
 	usesFromEnv := func(name string) string {
-		data.CheckList.Sources.UsesFromEnv = true
+		data.CheckList.Sources.Used = true
 		return fmt.Sprintf("FromENV: %s", name)
 	}
 	// TODO: Create a generic "usesFeature" somehow
 	// usesFeature := func(tag string, path ...string) string { ...
+
 	var funcs = template.FuncMap{
 		"usesActions": usesActions,
 		"usesKriti":   usesKriti,
