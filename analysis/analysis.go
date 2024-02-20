@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"os"
 	"reflect"
+	"strings"
 	"text/template"
 	"upgrade-from-v2/report"
 )
 
-func UsesFeature(checklistPtr interface{}, name string, path []string) string {
+func UsesFeature(checklistPtr interface{}, path []string) {
 	var x = reflect.ValueOf(checklistPtr).Elem()
 
 	for _, key := range path {
@@ -16,8 +17,6 @@ func UsesFeature(checklistPtr interface{}, name string, path []string) string {
 	}
 
 	x.SetBool(true)
-
-	return name
 }
 
 // Mutates the CheckList struct to set features that are used
@@ -25,9 +24,9 @@ func UsesFeature(checklistPtr interface{}, name string, path []string) string {
 func Analysis(debugging bool, data *report.ReportData) {
 
 	// Functions
-	usesFeature := func(name string, path ...string) string {
-		UsesFeature(&data.CheckList, name, path)
-		return name
+	usesFeature := func(path ...string) string {
+		UsesFeature(&data.CheckList, path)
+		return strings.Join(path[:], ".")
 	}
 
 	var funcs = template.FuncMap{
