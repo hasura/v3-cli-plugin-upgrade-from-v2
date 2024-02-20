@@ -5,6 +5,7 @@ import (
 	"os"
 	"text/template"
 	"upgrade-from-v2/features"
+	"upgrade-from-v2/writers"
 )
 
 const templatePath = "./report/report.md"
@@ -30,8 +31,11 @@ func Report(alwaysTrue bool, data ReportData) {
 		panic(fmt.Sprintf("Couldn't parse template file %s: %s", templatePath, e2))
 	}
 
+	// Passthrough writer to remove duplicate blank lines
+	w := writers.NewRemoveDuplicateBlankLinesWriter(os.Stdout)
+
 	// dataWithDepth := addDepth(data, 0)
-	e3 := t2.Execute(os.Stdout, data)
+	e3 := t2.Execute(w, data)
 	if e3 != nil {
 		panic(fmt.Sprintf("Error executing template file %s: %s", templatePath, e3))
 	}
