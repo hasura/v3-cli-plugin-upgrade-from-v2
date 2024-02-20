@@ -6,23 +6,21 @@ This template is not used for user-facing output but will be displayed if DEBUG=
 The go templating features are used for dynamic traversal of map[string]interface{} data structures.
 
 {{range $action := .Metadata.metadata.actions -}}
-  * {{ usesActions $action.name }}
+  * {{ feature $action.name "Actions" "Used" }}
   {{if $action.definition.request_transform -}}
-    * {{ usesKriti "request_transform" }}
+    * {{ feature "request_transform" "Kriti" "Used" }}
   {{- end }}
   {{if $action.definition.response_transform -}}
-    * {{ usesKriti "response_transform" }}
+    * {{ feature "response_transform" "Kriti" "Used" }}
   {{- end }}
 {{end}}
 
-{{.Metadata.metadata.sources}}
-
 {{range $source := .Metadata.metadata.sources -}}
-  {{usesSources $source.name}}
+  * {{feature $source.name "Sources" "Used"}}
   {{if $source.configuration.connection_info.database_url.from_env -}}
-    * {{usesFromEnv $source.configuration.connection_info.database_url.from_env }}
+    * {{feature $source.configuration.connection_info.database_url.from_env "Sources" "FromEnv" }}
   {{end}}
   {{if eq $source.kind "postgres" -}}
-    * {{usesPG $source.name }}
+    * {{feature $source.name "Sources" "PG" }}
   {{end}}
 {{end}}

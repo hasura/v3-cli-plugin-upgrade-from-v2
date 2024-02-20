@@ -47,7 +47,7 @@ type Checklist struct {
 		FromEnv   bool
 		PG        bool `category:"Supported"`
 		SQLServer bool
-		MySQL     bool
+		MySQL     bool `category:"Supported"`
 		Mongo     bool
 	}
 

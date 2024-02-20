@@ -17,7 +17,7 @@ These are the features used by your project:
 {{- end}}
 
 {{if test .CheckList.Sources.PG -}}
-#### Postgres [?]
+#### Postgres [Supported]
 {{- end}}
 
 {{if test .CheckList.Sources.SQLServer -}}

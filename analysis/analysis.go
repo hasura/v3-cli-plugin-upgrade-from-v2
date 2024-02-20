@@ -3,44 +3,35 @@ package analysis
 import (
 	"fmt"
 	"os"
+	"reflect"
 	"text/template"
 	"upgrade-from-v2/report"
 )
+
+func UsesFeature(checklistPtr interface{}, name string, path []string) string {
+	var x = reflect.ValueOf(checklistPtr).Elem()
+
+	for _, key := range path {
+		x = x.FieldByName(key)
+	}
+
+	x.SetBool(true)
+
+	return name
+}
 
 // Mutates the CheckList struct to set features that are used
 // Template based analysis - Sets flags in checklist of features
 func Analysis(debugging bool, data *report.ReportData) {
 
 	// Functions
-	usesActions := func(name string) string {
-		data.CheckList.Actions.Used = true
-		return fmt.Sprintf("Action: %s", name)
+	usesFeature := func(name string, path ...string) string {
+		UsesFeature(&data.CheckList, name, path)
+		return name
 	}
-	usesKriti := func(name string) string {
-		data.CheckList.Actions.Transforms.Used = true
-		return fmt.Sprintf("Kriti: %s", name)
-	}
-	usesSources := func(name string) string {
-		data.CheckList.Sources.Used = true
-		return fmt.Sprintf("Source: %s", name)
-	}
-	usesFromEnv := func(name string) string {
-		data.CheckList.Sources.Used = true
-		return fmt.Sprintf("FromENV: %s", name)
-	}
-	usesPG := func(name string) string {
-		data.CheckList.Sources.PG = true
-		return fmt.Sprintf("PG: %s", name)
-	}
-	// TODO: Create a generic "usesFeature" somehow
-	// usesFeature := func(tag string, path ...string) string { ...
 
 	var funcs = template.FuncMap{
-		"usesActions": usesActions,
-		"usesKriti":   usesKriti,
-		"usesFromEnv": usesFromEnv,
-		"usesSources": usesSources,
-		"usesPG":      usesPG,
+		"feature": usesFeature,
 	}
 
 	// Parse template
