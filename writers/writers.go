@@ -44,7 +44,9 @@ func (w *RemoveDuplicateBlankLinesWriter) Write(p []byte) (n int, err error) {
 				}
 			}
 		} else {
-			w.blanks = 0
+			if b != ' ' && b != '\t' {
+				w.blanks = 0
+			}
 			c, e := w.writer.Write([]byte(s))
 			count += c
 			if e != nil {
