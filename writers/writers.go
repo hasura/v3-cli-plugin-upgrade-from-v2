@@ -1,6 +1,7 @@
 package writers
 
 import (
+	"fmt"
 	"io"
 	"regexp"
 )
@@ -8,11 +9,12 @@ import (
 type RemoveDuplicateBlankLinesWriter struct {
 	writer io.Writer
 	regex  *regexp.Regexp
+	blanks int
 }
 
 func NewRemoveDuplicateBlankLinesWriter(writer io.Writer) *RemoveDuplicateBlankLinesWriter {
 	// Define a regular expression pattern to match consecutive blank lines
-	regexPattern := `\n\s*\n+`
+	regexPattern := `^\s*$`
 
 	// Compile the regular expression
 	regex := regexp.MustCompile(regexPattern)
@@ -23,17 +25,33 @@ func NewRemoveDuplicateBlankLinesWriter(writer io.Writer) *RemoveDuplicateBlankL
 	}
 }
 
+// This just writes one byte at a time, but that's ok for now
+// TODO: Optimise to build a buffer then write it all at once
 func (w *RemoveDuplicateBlankLinesWriter) Write(p []byte) (n int, err error) {
-	// Convert the byte slice to a string
-	inputString := string(p)
 
-	// Replace consecutive blank lines with a single blank line
-	// Warning: This may be split over half the blank lines
-	resultString := w.regex.ReplaceAllString(inputString, "\n\n")
+	var count = 0
 
-	// Convert the modified string back to a byte slice
-	resultBytes := []byte(resultString)
+	for i := 0; i < len(p); i++ {
+		b := p[i]
+		s := fmt.Sprintf("%c", b)
+		if b == '\n' {
+			w.blanks++
+			if w.blanks < 3 {
+				c, e := w.writer.Write([]byte(s))
+				count += c
+				if e != nil {
+					return count, e
+				}
+			}
+		} else {
+			w.blanks = 0
+			c, e := w.writer.Write([]byte(s))
+			count += c
+			if e != nil {
+				return count, e
+			}
+		}
+	}
 
-	// Write the modified byte slice to the underlying writer (os.Stdout in this case)
-	return w.writer.Write(resultBytes)
+	return count, nil
 }
