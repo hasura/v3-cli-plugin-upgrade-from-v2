@@ -13,15 +13,8 @@ type RemoveDuplicateBlankLinesWriter struct {
 }
 
 func NewRemoveDuplicateBlankLinesWriter(writer io.Writer) *RemoveDuplicateBlankLinesWriter {
-	// Define a regular expression pattern to match consecutive blank lines
-	regexPattern := `^\s*$`
-
-	// Compile the regular expression
-	regex := regexp.MustCompile(regexPattern)
-
 	return &RemoveDuplicateBlankLinesWriter{
 		writer: writer,
-		regex:  regex,
 	}
 }
 
