@@ -65,8 +65,8 @@ These are the features used by your project:
 {{- end}}
 {{end}}
 
-{{if test .CheckList.QueriesAndMutations.Used -}}
-### Queries and Mutations
+{{if test .CheckList.Queries.Used -}}
+### Queries
 
 {{if test .CheckList.QueriesAndMutations.QueryByPrimaryKey -}}
 #### Query by Primary Key [?]
@@ -159,6 +159,42 @@ It may not be possible to detect usage of this feature...
 
 {{if test .CheckList.QueriesAndMutations.Permissions.PermissionRules -}}
 ##### Permission Rules [?]
+{{- end}}
+{{- end}}
+{{end}}
+
+{{if test .CheckList.Mutations.Used -}}
+### Mutations [Unsupported]
+
+{{if test .CheckList.Mutations.Simple -}}
+#### Simple Mutations [Unsupported]
+{{- end}}
+
+{{if test .CheckList.Mutations.Complex -}}
+#### Complex Mutations [Unsupported]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.LogicalModels.Used -}}
+### Logical Models [Supported]
+{{end}}
+
+{{if test .CheckList.NativeQueries.Used -}}
+### Native Queries [Partially Supported]
+
+{{if test .CheckList.NativeQueries.Queries.Used -}}
+#### Queries [Supported]
+
+{{if test .CheckList.NativeQueries.Queries.Permissions -}}
+##### Permissions [Supported]
+{{- end}}
+{{- end}}
+
+{{if test .CheckList.NativeQueries.Mutations.Used -}}
+#### Mutations [Partially Supported]
+
+{{if test .CheckList.NativeQueries.Mutations.Permissions -}}
+##### Permissions [Unsupported]
 {{- end}}
 {{- end}}
 {{end}}
@@ -358,6 +394,8 @@ It may not be possible to detect usage of this feature...
 
 The following categories of feature support were detected in your Hasura V2 project:
 
+| Support | Count |
+| --- | --- |
 {{ range $k, $v := .Summary -}}
 | {{$k}} | {{$v}} |
 {{end}}
