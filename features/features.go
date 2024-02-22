@@ -152,24 +152,24 @@ type Checklist struct {
 	}
 
 	Actions struct {
-		Used      bool
-		Queries   bool
-		Mutations bool
+		Used      bool `supported:"yes"`
+		Queries   bool `supported:"yes"`
+		Mutations bool `supported:"yes"`
 		Types     struct {
-			Used              bool
-			CustomTypes       bool
-			CustomScalarTypes bool
+			Used              bool `supported:"yes"`
+			CustomTypes       bool `supported:"yes"`
+			CustomScalarTypes bool `supported:"yes"`
 		}
 		HttpConfiguration struct {
-			Used                 bool
-			ConfiguredEndpoints  bool
-			URLTemplating        bool
-			RequestMethod        bool
-			StaticHeaders        bool
-			DynamicHeaders       bool
-			ForwardClientHeaders bool
+			Used                 bool `supported:"yes"`
+			ConfiguredEndpoints  bool `supported:"yes"`
+			URLTemplating        bool `supported:"manual"`
+			RequestMethod        bool `supported:"partial"`
+			StaticHeaders        bool `supported:"partial"`
+			DynamicHeaders       bool `supported:"partial"`
+			ForwardClientHeaders bool `supported:"no"` // TODO: Check
 		}
-		AsyncActions bool
+		AsyncActions bool `supported:"no"`
 		/* /// Not part of configuration
 		* Open API Import
 			* Single Import
@@ -180,63 +180,65 @@ type Checklist struct {
 			* Support multiple programming languages & frameworks
 		* Derive Actions
 		*/
-		BasicPermissions bool
+		BasicPermissions bool `supported:"yes"`
 		Relationships    struct {
-			Used           bool
-			ActionToDB     bool
-			ActionToRS     bool
-			ActionToAction bool
+			Used           bool `supported:"yes"`
+			ActionToDB     bool `supported:"yes"`
+			ActionToRS     bool `supported:"no"` // No RS is supported anyway
+			ActionToAction bool `supported:"yes"`
 		}
 		Transforms struct {
-			Used              bool // Subsumes Kriti Feature.
+			Used              bool `supported:"manual"` // Subsumes Kriti Feature.
 			RequestTransforms struct {
-				Used           bool
-				ContextObjects bool
-				RequestMethod  bool
-				RequestURL     bool
-				RequestBody    bool
+				Used           bool `supported:"manual"`
+				ContextObjects bool `supported:"manual"`
+				RequestMethod  bool `supported:"manual"`
+				RequestURL     bool `supported:"manual"`
+				RequestBody    bool `supported:"manual"`
 			}
 			ResponseTransforms struct {
-				Used           bool
-				ContextObjects bool
-				DebuggingMode  bool
+				Used           bool `supported:"manual"`
+				ContextObjects bool `supported:"manual"`
+				DebuggingMode  bool `supported:"manual"`
 			}
 			PayloadTransforms struct {
-				Used                   bool
-				ResponseBodyTransforms bool
+				Used                   bool `supported:"manual"`
+				ResponseBodyTransforms bool `supported:"manual"`
 			}
 		}
 		// * Async Action logs cleanup (?) // What's this?
 	}
 
 	EventTriggers struct {
-		Used  bool
+		Used  bool `supported:"no"`
 		Types struct {
-			Insert bool
-			Update bool
-			Delete bool
+			Insert bool `supported:"no"`
+			Update bool `supported:"no"`
+			Delete bool `supported:"no"`
 			// Via console: N/A?
-			ColumnSpecificUpdates bool
+			ColumnSpecificUpdates bool `supported:"no"`
 		}
 		TriggerProtocols struct {
-			Webhook bool
+			Webhook bool `supported:"no"`
 		}
 		// * Auto Cleanup Event Logs (Make sure event logs are cleared periodically): N/A?
 		RequestTransforms struct {
-			UsesRequestTransforms bool
-			Headers               bool
-			RequestMethod         bool
-			RequestURL            bool
-			RequestBody           bool
-			Context               bool
+			UsesRequestTransforms bool `supported:"no"`
+			Headers               bool `supported:"no"`
+			RequestMethod         bool `supported:"no"`
+			RequestURL            bool `supported:"no"`
+			RequestBody           bool `supported:"no"`
+			Context               bool `supported:"no"`
 		}
 		ResponseTransforms struct {
-			UsesResponseTransforms bool
+			Used                   bool `supported:"no"`
+			UsesResponseTransforms bool `supported:"no"`
 		}
 		PayloadTransform struct {
-			ResponseBodyTransforms bool
+			Used                   bool `supported:"no"`
+			ResponseBodyTransforms bool `supported:"no"`
 		}
-		RetryLogicConfiguration bool
+		RetryLogicConfiguration bool `supported:"no"`
 		/* // N/A?
 		* Simulation
 			* Event triggers can be tested by manually triggering from console
@@ -247,50 +249,52 @@ type Checklist struct {
 	}
 
 	Authentication struct {
-		Used bool
+		Used bool `supported:"yes"`
 		JWTs struct {
-			UsesJWTs bool
-			Secret   bool
-			JWK      bool
+			Used   bool `supported:"yes"`
+			Secret bool `supported:"yes"`
+			JWK    bool `supported:"yes"`
 		}
-		Webhook              bool
-		AdminRole            bool
-		UnauthorisedAccess   bool
-		MultipleAdminSecrets bool
-		MultipleJWTs         bool
+		Webhook              bool `supported:"yes"`
+		AdminRole            bool `supported:"yes"`
+		UnauthorisedAccess   bool // TODO: Check
+		MultipleAdminSecrets bool `supported:"no"`
+		MultipleJWTs         bool `supported:"no"`
 	}
 
 	Authorization struct {
-		Used                      bool
-		RoleFromSessionVariable   bool
-		RoleBasedSchemeGeneration bool
-		ConfigureRowPermissions   bool
-		ColumnPermissions         bool
-		AggregationPermissions    bool
-		RowFetchLimit             bool
-		RootFieldVisibility       bool
-		ColumnPresets             bool
-		BackendOnlyMutations      bool
-		PermissionsOperators      bool
+		Used                      bool `supported:"yes"`
+		RoleFromSessionVariable   bool `supported:"yes"`
+		RoleBasedSchemeGeneration bool // TODO: Check
+		ConfigureRowPermissions   bool `supported:"yes"`
+		ColumnPermissions         bool `supported:"yes"`
+		AggregationPermissions    bool `supported:"no"`
+		RowFetchLimit             bool // TODO: Check
+		RootFieldVisibility       bool `supported:"yes"` // TODO: Check
+		ColumnPresets             bool // TODO: Check
+		BackendOnlyMutations      bool `supported:"no"`
+		PermissionsOperators      bool `supported:"partial"`
 		// PermissionsSummary (on Console): N/A?
 	}
 
 	Relay struct {
-		Used    bool
+		Used    bool `supported:"yes"`
 		Queries struct {
-			UsesQueries                 bool
-			ConnectionObjectsNodesEdges bool
+			Used                        bool `supported:"yes"`
+			GlobalID                    bool `supported:"yes"`
+			ConnectionObjectsNodesEdges bool // TODO: Check
+			ConnectionSpec              bool `supported:"no"`
 		}
-		Subscriptions bool
-		Mutations     bool
+		Subscriptions bool `supported:"no"`
+		Mutations     bool `supported:"no"`
 	}
 
 	RESTifiedEndpoints struct {
-		Used                     bool
-		BasicGraphql             bool
-		ArgumentsFromPayloadBody bool
-		ArgumentsFromURLParams   bool
-		DifferentHTTPMethods     bool
+		Used                     bool `supported:"no"`
+		BasicGraphql             bool `supported:"no"`
+		ArgumentsFromPayloadBody bool `supported:"no"`
+		ArgumentsFromURLParams   bool `supported:"no"`
+		DifferentHTTPMethods     bool `supported:"no"`
 		// * RESTified endpoint playground (like GraphiQL UI, to test REST endpoints): N/A?
 	}
 
@@ -302,29 +306,29 @@ type Checklist struct {
 	*/
 
 	AllowLists struct {
-		Used                                    bool
-		ConfigureQueryCollectionsWithRoleAccess bool
-		MultipleQueryColectionsAndRoles         bool
-		CachingMetrics                          bool // ??
+		Used                                    bool `supported:"no"`
+		ConfigureQueryCollectionsWithRoleAccess bool `supported:"no"`
+		MultipleQueryColectionsAndRoles         bool `supported:"no"`
+		CachingMetrics                          bool `supported:"no"`
 		EnterpriseSuppport                      struct {
-			UsesEnterpriseSuppport    bool
-			CustomRedisConfigurations bool
+			Used                      bool `supported:"no"`
+			CustomRedisConfigurations bool `supported:"no"`
 		}
 	}
 
 	APILimits struct {
-		Used        bool
-		RateLimits  bool
-		DepthLimits bool
-		NodeLimits  bool
-		TimeLimits  bool
-		BatchLimits bool
+		Used        bool `supported:"no"`
+		RateLimits  bool `supported:"no"`
+		DepthLimits bool `supported:"no"`
+		NodeLimits  bool `supported:"no"`
+		TimeLimits  bool `supported:"no"`
+		BatchLimits bool `supported:"no"`
 	}
 
 	// How to detect this?
 	DynamicEnvironmentVariables struct {
-		Used                         bool
-		ZeroDowntimeSecretResolution bool
+		Used                         bool `supported:"no"`
+		ZeroDowntimeSecretResolution bool `supported:"no"`
 	}
 
 	/* // N/A?
@@ -339,9 +343,10 @@ type Checklist struct {
 	// --------------------------------------------------------
 
 	Subscriptions struct {
-		Used bool
+		Used bool `supported:"no"`
 	}
 
+	// TODO: Check on this.
 	Observability struct {
 		Used             bool
 		OpenTelemetry    bool
