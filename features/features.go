@@ -49,7 +49,10 @@ type Checklist struct {
 		Used      bool `supported:"yes"`
 		FromEnv   bool `supported:"yes"`
 		PG        bool `supported:"yes"`
+		Citus     bool `supported:"no"`
+		Cockroach bool `supported:"no"`
 		SQLServer bool `supported:"no"`
+		BigQuery  bool `supported:"no"`
 		MySQL     bool `supported:"no"`
 		Mongo     bool `supported:"no"`
 	}

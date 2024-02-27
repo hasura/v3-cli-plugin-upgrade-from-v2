@@ -7,6 +7,7 @@ import (
 	"strings"
 	"text/template"
 	"upgrade-from-v2/report"
+	"upgrade-from-v2/writers"
 )
 
 func UsesFeature(checklistPtr interface{}, path []string) {
@@ -44,7 +45,8 @@ func Analysis(debugging bool, data *report.ReportData) {
 	// Execute template
 	var e3 error
 	if debugging {
-		e3 = t2.Execute(os.Stdout, data) // If debugging
+		w := writers.NewRemoveDuplicateBlankLinesWriter(os.Stderr)
+		e3 = t2.Execute(w, data) // If debugging
 	} else {
 		nullFile, err := os.Create(os.DevNull)
 		if err != nil {
