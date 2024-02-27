@@ -9,4 +9,3 @@ go 1.21.4
 // )
 
 // replace github.com/xeipuuv/gojsonschema => /Users/lyndon/code/gojsonschema
-

@@ -1,5 +1,7 @@
 # VARIABLES
 PACKAGE="github.com/hasura/v3-cli-plugin-upgrade-from-v2"
+VERSION ?= $(shell ./scripts/get-version.sh)
+BUILDDIR := dist
 
 .PHONY: default
 default: usage
@@ -34,3 +36,18 @@ dev:
 .PHONY: usage
 usage: ## List available targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+# build connector locally, for all given platform/arch
+.PHONY: build
+build: export CGO_ENABLED=0
+build:
+ifndef HAS_GOX
+	# so that go.mod don't get editted
+	go install github.com/mitchellh/gox
+endif
+	gox -ldflags '-X github.com/hasura/v3-cli-plugin-upgrade-from-v2/cli/pkg/version.BuildVersion=$(VERSION) -s -w -extldflags "-static"' \
+	-rebuild \
+	-os="$(OS)" \
+	-arch="amd64 arm64" \
+	-output="$(BUILDDIR)/upgrade-from-v2-{{.OS}}-{{.Arch}}" \
+	.
