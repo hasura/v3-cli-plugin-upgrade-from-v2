@@ -43,7 +43,7 @@ build: export CGO_ENABLED=0
 build:
 ifndef HAS_GOX
 	# so that go.mod don't get editted
-	go install github.com/mitchellh/gox
+	go install github.com/mitchellh/gox@latest
 endif
 	gox -ldflags '-X github.com/hasura/v3-cli-plugin-upgrade-from-v2/cli/pkg/version.BuildVersion=$(VERSION) -s -w -extldflags "-static"' \
 	-rebuild \
