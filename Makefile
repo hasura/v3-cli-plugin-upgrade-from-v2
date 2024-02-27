@@ -2,6 +2,7 @@
 PACKAGE="github.com/hasura/v3-cli-plugin-upgrade-from-v2"
 VERSION ?= $(shell ./scripts/get-version.sh)
 BUILDDIR := dist
+OS ?= linux darwin windows
 
 .PHONY: default
 default: usage
