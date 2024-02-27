@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 	"text/template"
-	"upgrade-from-v2/features"
-	"upgrade-from-v2/writers"
+
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/features"
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/writers"
 )
 
 const templatePath = "./report/report.md"

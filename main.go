@@ -4,10 +4,11 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"upgrade-from-v2/analysis"
-	"upgrade-from-v2/features"
-	"upgrade-from-v2/report"
-	"upgrade-from-v2/v2api"
+
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/analysis"
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/features"
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/report"
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/v2api"
 )
 
 type Option struct {

@@ -1,5 +1,5 @@
 # VARIABLES
-PACKAGE="upgrade-from-v2"
+PACKAGE="github.com/hasura/v3-cli-plugin-upgrade-from-v2"
 
 .PHONY: default
 default: usage

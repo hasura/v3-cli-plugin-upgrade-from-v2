@@ -6,8 +6,9 @@ import (
 	"reflect"
 	"strings"
 	"text/template"
-	"upgrade-from-v2/report"
-	"upgrade-from-v2/writers"
+
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/report"
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/writers"
 )
 
 func UsesFeature(checklistPtr interface{}, path []string) {

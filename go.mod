@@ -1,4 +1,4 @@
-module upgrade-from-v2
+module github.com/hasura/v3-cli-plugin-upgrade-from-v2
 
 go 1.21.4
 
