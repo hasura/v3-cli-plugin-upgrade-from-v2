@@ -1,0 +1,41 @@
+name: upgrade-from-v2
+version: "${VERSION}"
+shortDescription: "V2 Upgrade Plugin for Hasura V3"
+homepage: https://hasura.io/TODO
+hidden: true
+platforms:
+  - uri: "${BUCKET_URL}/hasura-upgrade-from-v2-linux-amd64.tar.gz"
+    sha256: "${LINUX_AMD64_SHA256}"
+    bin: hasura-upgrade-from-v2
+    files:
+      - from: ./hasura-upgrade-from-v2-linux-amd64
+        to: hasura-upgrade-from-v2
+    selector: linux-amd64
+  - uri: "${BUCKET_URL}/hasura-upgrade-from-v2-darwin-amd64.tar.gz"
+    sha256: "${MACOS_AMD64_SHA256}"
+    bin: hasura-upgrade-from-v2
+    files:
+      - from: ./hasura-upgrade-from-v2-darwin-amd64
+        to: hasura-upgrade-from-v2
+    selector: darwin-amd64
+  - uri: "${BUCKET_URL}/hasura-upgrade-from-v2-windows-amd64.zip"
+    sha256: "${WINDOWS_AMD64_SHA256}"
+    bin: hasura-upgrade-from-v2.exe
+    files:
+      - from: ./hasura-upgrade-from-v2-windows-amd64.exe
+        to: hasura-upgrade-from-v2.exe
+    selector: windows-amd64
+  - uri: "${BUCKET_URL}/hasura-upgrade-from-v2-linux-arm64.tar.gz"
+    sha256: "${LINUX_ARM64_SHA256}"
+    bin: hasura-upgrade-from-v2
+    files:
+      - from: ./hasura-upgrade-from-v2-linux-arm64
+        to: hasura-upgrade-from-v2
+    selector: linux-arm64
+  - uri: "${BUCKET_URL}/hasura-upgrade-from-v2-darwin-arm64.tar.gz"
+    sha256: "${MACOS_ARM64_SHA256}"
+    bin: hasura-upgrade-from-v2
+    files:
+      - from: ./hasura-upgrade-from-v2-darwin-arm64
+        to: hasura-upgrade-from-v2
+    selector: darwin-arm64

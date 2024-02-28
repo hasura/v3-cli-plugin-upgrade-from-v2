@@ -1,8 +1,5 @@
 # VARIABLES
 PACKAGE="github.com/hasura/v3-cli-plugin-upgrade-from-v2"
-VERSION ?= $(shell ./scripts/get-version.sh)
-BUILDDIR := dist
-OS ?= linux darwin windows
 
 .PHONY: default
 default: usage
@@ -38,6 +35,19 @@ dev:
 usage: ## List available targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+
+####### Sections adapted from https://github.com/hasura/connectors-cloud-integration/blob/main/cli/Makefile
+
+VERSION   ?= $(shell ./scripts/get-version.sh)
+OS        ?= linux darwin windows
+
+HAS_GOX   := $(shell command -v gox;)
+
+BUILDDIR  := dist
+ASSETS    := $(BUILDDIR)/hasura-upgrade-from-v2-darwin-amd64.tar.gz $(BUILDDIR)/hasura-upgrade-from-v2-darwin-arm64.tar.gz $(BUILDDIR)/hasura-upgrade-from-v2-linux-amd64.tar.gz $(BUILDDIR)/hasura-upgrade-from-v2-linux-arm64.tar.gz $(BUILDDIR)/hasura-upgrade-from-v2-windows-amd64.zip
+CHECKSUMS := $(patsubst %,%.sha256,$(ASSETS))
+COMPRESS  := gzip --best -k -c
+
 # build connector locally, for all given platform/arch
 .PHONY: build
 build: export CGO_ENABLED=0
@@ -50,5 +60,25 @@ endif
 	-rebuild \
 	-os="$(OS)" \
 	-arch="amd64 arm64" \
-	-output="$(BUILDDIR)/upgrade-from-v2-{{.OS}}-{{.Arch}}" \
+	-output="$(BUILDDIR)/hasura-upgrade-from-v2-{{.OS}}-{{.Arch}}" \
 	.
+
+.PHONY: manifest
+manifest: $(CHECKSUMS)
+	./scripts/generate-manifest.sh && \
+	rm $(BUILDDIR)/manifest-tmp.yaml
+
+.PRECIOUS: %.zip
+%.zip: %.exe
+	cd $(BUILDDIR) && \
+	zip $(patsubst $(BUILDDIR)/%, %, $@) $(patsubst $(BUILDDIR)/%, %, $<)
+
+.PRECIOUS: %.gz
+%.gz: %
+	$(COMPRESS) "$<" > "$@"
+
+%.tar: %
+	tar cf "$@" -C $(BUILDDIR) $(patsubst $(BUILDDIR)/%,%,$^)
+
+%.sha256: %
+	shasum -a 256 $< > $@

@@ -45,7 +45,7 @@ func init() {
 	flag.Parse()
 
 	if v2URL == "" || v2AdminSecret == "" || v3Directory == "" {
-		errorMsg, _ := fmt.Printf("Please ensure you have set the following options [ENV] %s [%s], %s [%s], %s [%s] \n", OptionV2URL.CLI, OptionV2URL.ENV, OptionV2AdminSecret.CLI, OptionV2AdminSecret.ENV, OptionV3Directory.CLI, OptionV3Directory.ENV)
+		errorMsg, _ := fmt.Printf("Please ensure you have set the following --options [ENV] set: --%s [%s], --%s [%s], --%s [%s] \n", OptionV2URL.CLI, OptionV2URL.ENV, OptionV2AdminSecret.CLI, OptionV2AdminSecret.ENV, OptionV3Directory.CLI, OptionV3Directory.ENV)
 		panic(errorMsg)
 	}
 }
