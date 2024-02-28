@@ -3,7 +3,7 @@
 set -evo pipefail
 
 ROOT="$(pwd)"
-LATEST_TAG=$(git describe --tags --abbrev=0)
+LATEST_TAG=$(git describe --tags --abbrev=0 || git rev-parse --abbrev-ref HEAD)
 
 make_pr_to_cli_index() {
     configure_git

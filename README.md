@@ -24,12 +24,22 @@ Then it outputs:
 It will read configuration from the v3 project directory: `.upgrade-from-v2.yml` or create this file with defaults if not present.
 
 
+## Distribution of the plugin
+
+Github Actions CI builds and distributes releases of this plugin:
+
+* CI invokes the `Makefile` to build the artifacts and manifest
+* Uploads the results to GCloud bucket with credentials specificed in GH actions
+* Creates a PR to the plugins index repo
+
+
 ## TODO
 
 * [x] Fetch All V2 Project information in v2api package
   * [x] Metadata
   * [x] Schema Introspection Information (via "dump_internal_state")
 * [x] Encode Feature matrix
+* [x] Perform Analysis
 * [x] Output report
 * [ ] Output V3 Template
 * [ ] Update to new V3 format
