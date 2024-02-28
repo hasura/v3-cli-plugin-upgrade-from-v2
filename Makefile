@@ -86,7 +86,7 @@ manifest: $(CHECKSUMS)
 
 .PHONY: setup-gcloud
 setup-gcloud:
-	echo ${UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY} | base64 --decode > ${HOME}/gcloud-service-key.json
+	@echo "${UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY}" > ${HOME}/gcloud-service-key.json
 	gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
 	gcloud --quiet config set connectorject ${UPGRADE_FROM_V2_GCLOUD_PROJECT_ID}
 

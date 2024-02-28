@@ -29,5 +29,7 @@ jobs:
         run: make manifest
       - name: Setup-GCLoud
         run: make setup-gcloud
+        env:
+          UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY: ${{ secrets.UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY }}
       - name: Push
         run: make push-artifacts
