@@ -3,6 +3,10 @@ PACKAGE="github.com/hasura/v3-cli-plugin-upgrade-from-v2"
 VERSION ?= $(shell ./scripts/get-version.sh)
 BUILDDIR := dist
 OS ?= linux darwin windows
+COMPRESS := gzip --best -k -c
+LINUX_FILES := ls dist | grep linux
+DARWIN_FILES := ls dist | grep darwin 
+WINDOWS_FILES := ls dist | grep windows
 
 .PHONY: default
 default: usage
@@ -52,3 +56,27 @@ endif
 	-arch="amd64 arm64" \
 	-output="$(BUILDDIR)/upgrade-from-v2-{{.OS}}-{{.Arch}}" \
 	.
+
+# compress
+.PHONY: compress
+compress:
+	for i in $$(ls dist | grep linux); do make "dist/$$i.tar.gz.sha256"; done
+	for i in $$(ls dist | grep darwin); do make "dist/$$i.tar.gz.sha256"; done
+	for i in $$(ls dist | grep windows); do make "dist/$$(basename $$i .exe).zip.sha256"; done
+	for i in $$(ls dist | grep sha256); do cat dist/$$i; done	
+
+.PRECIOUS: %.zip
+%.zip: %.exe
+	cd $(BUILDDIR) && \
+	zip $(patsubst $(BUILDDIR)/%, %, $@) $(patsubst $(BUILDDIR)/%, %, $<)
+
+.PRECIOUS: %.gz
+%.gz: %
+	$(COMPRESS) "$<" > "$@"
+
+%.tar: %
+	tar cf "$@" -C $(BUILDDIR) $(patsubst $(BUILDDIR)/%,%,$^)
+
+%.sha256: %
+	shasum -a 256 $< > $@
+
