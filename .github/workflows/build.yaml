@@ -25,3 +25,9 @@ jobs:
         run: go version
       - name: Build
         run: make build
+      - name: Manifest
+        run: make manifest
+      - name: Setup-GCLoud
+        run: make setup-gcloud
+      - name: Push
+        run: make push-artifacts

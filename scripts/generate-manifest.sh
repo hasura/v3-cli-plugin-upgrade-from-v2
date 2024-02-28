@@ -4,7 +4,7 @@ set -evo pipefail
 ROOT="$(pwd)"
 
 export VERSION=$(${ROOT}/scripts/get-version.sh)
-export BUCKET_URL=https://storage.googleapis.com/TODO/${VERSION}
+export BUCKET_URL=https://storage.googleapis.com/hasura-pro-cdn/hasura-upgrade-from-v2/${VERSION}
 export LINUX_AMD64_SHA256=$(cat ${ROOT}/dist/*.sha256   | grep linux-amd64   | cut -f1 -d' ')
 export MACOS_AMD64_SHA256=$(cat ${ROOT}/dist/*.sha256   | grep darwin-amd64  | cut -f1 -d' ')
 export WINDOWS_AMD64_SHA256=$(cat ${ROOT}/dist/*.sha256 | grep windows-amd64 | cut -f1 -d' ')
