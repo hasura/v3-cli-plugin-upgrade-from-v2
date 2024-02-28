@@ -38,8 +38,9 @@ usage: ## List available targets
 
 ####### Sections adapted from https://github.com/hasura/connectors-cloud-integration/blob/main/cli/Makefile
 
-VERSION   ?= $(shell ./scripts/get-version.sh)
-OS        ?= linux darwin windows
+VERSION                           ?= $(shell ./scripts/get-version.sh)
+OS                                ?= linux darwin windows
+UPGRADE_FROM_V2_GCLOUD_PROJECT_ID ?= hasura-lux
 
 HAS_GOX   := $(shell command -v gox;)
 
