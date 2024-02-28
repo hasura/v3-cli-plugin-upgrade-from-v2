@@ -49,7 +49,7 @@ ASSETS    := $(BUILDDIR)/hasura-upgrade-from-v2-darwin-amd64.tar.gz $(BUILDDIR)/
 CHECKSUMS := $(patsubst %,%.sha256,$(ASSETS))
 COMPRESS  := gzip --best -k -c
 
-# build connector locally, for all given platform/arch
+# build plugin locally, for all given platform/arch
 .PHONY: build
 build: export CGO_ENABLED=0
 build:
@@ -88,11 +88,9 @@ manifest: $(CHECKSUMS)
 setup-gcloud:
 	@echo "${UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY_BASE64}" | base64 --decode > ${HOME}/gcloud-service-key.json
 	gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-	gcloud --quiet config set connectorject ${UPGRADE_FROM_V2_GCLOUD_PROJECT_ID}
+	gcloud --quiet config set project ${UPGRADE_FROM_V2_GCLOUD_PROJECT_ID}
 
 push-artifacts:
-	# cp -r /build/_connector_cli_output/binaries ${BUILDDIR}
-	# cp /build/_connector_cli_output/manifest-dev.yaml ${BUILDDIR}/manifest.yaml
 	gsutil -m cp $(ASSETS) $(CHECKSUMS) gs://hasura-pro-cdn/hasura-upgrade-from-v2/$(VERSION)/
 
 plugin-index-pr:
