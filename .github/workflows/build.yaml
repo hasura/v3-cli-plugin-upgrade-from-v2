@@ -33,3 +33,9 @@ jobs:
           UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY_BASE64: ${{ secrets.UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY }}
       - name: Push
         run: make push-artifacts
+      - name: Pull-Request to Plugins Index
+        run: make plugin-index-pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # if: startsWith(github.ref, 'refs/tags/v')
+
