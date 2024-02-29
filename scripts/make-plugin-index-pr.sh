@@ -33,6 +33,8 @@ configure_ssh() {
   mkdir -p ~/.ssh
   touch ~/.ssh/config
   echo "${INDEX_PRIVATE_KEY}" > ~/.ssh/cli-plugins-index
+  echo "" >> ~/.ssh/cli-plugins-index
+  echo "# github.com/hasura/cli-plugins-index.git" >> ~/.ssh/cli-plugins-index
   chmod 600 ~/.ssh/cli-plugins-index
   cat <<EOF > ~/.ssh/config
   Host github.com-cli-plugins-index
