@@ -8,7 +8,7 @@ LATEST_TAG=$(git describe --tags --abbrev=0 || git rev-parse --abbrev-ref HEAD)
 make_pr_to_cli_index() {
     configure_git
 
-    REPO='github.com:hasura/cli-plugins-index.git'
+    REPO='git@github.com:hasura/cli-plugins-index.git'
     echo "updating hasura/cli-plugins-index"
 
     export DIST_PATH="${ROOT}/dist"
@@ -16,7 +16,7 @@ make_pr_to_cli_index() {
     configure_ssh
     configure_git
 
-    git clone ssh://${REPO} ~/plugins-index
+    git clone ${REPO} ~/plugins-index
    
     cd ~/plugins-index
     # TODO: Switch to main after we check that this works
