@@ -33,9 +33,9 @@ jobs:
           UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY_BASE64: ${{ secrets.UPGRADE_FROM_V2_GCLOUD_SERVICE_KEY }}
       - name: Push
         run: make push-artifacts
-      # - uses: webfactory/ssh-agent@v0.9.0
-      #   with:
-      #     ssh-private-key: ${{ secrets.INDEX_PRIVATE_KEY }}
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.INDEX_PRIVATE_KEY }}
       - name: Update Plugins Index
         run: make plugin-index-pr
         env:
