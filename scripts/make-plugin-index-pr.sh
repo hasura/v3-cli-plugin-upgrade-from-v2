@@ -9,7 +9,7 @@ make_pr_to_cli_index() {
     configure_git
 
     REPO='github.com/hasura/cli-plugins-index.git'
-    echo "sending pr to hasura/cli-plugins-index"
+    echo "updating hasura/cli-plugins-index"
 
     export DIST_PATH="${ROOT}/dist"
 
@@ -31,7 +31,21 @@ make_pr_to_cli_index() {
 
 configure_ssh() {
   mkdir -p ~/.ssh
-  echo "${INDEX_PRIVATE_KEY}" > ~/.ssh/plugins_index
+  touch ~/.ssh/config
+  echo "${INDEX_PRIVATE_KEY}" > ~/.ssh/cli-plugins-index
+  cat <<EOF > ~/.ssh/config
+  Host github.com
+	 HostName github.com
+	 User git
+	 IdentityFile ~/.ssh/cli-plugins-index
+	 IdentitiesOnly yes
+EOF
+
+  # Check config
+  cat ~/.ssh/cli-plugins-index | sed 's/./X/g'
+
+  # Test Key
+  ssh -vT git@github.com 'echo success'
 }
 
 configure_git() {
