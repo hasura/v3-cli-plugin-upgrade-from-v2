@@ -26,7 +26,7 @@ make_pr_to_cli_index() {
     
     git add .
     git commit -m "update pro manifest to ${LATEST_TAG}"
-    git push upgrade-from-v2-${LATEST_TAG}
+    git push origin upgrade-from-v2-${LATEST_TAG}
 }
 
 configure_ssh() {
