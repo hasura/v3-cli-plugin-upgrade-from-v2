@@ -13,7 +13,7 @@ make_pr_to_cli_index() {
 
     export DIST_PATH="${ROOT}/dist"
 
-    configure_ssh
+    # configure_ssh
     configure_git
 
     git clone ssh://${REPO} ~/plugins-index
@@ -33,6 +33,7 @@ configure_ssh() {
   mkdir -p ~/.ssh
   touch ~/.ssh/config
   echo "${INDEX_PRIVATE_KEY}" > ~/.ssh/cli-plugins-index
+  chmod 600 ~/.ssh/cli-plugins-index
   cat <<EOF > ~/.ssh/config
   Host github.com
 	 HostName github.com
