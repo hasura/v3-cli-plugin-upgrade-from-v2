@@ -46,7 +46,7 @@ EOF
   cat ~/.ssh/cli-plugins-index | sed 's/./X/g'
 
   # Test Key
-  ssh -vT git@github.com 'echo success'
+  ssh -vT git@github.com
 }
 
 configure_git() {
