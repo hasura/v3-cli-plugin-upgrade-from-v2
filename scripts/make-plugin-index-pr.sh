@@ -35,11 +35,9 @@ configure_ssh() {
   echo "${INDEX_PRIVATE_KEY}" > ~/.ssh/cli-plugins-index
   chmod 600 ~/.ssh/cli-plugins-index
   cat <<EOF > ~/.ssh/config
-  Host github.com
+  Host github.com-cli-plugins-index
 	 HostName github.com
-	 User git
 	 IdentityFile ~/.ssh/cli-plugins-index
-	 IdentitiesOnly yes
 EOF
 
   # Check config
