@@ -13,7 +13,7 @@ make_pr_to_cli_index() {
 
     export DIST_PATH="${ROOT}/dist"
 
-    # configure_ssh
+    configure_ssh
     configure_git
 
     git clone ssh://${REPO} ~/plugins-index
