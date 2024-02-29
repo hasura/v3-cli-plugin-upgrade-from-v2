@@ -8,7 +8,7 @@ LATEST_TAG=$(git describe --tags --abbrev=0 || git rev-parse --abbrev-ref HEAD)
 make_pr_to_cli_index() {
     configure_git
 
-    REPO='github.com/hasura/cli-plugins-index.git'
+    REPO='github.com:hasura/cli-plugins-index.git'
     echo "updating hasura/cli-plugins-index"
 
     export DIST_PATH="${ROOT}/dist"
@@ -34,12 +34,13 @@ configure_ssh() {
   touch ~/.ssh/config
   echo "${INDEX_PRIVATE_KEY}" > ~/.ssh/cli-plugins-index
   echo "${INDEX_PUBLIC_KEY}" > ~/.ssh/cli-plugins-index.pub
-  echo "" >> ~/.ssh/cli-plugins-index
-  echo "# github.com/hasura/cli-plugins-index.git" >> ~/.ssh/cli-plugins-index
+  # echo "" >> ~/.ssh/cli-plugins-index
+  # echo "# github.com/hasura/cli-plugins-index.git" >> ~/.ssh/cli-plugins-index
   chmod 600 ~/.ssh/cli-plugins-index
   cat <<EOF > ~/.ssh/config
   Host github.com-cli-plugins-index
 	 HostName github.com
+   User git
 	 IdentityFile ~/.ssh/cli-plugins-index
 EOF
 
