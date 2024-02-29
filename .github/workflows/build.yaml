@@ -40,7 +40,7 @@ jobs:
         run: make plugin-index-pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # INDEX_PUBLIC_KEY: ${{ secrets.INDEX_PUBLIC_KEY }}
+          INDEX_PUBLIC_KEY: ${{ secrets.INDEX_PUBLIC_KEY }}
           INDEX_PRIVATE_KEY: ${{ secrets.INDEX_PRIVATE_KEY }}
         # if: startsWith(github.ref, 'refs/tags/v')
 
