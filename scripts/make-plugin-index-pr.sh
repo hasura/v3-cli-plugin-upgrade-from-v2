@@ -13,21 +13,25 @@ make_pr_to_cli_index() {
 
     export DIST_PATH="${ROOT}/dist"
 
+    configure_ssh
     configure_git
-    git clone https://${REPO} ~/plugins-index
+
+    git clone ssh://${REPO} ~/plugins-index
    
     cd ~/plugins-index
+    # TODO: Switch to main after we check that this works
     git checkout -b upgrade-from-v2-${LATEST_TAG}
     mkdir -p ./plugins/upgrade-from-v2/${LATEST_TAG}
     cp ${DIST_PATH}/manifest.yaml ./plugins/upgrade-from-v2/${LATEST_TAG}/manifest.yaml
     
     git add .
     git commit -m "update pro manifest to ${LATEST_TAG}"
-    git push -q https://${GITHUB_TOKEN}@${REPO} upgrade-from-v2-${LATEST_TAG}
-    # hub pull-request -f -F- <<<"update upgrade-from-v2 manifest to ${LATEST_TAG}" -r ${REVIEWERS} -a ${REVIEWERS}
-    hub pull-request -f -F- <<<"update upgrade-from-v2 manifest to ${LATEST_TAG}"
+    git push upgrade-from-v2-${LATEST_TAG}
+}
 
-    unset DIST_PATH
+configure_ssh() {
+  mkdir -p ~/.ssh
+  echo "${INDEX_PRIVATE_KEY}" > ~/.ssh/plugins_index
 }
 
 configure_git() {
