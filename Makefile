@@ -95,3 +95,8 @@ push-artifacts:
 
 plugin-index-pr:
 	$(PWD)/scripts/make-plugin-index-pr.sh
+
+install-plugin:
+	echo "This builds and installs a local copy of the plugin for testing via 'hasura3 upgrade-from-v2' without needing distribution"
+	go build -o $(BUILDDIR)/hasura-upgrade-from-v2
+	cp $(BUILDDIR)/hasura-upgrade-from-v2 ~/.hasura3/plugins/bin/hasura-upgrade_from_v2
