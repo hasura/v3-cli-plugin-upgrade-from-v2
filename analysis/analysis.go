@@ -25,6 +25,8 @@ func UsesFeature(checklistPtr interface{}, path []string) {
 //go:embed *.md
 var analysisTemplateFS embed.FS
 
+const templatePath = "analysis.md"
+
 // Mutates the CheckList struct to set features that are used
 // Template based analysis - Sets flags in checklist of features
 func Analysis(debugging bool, data *report.ReportData) {
@@ -40,8 +42,8 @@ func Analysis(debugging bool, data *report.ReportData) {
 	}
 
 	// Parse template
-	t1 := template.New("analysis.md").Funcs(funcs)
-	t2, e2 := t1.ParseFS(analysisTemplateFS, "analysis.md")
+	t1 := template.New(templatePath).Funcs(funcs)
+	t2, e2 := t1.ParseFS(analysisTemplateFS, templatePath)
 	if e2 != nil {
 		panic(fmt.Sprintf("Couldn't parse analysis templates: %s", e2))
 	}
