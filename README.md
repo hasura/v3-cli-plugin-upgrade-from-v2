@@ -41,6 +41,7 @@ Github Actions CI builds and distributes releases of this plugin:
 * [x] Encode Feature matrix
 * [x] Perform Analysis
 * [x] Output report
+* [x] Analysis golden tests
 * [ ] Output V3 Template
 * [ ] Update to new V3 format
 * [ ] Schema diff
@@ -67,6 +68,14 @@ Development loop:
 
 ```sh
 HASURA_V2_PROJECT=https://XYZ.hasura.app HASURA_V2_ADMIN_SECRET=XXX HASURA_V3_PROJECT=. make dev
+```
+
+## Testing
+
+Run:
+
+```
+make test
 ```
 
 
