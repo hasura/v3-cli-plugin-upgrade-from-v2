@@ -1,0 +1,198 @@
+{
+  "resource_version": 85,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "postgres",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "name": "COLLECTION_ENUM",
+              "schema": "public"
+            },
+            "is_enum": true,
+            "array_relationships": [
+              {
+                "name": "guild_forums",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "forum_collection",
+                    "table": {
+                      "name": "guild_forums",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "threads",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "collection",
+                    "table": {
+                      "name": "thread",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "configuration",
+              "schema": "public"
+            },
+            "array_relationships": [
+              {
+                "name": "guild_forums",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "guild_id",
+                    "table": {
+                      "name": "guild_forums",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "guild_forums",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "COLLECTION_ENUM",
+                "using": {
+                  "foreign_key_constraint_on": "forum_collection"
+                }
+              },
+              {
+                "name": "configuration",
+                "using": {
+                  "foreign_key_constraint_on": "guild_id"
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "message",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "thread",
+                "using": {
+                  "foreign_key_constraint_on": "thread_id"
+                }
+              }
+            ],
+            "event_triggers": [
+              {
+                "name": "new_message_event",
+                "definition": {
+                  "enable_manual": false,
+                  "insert": {
+                    "columns": "*"
+                  }
+                },
+                "retry_conf": {
+                  "interval_sec": 600,
+                  "num_retries": 3,
+                  "timeout_sec": 600
+                },
+                "webhook": "{{BACKEND_URL}}",
+                "headers": [
+                  {
+                    "name": "X-API-KEY",
+                    "value_from_env": "BACKEND_SECRET"
+                  }
+                ],
+                "request_transform": {
+                  "method": "POST",
+                  "query_params": {},
+                  "template_engine": "Kriti",
+                  "url": "{{$base_url}}/new_message_event/",
+                  "version": 2
+                },
+                "cleanup_config": {
+                  "batch_size": 10000,
+                  "clean_invocation_logs": false,
+                  "clear_older_than": 168,
+                  "paused": false,
+                  "schedule": "0 0 * * *",
+                  "timeout": 60
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "thread",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "COLLECTION_ENUM",
+                "using": {
+                  "foreign_key_constraint_on": "collection"
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "messages",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "thread_id",
+                    "table": {
+                      "name": "message",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "database_url": {
+              "from_env": "HASURA_GRAPHQL_DATABASE_URL"
+            },
+            "isolation_level": "read-committed",
+            "use_prepared_statements": false
+          }
+        }
+      }
+    ],
+    "backend_configs": {
+      "dataconnector": {
+        "athena": {
+          "uri": "http://super-connector.data-connector:8081/api/v1/athena"
+        },
+        "mariadb": {
+          "uri": "http://super-connector.data-connector:8081/api/v1/mariadb"
+        },
+        "mongodb": {
+          "uri": "http://mongodb-connector.data-connector:8081"
+        },
+        "mysql8": {
+          "uri": "http://super-connector.data-connector:8081/api/v1/mysql"
+        },
+        "oracle": {
+          "uri": "http://super-connector.data-connector:8081/api/v1/oracle"
+        },
+        "snowflake": {
+          "uri": "http://super-connector.data-connector:8081/api/v1/snowflake"
+        }
+      }
+    }
+  }
+}

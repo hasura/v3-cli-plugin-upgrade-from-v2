@@ -37,6 +37,27 @@ func readJSON(filePath string) map[string]interface{} {
 	return jsonData
 }
 
+func compareAnalysis(t *testing.T, filePath, expectedPath string) {
+	metadata := readJSON(filePath)
+	expectedFeatures := readJSON(expectedPath)
+
+	reportdata := report.ReportData{Metadata: metadata}
+	analysis.Analysis(false, &reportdata) // Set debugging to true if desired
+
+	patch, err := jsondiff.Compare(expectedFeatures, reportdata.CheckList)
+	if err != nil {
+		panic(fmt.Sprintf("Error comparing analysis: %s", err))
+	}
+
+	if patch != nil {
+		patchBytes, err := json.MarshalIndent(patch, "", "    ")
+		if err != nil {
+			panic(fmt.Sprintf("Error outputting patch: %s", err))
+		}
+		t.Errorf("Analysis of metadata (%s) did not match expecte value: %s", filePath, string(patchBytes))
+	}
+}
+
 func TestAnalysis(t *testing.T) {
 
 	files, err := filepath.Glob("../test_data/*.metadata.json")
@@ -48,25 +69,9 @@ func TestAnalysis(t *testing.T) {
 	for _, filePath := range files {
 		expectedPath := strings.Replace(filePath, "metadata.json", "analysis.json", 1)
 
-		fmt.Printf("%s -> %s\n", filePath, expectedPath)
-
-		metadata := readJSON(filePath)
-		expectedFeatures := readJSON(expectedPath)
-
-		reportdata := report.ReportData{Metadata: metadata}
-		analysis.Analysis(false, &reportdata) // Set debugging to true if desired
-
-		patch, err := jsondiff.Compare(expectedFeatures, reportdata.CheckList)
-		if err != nil {
-			panic(fmt.Sprintf("Error comparing analysis: %s", err))
-		}
-
-		if patch != nil {
-			patchBytes, err := json.MarshalIndent(patch, "", "    ")
-			if err != nil {
-				panic(fmt.Sprintf("Error outputting patch: %s", err))
-			}
-			t.Errorf("Analysis of metadata (%s) did not match expecte value: %s", filePath, string(patchBytes))
-		}
+		testname := fmt.Sprintf("Analysis test: %s", filePath)
+		t.Run(testname, func(t *testing.T) {
+			compareAnalysis(t, filePath, expectedPath)
+		})
 	}
 }
