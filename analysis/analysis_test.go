@@ -1,36 +1,67 @@
 package analysis_test
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"path/filepath"
+	"strings"
 	"testing"
+
+	"github.com/wI2L/jsondiff"
 
 	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/analysis"
 	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/report"
 )
 
+func readJSON(filePath string) map[string]interface{} {
+	bytes, err := os.ReadFile(filePath)
+	if err != nil {
+		panic(fmt.Sprintf("Error reading file %s: %s", filePath, err))
+	}
+
+	var jsonData map[string]interface{}
+	err = json.Unmarshal(bytes, &jsonData)
+	if err != nil {
+		panic(fmt.Sprintf("Error unmarshalling JSON %s: %s", filePath, err))
+	}
+
+	return jsonData
+}
+
+func encodeJSON(map[string]interface{}) {
+}
+
 func TestAnalysis(t *testing.T) {
 
-	files, err := filepath.Glob("../test_data/*.in.json")
+	files, err := filepath.Glob("../test_data/*.metadata.json")
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
 
-	// Print the list of matching files
-	fmt.Println("Matching files:")
-	for _, file := range files {
-		fmt.Println(file)
-		data := report.ReportData{}
-		analysis.Analysis(true, &data)
-	}
+	for _, filePath := range files {
+		expectedPath := strings.Replace(filePath, "metadata.json", "analysis.json", 1)
 
-	// Test case 1
-	result := 5
-	expected := 5
-	if result != expected {
-		t.Errorf("Add(2, 3) expected %d, but got %d", expected, result)
-	}
+		fmt.Printf("%s -> %s\n", filePath, expectedPath)
 
-	// Add more test cases as needed
+		metadata := readJSON(filePath)
+		expectedFeatures := readJSON(expectedPath)
+
+		reportdata := report.ReportData{Metadata: metadata}
+		analysis.Analysis(false, &reportdata) // Set debugging to true if desired
+
+		patch, err := jsondiff.Compare(expectedFeatures, reportdata.CheckList)
+		if err != nil {
+			panic(fmt.Sprintf("Error comparing analysis: %s", err))
+		}
+
+		if patch != nil {
+			patchBytes, err := json.MarshalIndent(patch, "", "    ")
+			if err != nil {
+				panic(fmt.Sprintf("Error outputting patch: %s", err))
+			}
+			t.Errorf("Analysis of metadata (%s) did not match expecte value: %s", filePath, string(patchBytes))
+		}
+	}
 }
