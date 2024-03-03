@@ -1,5 +1,13 @@
 package analysis_test
 
+// This test package performs analysis on test_data/*.metadata.json
+// files, performs analysis on them, then verifies the results against
+// matching test_data/*.analysis.json files.
+//
+// A diff of the expected and performed analysis is performed by the
+// github.com/wI2L/jsondiff package and reported to the user as a
+// test error if there are differences found.
+
 import (
 	"encoding/json"
 	"fmt"
