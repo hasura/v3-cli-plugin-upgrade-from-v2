@@ -36,10 +36,8 @@ func Report(alwaysTrue bool, data ReportData) {
 		panic(fmt.Sprintf("Couldn't parse report template: %s", e2))
 	}
 
-	// Passthrough writer to remove duplicate blank lines
 	w := writers.NewRemoveDuplicateBlankLinesWriter(os.Stdout)
 
-	// dataWithDepth := addDepth(data, 0)
 	e3 := t2.Execute(w, data)
 	if e3 != nil {
 		panic(fmt.Sprintf("Error executing report template: %s", e3))
