@@ -29,9 +29,6 @@ func readJSON(filePath string) map[string]interface{} {
 	return jsonData
 }
 
-func encodeJSON(map[string]interface{}) {
-}
-
 func TestAnalysis(t *testing.T) {
 
 	files, err := filepath.Glob("../test_data/*.metadata.json")
