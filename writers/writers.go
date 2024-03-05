@@ -1,5 +1,9 @@
 package writers
 
+// This provides a writer that acts as a proxy
+// but removes duplicate sequential blank lines
+// It changes from original buffering to character buffering
+
 import (
 	"fmt"
 	"io"

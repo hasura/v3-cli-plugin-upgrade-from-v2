@@ -1,0 +1,254 @@
+{
+  "Sources": {
+    "Used": true,
+    "FromEnv": true,
+    "PG": true,
+    "Citus": false,
+    "Cockroach": false,
+    "SQLServer": false,
+    "BigQuery": false,
+    "MySQL": false,
+    "Mongo": false
+  },
+  "Tables": {
+    "Used": false,
+    "CommentsOnModels": false,
+    "EnumTables": true,
+    "ApolloFederation": false
+  },
+  "Relationships": {
+    "Used": true,
+    "LocalRelationshipWithForeignKey": true,
+    "LocalRelationshipWithoutForeignKey": false,
+    "RemoteRelationship": false
+  },
+  "RemoteSchemas": {
+    "Used": false,
+    "Configuration": {
+      "Used": false,
+      "FromEnv": false,
+      "Timeout": false,
+      "Headers": false,
+      "DynamicHeaders": false
+    },
+    "Relationships": {
+      "Used": false,
+      "ToDatabase": false,
+      "ToRemoteSchema": false,
+      "ArgumentPresets": false
+    },
+    "Permissions": false,
+    "BypassAuth": false
+  },
+  "Queries": {
+    "Used": false,
+    "QueryList": false,
+    "QueryByPrimaryKey": false,
+    "DistinctOn": false,
+    "Where": {
+      "Used": false,
+      "BasicUsage": false,
+      "WithBoolExpression": false,
+      "Operators": false,
+      "AggregateExpressions": false
+    },
+    "Pagination": false,
+    "Limit": false,
+    "Offset": false,
+    "OrderBy": false,
+    "Aggregate": false,
+    "SimpleObjectQueries": {
+      "Used": false,
+      "ScalarIntegerAndText": false,
+      "ScalarJSON": false,
+      "NestedObjects": false,
+      "AggregateNestedObjects": false
+    },
+    "BoolExpressions": false,
+    "Introspection": false,
+    "Permissions": {
+      "Used": false,
+      "ColumnPermisisons": false,
+      "PermissionRules": false
+    },
+    "QueryCollection": false
+  },
+  "Mutations": {
+    "Used": false,
+    "Simple": false,
+    "Complex": false
+  },
+  "LogicalModels": {
+    "Used": false
+  },
+  "NativeQueries": {
+    "Used": false,
+    "Queries": {
+      "Used": false,
+      "Permissions": false
+    },
+    "Mutations": {
+      "Used": false,
+      "Permissions": false
+    }
+  },
+  "Actions": {
+    "Used": false,
+    "Queries": false,
+    "Mutations": false,
+    "Types": {
+      "Used": false,
+      "CustomTypes": false,
+      "CustomScalarTypes": false
+    },
+    "HttpConfiguration": {
+      "Used": false,
+      "ConfiguredEndpoints": false,
+      "URLTemplating": false,
+      "RequestMethod": false,
+      "StaticHeaders": false,
+      "DynamicHeaders": false,
+      "ForwardClientHeaders": false
+    },
+    "AsyncActions": false,
+    "BasicPermissions": false,
+    "Relationships": {
+      "Used": false,
+      "ActionToDB": false,
+      "ActionToRS": false,
+      "ActionToAction": false
+    },
+    "Transforms": {
+      "Used": false,
+      "RequestTransforms": {
+        "Used": false,
+        "ContextObjects": false,
+        "RequestMethod": false,
+        "RequestURL": false,
+        "RequestBody": false
+      },
+      "ResponseTransforms": {
+        "Used": false,
+        "ContextObjects": false,
+        "DebuggingMode": false
+      },
+      "PayloadTransforms": {
+        "Used": false,
+        "ResponseBodyTransforms": false
+      }
+    }
+  },
+  "EventTriggers": {
+    "Used": false,
+    "Types": {
+      "Insert": false,
+      "Update": false,
+      "Delete": false,
+      "ColumnSpecificUpdates": false
+    },
+    "TriggerProtocols": {
+      "Webhook": false
+    },
+    "RequestTransforms": {
+      "UsesRequestTransforms": false,
+      "Headers": false,
+      "RequestMethod": false,
+      "RequestURL": false,
+      "RequestBody": false,
+      "Context": false
+    },
+    "ResponseTransforms": {
+      "Used": false,
+      "UsesResponseTransforms": false
+    },
+    "PayloadTransform": {
+      "Used": false,
+      "ResponseBodyTransforms": false
+    },
+    "RetryLogicConfiguration": false
+  },
+  "Authentication": {
+    "Used": false,
+    "JWTs": {
+      "Used": false,
+      "Secret": false,
+      "JWK": false
+    },
+    "Webhook": false,
+    "AdminRole": false,
+    "UnauthorisedAccess": false,
+    "MultipleAdminSecrets": false,
+    "MultipleJWTs": false
+  },
+  "Authorization": {
+    "Used": false,
+    "RoleFromSessionVariable": false,
+    "RoleBasedSchemeGeneration": false,
+    "ConfigureRowPermissions": false,
+    "ColumnPermissions": false,
+    "AggregationPermissions": false,
+    "RowFetchLimit": false,
+    "RootFieldVisibility": false,
+    "ColumnPresets": false,
+    "BackendOnlyMutations": false,
+    "PermissionsOperators": false
+  },
+  "Relay": {
+    "Used": false,
+    "Queries": {
+      "Used": false,
+      "GlobalID": false,
+      "ConnectionObjectsNodesEdges": false,
+      "ConnectionSpec": false
+    },
+    "Subscriptions": false,
+    "Mutations": false
+  },
+  "RESTifiedEndpoints": {
+    "Used": false,
+    "BasicGraphql": false,
+    "ArgumentsFromPayloadBody": false,
+    "ArgumentsFromURLParams": false,
+    "DifferentHTTPMethods": false
+  },
+  "AllowLists": {
+    "Used": false,
+    "ConfigureQueryCollectionsWithRoleAccess": false,
+    "MultipleQueryColectionsAndRoles": false,
+    "CachingMetrics": false,
+    "EnterpriseSuppport": {
+      "Used": false,
+      "CustomRedisConfigurations": false
+    }
+  },
+  "APILimits": {
+    "Used": false,
+    "RateLimits": false,
+    "DepthLimits": false,
+    "NodeLimits": false,
+    "TimeLimits": false,
+    "BatchLimits": false
+  },
+  "DynamicEnvironmentVariables": {
+    "Used": false,
+    "ZeroDowntimeSecretResolution": false
+  },
+  "Subscriptions": {
+    "Used": false
+  },
+  "Observability": {
+    "Used": false,
+    "OpenTelemetry": false,
+    "MetricsURL": false,
+    "TracePropogation": false,
+    "Headers": false,
+    "Attrubutes": false,
+    "APMIntegrations": {
+      "Prometheus": false,
+      "Datadog": false,
+      "NewRelic": false,
+      "AzureMonitor": false
+    },
+    "QueryTags": false
+  }
+}

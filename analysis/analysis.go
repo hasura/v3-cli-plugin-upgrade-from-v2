@@ -1,6 +1,7 @@
 package analysis
 
 import (
+	"embed"
 	"fmt"
 	"os"
 	"reflect"
@@ -21,6 +22,11 @@ func UsesFeature(checklistPtr interface{}, path []string) {
 	x.SetBool(true)
 }
 
+//go:embed *.md
+var analysisTemplateFS embed.FS
+
+const templatePath = "analysis.md"
+
 // Mutates the CheckList struct to set features that are used
 // Template based analysis - Sets flags in checklist of features
 func Analysis(debugging bool, data *report.ReportData) {
@@ -36,11 +42,10 @@ func Analysis(debugging bool, data *report.ReportData) {
 	}
 
 	// Parse template
-	const templatePath = "./analysis/analysis.md"
-	t1 := template.New("analysis.md").Funcs(funcs)
-	t2, e2 := t1.ParseFiles(templatePath)
+	t1 := template.New(templatePath).Funcs(funcs)
+	t2, e2 := t1.ParseFS(analysisTemplateFS, templatePath)
 	if e2 != nil {
-		panic(fmt.Sprintf("Couldn't parse template file %s: %s", templatePath, e2))
+		panic(fmt.Sprintf("Couldn't parse analysis templates: %s", e2))
 	}
 
 	// Execute template
@@ -56,6 +61,6 @@ func Analysis(debugging bool, data *report.ReportData) {
 		e3 = t2.Execute(nullFile, data)
 	}
 	if e3 != nil {
-		panic(fmt.Sprintf("Error executing template file %s: %s", templatePath, e3))
+		panic(fmt.Sprintf("Error executing analysis template: %s", e3))
 	}
 }

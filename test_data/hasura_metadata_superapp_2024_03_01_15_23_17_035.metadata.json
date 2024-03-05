@@ -1,0 +1,1086 @@
+{
+  "resource_version": 3,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "default",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "schema": "public",
+              "name": "address"
+            },
+            "object_relationships": [
+              {
+                "name": "user",
+                "using": {
+                  "foreign_key_constraint_on": "user_id"
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "orders_with_billing_address",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "billing_address_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "order"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "orders_with_shipping_address",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "shipping_address_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "order"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "check": {
+                    "user_id": {
+                      "_eq": "X-Hasura-User-Id"
+                    }
+                  },
+                  "columns": "*"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {
+                    "user_id": {
+                      "_eq": "X-Hasura-User-Id"
+                    }
+                  }
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {
+                    "user_id": {
+                      "_eq": "X-Hasura-User-Id"
+                    }
+                  },
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "filter": {
+                    "user_id": {
+                      "_eq": "X-Hasura-User-Id"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "order"
+            },
+            "object_relationships": [
+              {
+                "name": "billing_address",
+                "using": {
+                  "foreign_key_constraint_on": "billing_address_id"
+                }
+              },
+              {
+                "name": "order_status",
+                "using": {
+                  "foreign_key_constraint_on": "status"
+                }
+              },
+              {
+                "name": "shipping_address",
+                "using": {
+                  "foreign_key_constraint_on": "shipping_address_id"
+                }
+              },
+              {
+                "name": "user",
+                "using": {
+                  "foreign_key_constraint_on": "user_id"
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "products",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "order_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "order_product"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "check": {
+                    "user_id": {
+                      "_eq": "X-Hasura-User-Id"
+                    }
+                  },
+                  "columns": "*"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {
+                    "user_id": {
+                      "_eq": "X-Hasura-User-Id"
+                    }
+                  }
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "order_product"
+            },
+            "object_relationships": [
+              {
+                "name": "order",
+                "using": {
+                  "foreign_key_constraint_on": "order_id"
+                }
+              },
+              {
+                "name": "product",
+                "using": {
+                  "foreign_key_constraint_on": "product_id"
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "check": {
+                    "order": {
+                      "user_id": {
+                        "_eq": "X-Hasura-User-Id"
+                      }
+                    }
+                  },
+                  "columns": "*"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {
+                    "order": {
+                      "user_id": {
+                        "_eq": "X-Hasura-User-Id"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "order_status"
+            },
+            "is_enum": true,
+            "array_relationships": [
+              {
+                "name": "orders",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "status",
+                    "table": {
+                      "schema": "public",
+                      "name": "order"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "product"
+            },
+            "object_relationships": [
+              {
+                "name": "category",
+                "using": {
+                  "foreign_key_constraint_on": "category_display_name"
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "orders",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "product_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "order_product"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "product_reviews",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "product_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "product_review"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "anonymous",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "product_category_enum"
+            },
+            "is_enum": true,
+            "array_relationships": [
+              {
+                "name": "products",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "category_display_name",
+                    "table": {
+                      "schema": "public",
+                      "name": "product"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "anonymous",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "product_review"
+            },
+            "object_relationships": [
+              {
+                "name": "product",
+                "using": {
+                  "foreign_key_constraint_on": "product_id"
+                }
+              },
+              {
+                "name": "user",
+                "using": {
+                  "foreign_key_constraint_on": "user_id"
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "check": {
+                    "user": {
+                      "id": {
+                        "_eq": "X-Hasura-User-Id"
+                      },
+                      "orders": {
+                        "products": {
+                          "id": {
+                            "_ceq": "product_id"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "set": {
+                    "user_id": "X-Hasura-User-Id"
+                  },
+                  "columns": [
+                    "product_id",
+                    "rating",
+                    "comment"
+                  ]
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "anonymous",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": [
+                    "product_id",
+                    "rating",
+                    "comment"
+                  ],
+                  "filter": {
+                    "user": {
+                      "id": {
+                        "_eq": "X-Hasura-User-Id"
+                      },
+                      "orders": {
+                        "products": {
+                          "id": {
+                            "_ceq": "product_id"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "check": null,
+                  "set": {
+                    "user_id": "X-Hasura-User-Id"
+                  }
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "filter": {
+                    "user": {
+                      "id": {
+                        "_eq": "X-Hasura-User-Id"
+                      },
+                      "orders": {
+                        "products": {
+                          "id": {
+                            "_ceq": "product_id"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "site_admin"
+            },
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "user"
+            },
+            "array_relationships": [
+              {
+                "name": "addresses",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "user_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "address"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "orders",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "user_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "order"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "product_reviews",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "user_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "product_review"
+                    }
+                  }
+                }
+              }
+            ],
+            "insert_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "check": {},
+                  "columns": "*"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {}
+                }
+              },
+              {
+                "role": "user",
+                "permission": {
+                  "columns": "*",
+                  "filter": {
+                    "id": {
+                      "_eq": "X-Hasura-User-Id"
+                    }
+                  }
+                }
+              }
+            ],
+            "update_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "columns": "*",
+                  "filter": {},
+                  "check": null
+                }
+              }
+            ],
+            "delete_permissions": [
+              {
+                "role": "site-admin",
+                "permission": {
+                  "filter": {}
+                }
+              }
+            ]
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "use_prepared_statements": false,
+            "database_url": {
+              "from_env": "PG_DATABASE_URL"
+            },
+            "isolation_level": "read-committed"
+          }
+        }
+      }
+    ],
+    "actions": [
+      {
+        "name": "adminLogin",
+        "definition": {
+          "handler": "{{NEXTJS_SERVER_URL}}/api/actions/admin-login",
+          "output_type": "JWT",
+          "arguments": [
+            {
+              "name": "params",
+              "type": "AdminLoginInput!"
+            }
+          ],
+          "type": "query"
+        },
+        "permissions": [
+          {
+            "role": "anonymous"
+          }
+        ]
+      },
+      {
+        "name": "adminSignup",
+        "definition": {
+          "handler": "{{NEXTJS_SERVER_URL}}/api/actions/admin-signup",
+          "output_type": "JWT",
+          "arguments": [
+            {
+              "name": "params",
+              "type": "AdminSignupInput!"
+            }
+          ],
+          "type": "mutation",
+          "kind": "synchronous"
+        },
+        "permissions": [
+          {
+            "role": "site-admin"
+          }
+        ]
+      },
+      {
+        "name": "createPaymentIntent",
+        "definition": {
+          "handler": "{{NEXTJS_SERVER_URL}}/api/actions/create-payment-intent",
+          "output_type": "PaymentIntentClientSecret",
+          "arguments": [
+            {
+              "name": "params",
+              "type": "CreatePaymentIntentInput!"
+            }
+          ],
+          "type": "mutation",
+          "kind": "synchronous"
+        },
+        "permissions": [
+          {
+            "role": "anonymous"
+          },
+          {
+            "role": "site-admin"
+          },
+          {
+            "role": "user"
+          }
+        ]
+      },
+      {
+        "name": "login",
+        "definition": {
+          "handler": "{{NEXTJS_SERVER_URL}}/api/actions/login",
+          "output_type": "JWT",
+          "arguments": [
+            {
+              "name": "params",
+              "type": "LoginInput!"
+            }
+          ],
+          "type": "mutation",
+          "kind": "synchronous"
+        },
+        "permissions": [
+          {
+            "role": "anonymous"
+          }
+        ]
+      },
+      {
+        "name": "refreshToken",
+        "definition": {
+          "handler": "{{NEXTJS_SERVER_URL}}/api/actions/refresh-token",
+          "output_type": "RefreshTokenJWT",
+          "arguments": [
+            {
+              "name": "params",
+              "type": "RefreshTokenInput!"
+            }
+          ],
+          "type": "query"
+        },
+        "permissions": [
+          {
+            "role": "anonymous"
+          },
+          {
+            "role": "site-admin"
+          },
+          {
+            "role": "user"
+          }
+        ]
+      },
+      {
+        "name": "signup",
+        "definition": {
+          "handler": "{{NEXTJS_SERVER_URL}}/api/actions/signup",
+          "output_type": "JWT",
+          "arguments": [
+            {
+              "name": "params",
+              "type": "SignupInput!"
+            }
+          ],
+          "type": "mutation",
+          "kind": "synchronous"
+        },
+        "permissions": [
+          {
+            "role": "anonymous"
+          }
+        ]
+      }
+    ],
+    "custom_types": {
+      "input_objects": [
+        {
+          "name": "SignupInput",
+          "fields": [
+            {
+              "name": "name",
+              "type": "String!"
+            },
+            {
+              "name": "email",
+              "type": "String!"
+            },
+            {
+              "name": "password",
+              "type": "String!"
+            }
+          ]
+        },
+        {
+          "name": "LoginInput",
+          "fields": [
+            {
+              "name": "email",
+              "type": "String!"
+            },
+            {
+              "name": "password",
+              "type": "String!"
+            }
+          ]
+        },
+        {
+          "name": "AdminLoginInput",
+          "fields": [
+            {
+              "name": "email",
+              "type": "String!"
+            },
+            {
+              "name": "password",
+              "type": "String!"
+            }
+          ]
+        },
+        {
+          "name": "AdminSignupInput",
+          "fields": [
+            {
+              "name": "name",
+              "type": "String!"
+            },
+            {
+              "name": "email",
+              "type": "String!"
+            },
+            {
+              "name": "password",
+              "type": "String!"
+            }
+          ]
+        },
+        {
+          "name": "CreatePaymentIntentInput",
+          "fields": [
+            {
+              "name": "paymentAmount",
+              "type": "Float!"
+            }
+          ]
+        },
+        {
+          "name": "RefreshTokenInput",
+          "fields": [
+            {
+              "name": "refreshToken",
+              "type": "String!"
+            }
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "name": "PaymentIntentClientSecret",
+          "fields": [
+            {
+              "name": "clientSecret",
+              "type": "String!"
+            }
+          ]
+        },
+        {
+          "name": "JWT",
+          "fields": [
+            {
+              "name": "name",
+              "type": "String!"
+            },
+            {
+              "name": "email",
+              "type": "String!"
+            },
+            {
+              "name": "token",
+              "type": "String!"
+            },
+            {
+              "name": "refreshToken",
+              "type": "String!"
+            }
+          ]
+        },
+        {
+          "name": "RefreshTokenJWT",
+          "fields": [
+            {
+              "name": "token",
+              "type": "String!"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

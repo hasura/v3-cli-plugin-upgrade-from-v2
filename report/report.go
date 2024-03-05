@@ -1,6 +1,7 @@
 package report
 
 import (
+	"embed"
 	"fmt"
 	"os"
 	"text/template"
@@ -9,7 +10,10 @@ import (
 	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/writers"
 )
 
-const templatePath = "./report/report.md"
+//go:embed *.md
+var reportTemplateFS embed.FS
+
+const templatePath = "report.md"
 
 type ReportData struct {
 	Metadata    map[string]interface{}
@@ -26,18 +30,16 @@ func Report(alwaysTrue bool, data ReportData) {
 	}
 
 	var funcs = template.FuncMap{"test": testBool}
-	t1 := template.New("report.md").Funcs(funcs)
-	t2, e2 := t1.ParseFiles(templatePath)
+	t1 := template.New(templatePath).Funcs(funcs)
+	t2, e2 := t1.ParseFS(reportTemplateFS, templatePath)
 	if e2 != nil {
-		panic(fmt.Sprintf("Couldn't parse template file %s: %s", templatePath, e2))
+		panic(fmt.Sprintf("Couldn't parse report template: %s", e2))
 	}
 
-	// Passthrough writer to remove duplicate blank lines
 	w := writers.NewRemoveDuplicateBlankLinesWriter(os.Stdout)
 
-	// dataWithDepth := addDepth(data, 0)
 	e3 := t2.Execute(w, data)
 	if e3 != nil {
-		panic(fmt.Sprintf("Error executing template file %s: %s", templatePath, e3))
+		panic(fmt.Sprintf("Error executing report template: %s", e3))
 	}
 }
