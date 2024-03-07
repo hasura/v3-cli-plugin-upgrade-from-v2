@@ -163,9 +163,19 @@ The go templating features are used for dynamic traversal of map[string]interfac
 
 
 
+## Actions
 
 {{range $action := .Metadata.metadata.actions -}}
   * Action {{$action.name}}: {{ feature "Actions" "Used" }}
+
+	{{if eq $action.definition.type "query"}}
+		* Query {{$action.name}}: {{ feature "Actions" "Queries" }}
+	{{end}}
+
+	{{if eq $action.definition.type "mutation"}}
+		* Mutation {{$action.name}}: {{ feature "Actions" "Mutations" }}
+	{{end}}
+
   {{if $action.definition.request_transform -}}
     * {{ feature "Actions" "Transforms" "Used" }}
     * request_transform: {{ feature "Actions" "Transforms" "RequestTransforms" "Used" }}

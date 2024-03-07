@@ -94,8 +94,8 @@
   },
   "Actions": {
     "Used": true,
-    "Queries": false,
-    "Mutations": false,
+    "Queries": true,
+    "Mutations": true,
     "Types": {
       "Used": false,
       "CustomTypes": false,
