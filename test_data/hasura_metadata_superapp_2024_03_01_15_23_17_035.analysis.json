@@ -97,9 +97,9 @@
     "Queries": true,
     "Mutations": true,
     "Types": {
-      "Used": false,
-      "CustomTypes": false,
-      "CustomScalarTypes": false
+      "Used": true,
+      "CustomTypes": true,
+      "CustomScalarTypes": true
     },
     "HttpConfiguration": {
       "Used": false,

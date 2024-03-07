@@ -176,6 +176,10 @@ The go templating features are used for dynamic traversal of map[string]interfac
 		* Mutation {{$action.name}}: {{ feature "Actions" "Mutations" }}
 	{{end}}
 
+	* All actions use types: {{ feature "Actions" "Types" "Used" }}
+		* {{ feature "Actions" "Types" "CustomTypes" }}
+		* {{ feature "Actions" "Types" "CustomScalarTypes" }}
+
   {{if $action.definition.request_transform -}}
     * {{ feature "Actions" "Transforms" "Used" }}
     * request_transform: {{ feature "Actions" "Transforms" "RequestTransforms" "Used" }}
