@@ -176,6 +176,7 @@ The go templating features are used for dynamic traversal of map[string]interfac
 		* Mutation {{$action.name}}: {{ feature "Actions" "Mutations" }}
 	{{end}}
 
+  TODO: Check if there is more nuance around this than I think
 	* All actions use types: {{ feature "Actions" "Types" "Used" }}
 		* {{ feature "Actions" "Types" "CustomTypes" }}
 		* {{ feature "Actions" "Types" "CustomScalarTypes" }}
@@ -188,4 +189,23 @@ The go templating features are used for dynamic traversal of map[string]interfac
     * {{ feature "Actions" "Transforms" "Used" }}
     * response_transform: {{ feature "Actions" "Transforms" "ResponseTransforms" "Used" }}
   {{- end }}
+
+	TODO: Check HttpConfiguration - Is this about transforms, or something else, let's just assume that it's the transform for now
+
+  {{if $action.definition.request_transform -}}
+    * {{ feature "Actions" "HttpConfiguration" "Used" }}
+		{{if $action.definition.request_transform.url -}}
+			* {{ feature "Actions" "HttpConfiguration" "URLTemplating" }}
+		{{end}}
+		{{if $action.definition.request_transform.method -}}
+			* {{ feature "Actions" "HttpConfiguration" "RequestMethod" }}
+		{{end}}
+  {{- end }}
+
+  {{if $action.definition.headers -}}
+		{{ feature "Actions" "HttpConfiguration" "StaticHeaders"}}
+	{{end}}
+
+	Custom Headers refers to "Forward Client Headers"
+
 {{end}}
