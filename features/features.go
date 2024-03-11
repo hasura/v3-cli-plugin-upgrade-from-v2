@@ -155,24 +155,24 @@ type Checklist struct {
 	}
 
 	Actions struct {
-		Used      bool `supported:"yes"`
-		Queries   bool `supported:"yes"`
-		Mutations bool `supported:"yes"`
+		Used      bool `supported:"yes"` // PROGRESS: DONE
+		Queries   bool `supported:"yes"` // PROGRESS: DONE
+		Mutations bool `supported:"yes"` // PROGRESS: DONE
 		Types     struct {
-			Used              bool `supported:"yes"`
-			CustomTypes       bool `supported:"yes"`
-			CustomScalarTypes bool `supported:"yes"`
+			Used              bool `supported:"yes"` // PROGRESS: DONE
+			CustomTypes       bool `supported:"yes"` // PROGRESS: DONE - Don't all actions have custom types?
+			CustomScalarTypes bool `supported:"yes"` // PROGRESS: DONE - How to check this?
 		}
 		HttpConfiguration struct {
-			Used                 bool `supported:"yes"`
-			ConfiguredEndpoints  bool `supported:"yes"`
-			URLTemplating        bool `supported:"manual"`
-			RequestMethod        bool `supported:"partial"`
-			StaticHeaders        bool `supported:"partial"`
-			DynamicHeaders       bool `supported:"partial"`
-			ForwardClientHeaders bool `supported:"no"` // TODO: Check
+			Used                 bool `supported:"yes"`     // PROGRESS: DONE
+			ConfiguredEndpoints  bool `supported:"yes"`     // PROGRESS: DONE - What is this? Don't all actions have endpoints configured?
+			URLTemplating        bool `supported:"manual"`  // PROGRESS: DONE - Should we check that templating features are actually being used?
+			RequestMethod        bool `supported:"partial"` // PROGRESS: DONE - Does this mean anything other than POST?
+			StaticHeaders        bool `supported:"partial"` // PROGRESS: DONE
+			DynamicHeaders       bool `supported:"partial"` // PROGRESS: DONE - Check this means value_from_env
+			ForwardClientHeaders bool `supported:"no"`
 		}
-		AsyncActions bool `supported:"no"`
+		AsyncActions bool `supported:"no"` // PROGRESS: DONE
 		/* /// Not part of configuration
 		* Open API Import
 			* Single Import
