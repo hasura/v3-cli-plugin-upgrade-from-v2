@@ -145,4 +145,120 @@ The go templating features are used for dynamic traversal of map[string]interfac
 		{{ feature "Actions" "AsyncActions" }}
 	{{end}}
 
+	### Permissions
+
+	{{if $action.permissions }}
+		{{ feature "Actions" "BasicPermissions" }}
+	{{end}}
+
+	### Relationships
+
+	Note: This feature is present on custom types, not explicitly on actions.
+	      Nevertheless, we put this in the actions loop for grouping.
+
+	{{ range $relationship := .Metadata.metadata.custom_types.objects }}
+		{{ feature "Actions" "Relationships" "Used" }}
+
+		{{ if $relationship.remote_table }}
+			{{ feature "Actions" "Relationships" "ActionToDB" }}
+		{{end}}
+	{{end}}
+
+	* A2RS unsupported in V2
+	* A2A unsupported in V2
+
+	### Transforms
+
+  {{if $action.definition.request_transform -}}
+    * {{ feature "Actions" "Transforms" "Used" }}
+    * {{ feature "Actions" "Transforms" "RequestTransforms" "Used" }}
+		{{if ne $action.definition.request_transform.method "POST" -}}
+			* {{ feature "Actions" "Transforms"  "RequestTransforms" "RequestMethod" }}
+		{{end}}
+		{{if $action.definition.request_transform.url -}}
+			* {{ feature "Actions" "Transforms" "RequestTransforms" "RequestURL" }}
+		{{end}}
+		{{if $action.definition.request_transform.body -}}
+			* {{ feature "Actions" "Transforms" "RequestTransforms" "RequestBody" }}
+		{{end}}
+	{{end}}
+  {{if $action.definition.response_transform -}}
+    * {{ feature "Actions" "Transforms" "Used" }}
+    * {{ feature "Actions" "Transforms" "ResponseTransforms" "Used" }}
+		{{if $action.definition.response_transform.body -}}
+			* {{ feature "Actions" "Transforms" "PayloadTransforms" "ResponseBodyTransforms" }}
+		{{end}}
+	{{end}}
+{{end}}
+
+
+## Event Triggers
+
+Reiterating the sources, to find event triggers.
+
+{{range $source := .Metadata.metadata.sources -}}
+	{{range $table := $source.tables}}
+		{{range $trigger := $table.event_triggers}}
+
+			### Used
+
+			* {{ feature "EventTriggers" "Used" }}
+
+			### Types
+
+			{{if $trigger.definition.insert}}
+				* {{ feature "EventTriggers" "Types" "Insert" }}
+			{{end}}
+			{{if $trigger.definition.update}}
+				* {{ feature "EventTriggers" "Types" "Update" }}
+				{{if $trigger.definition.update.columns}}
+					* {{ feature "EventTriggers" "Types" "ColumnSpecificUpdates" }}
+				{{end}}
+			{{end}}
+			{{if $trigger.definition.delete}}
+				* {{ feature "EventTriggers" "Types" "Delete" }}
+			{{end}}
+			{{if $trigger.definition.enable_manual}}
+				* {{ feature "EventTriggers" "Types" "Console" }}
+			{{end}}
+
+			### Trigger Protocols?
+
+			### RequestTransforms
+
+			{{ if $trigger.request_transform}}
+				* {{ feature "EventTriggers" "RequestTransforms" "Used" }}
+				{{ if ne $trigger.request_transform.method "POST"}}
+					* {{ feature "EventTriggers" "RequestTransforms" "RequestMethod" }}
+				{{end}}
+				{{ if $trigger.request_transform.url }}
+					* {{ feature "EventTriggers" "RequestTransforms" "RequestURL" }}
+				{{end}}
+				{{ if $trigger.request_transform.body }}
+					* {{ feature "EventTriggers" "RequestTransforms" "RequestBody" }}
+					* {{ feature "EventTriggers" "PayloadTransform" }}
+				{{end}}
+			{{end}}
+
+			{{ if $trigger.headers}}
+				* {{ feature "EventTriggers" "RequestTransforms" "Headers" }}
+			{{end}}
+
+			### Response Transforms
+
+			{{ if $trigger.response_transform}}
+				* {{ feature "EventTriggers" "ResponseTransforms" }}
+			{{end}}
+
+			### Payload Transforms
+
+			Same as request transform for body?
+
+			### Retry Logic
+
+			{{if gt $trigger.retry_conf.num_retries 0.0}}
+				* {{ feature "EventTriggers" "RetryLogicConfiguration" }}
+			{{end }}
+		{{end}}
+	{{end}}
 {{end}}

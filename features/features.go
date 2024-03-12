@@ -183,65 +183,60 @@ type Checklist struct {
 			* Support multiple programming languages & frameworks
 		* Derive Actions
 		*/
-		BasicPermissions bool `supported:"yes"`
+		BasicPermissions bool `supported:"yes"` // PROGRESS: DONE
 		Relationships    struct {
-			Used           bool `supported:"yes"`
-			ActionToDB     bool `supported:"yes"`
-			ActionToRS     bool `supported:"no"` // No RS is supported anyway
-			ActionToAction bool `supported:"yes"`
+			Used           bool `supported:"yes"` // PROGRESS: DONE - Detected on custom types
+			ActionToDB     bool `supported:"yes"` // PROGRESS: DONE - Detected on custom types
+			ActionToRS     bool `supported:"no"`  // PROGRESS: DONE - This doesn't seem possible in V2
+			ActionToAction bool `supported:"yes"` // PROGRESS: DONE - This doesn't seem possible in V2
 		}
 		Transforms struct {
-			Used              bool `supported:"manual"` // Subsumes Kriti Feature.
+			// Subsumes Kriti Feature.
+			Used              bool `supported:"manual"` // PROGRESS: DONE
 			RequestTransforms struct {
-				Used           bool `supported:"manual"`
-				ContextObjects bool `supported:"manual"`
-				RequestMethod  bool `supported:"manual"`
-				RequestURL     bool `supported:"manual"`
-				RequestBody    bool `supported:"manual"`
+				Used           bool `supported:"manual"` // PROGRESS: DONE
+				ContextObjects bool `supported:"manual"` // PROGRESS: Unsure - What is this? Does this refer to context variables?
+				RequestMethod  bool `supported:"manual"` // PROGRESS: DONE - But how is this different from HttpConfiguration?
+				RequestURL     bool `supported:"manual"` // PROGRESS: DONE
+				RequestBody    bool `supported:"manual"` // PROGRESS: DONE
 			}
 			ResponseTransforms struct {
-				Used           bool `supported:"manual"`
-				ContextObjects bool `supported:"manual"`
-				DebuggingMode  bool `supported:"manual"`
+				Used           bool `supported:"manual"` // PROGRESS: DONE
+				ContextObjects bool `supported:"manual"` // PROGRESS: Unsure
+				DebuggingMode  bool `supported:"manual"` // PROGRESS: Unsure - What does this mean in a live project?
 			}
 			PayloadTransforms struct {
-				Used                   bool `supported:"manual"`
-				ResponseBodyTransforms bool `supported:"manual"`
+				Used                   bool `supported:"manual"` // PROGRESS: Unsure - is this the same as RequestBody?
+				ResponseBodyTransforms bool `supported:"manual"` // PROGRESS: DONE - Using response_transform.body ?
 			}
 		}
 		// * Async Action logs cleanup (?) // What's this?
 	}
 
 	EventTriggers struct {
-		Used  bool `supported:"no"`
+		Used  bool `supported:"no"` // PROGRESS: DONE
 		Types struct {
-			Insert bool `supported:"no"`
-			Update bool `supported:"no"`
-			Delete bool `supported:"no"`
-			// Via console: N/A?
-			ColumnSpecificUpdates bool `supported:"no"`
+			Insert                bool `supported:"no"` // PROGRESS: DONE
+			Update                bool `supported:"no"` // PROGRESS: DONE
+			Delete                bool `supported:"no"` // PROGRESS: DONE
+			Console               bool `supported:"no"` // PROGRESS: DONE
+			ColumnSpecificUpdates bool `supported:"no"` // PROGRESS: DONE
 		}
 		TriggerProtocols struct {
-			Webhook bool `supported:"no"`
+			Webhook bool `supported:"no"` // PROGRESS: Unsure - What is this?
 		}
 		// * Auto Cleanup Event Logs (Make sure event logs are cleared periodically): N/A?
 		RequestTransforms struct {
-			UsesRequestTransforms bool `supported:"no"`
-			Headers               bool `supported:"no"`
-			RequestMethod         bool `supported:"no"`
-			RequestURL            bool `supported:"no"`
-			RequestBody           bool `supported:"no"`
-			Context               bool `supported:"no"`
+			Used          bool `supported:"no"` // PROGRESS: DONE
+			Headers       bool `supported:"no"` // PROGRESS: Unsure - Doesn't seem like this is part of the transofrm, jus the trigger
+			RequestMethod bool `supported:"no"` // PROGRESS: DONE - Does this default to POST?
+			RequestURL    bool `supported:"no"` // PROGRESS: DONE
+			RequestBody   bool `supported:"no"` // PROGRESS: DONE
+			Context       bool `supported:"no"` // PROGRESS: Unsure - What is this? Just the variables used for testing?
 		}
-		ResponseTransforms struct {
-			Used                   bool `supported:"no"`
-			UsesResponseTransforms bool `supported:"no"`
-		}
-		PayloadTransform struct {
-			Used                   bool `supported:"no"`
-			ResponseBodyTransforms bool `supported:"no"`
-		}
-		RetryLogicConfiguration bool `supported:"no"`
+		ResponseTransforms      bool `supported:"no"` // PROGRESS: DONE
+		PayloadTransform        bool `supported:"no"` // PROGRESS: Unsure - Isn't this the same as the request transform body?
+		RetryLogicConfiguration bool `supported:"no"` // PROGRESS: DONE
 		/* // N/A?
 		* Simulation
 			* Event triggers can be tested by manually triggering from console
