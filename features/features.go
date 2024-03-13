@@ -46,15 +46,15 @@ func SumCategories(checklist interface{}) map[string]int {
 type Checklist struct {
 	// TODO: Check this with Rahul? Do we care about backends for this report?
 	Sources struct {
-		Used      bool `supported:"yes"`
-		FromEnv   bool `supported:"yes"`
-		PG        bool `supported:"yes"`
-		Citus     bool `supported:"no"`
-		Cockroach bool `supported:"no"`
-		SQLServer bool `supported:"no"`
-		BigQuery  bool `supported:"no"`
-		MySQL     bool `supported:"no"`
-		Mongo     bool `supported:"no"`
+		Used      bool `supported:"yes"` // PROGRESS: DONE
+		FromEnv   bool `supported:"yes"` // PROGRESS: DONE
+		PG        bool `supported:"yes"` // PROGRESS: DONE
+		Citus     bool `supported:"no"`  // PROGRESS: DONE
+		Cockroach bool `supported:"no"`  // PROGRESS: DONE
+		SQLServer bool `supported:"no"`  // PROGRESS: DONE
+		BigQuery  bool `supported:"no"`  // PROGRESS: DONE
+		MySQL     bool `supported:"no"`  // PROGRESS: Skipped
+		Mongo     bool `supported:"no"`  // PROGRESS: Skipped
 	}
 
 	Tables struct {
@@ -64,8 +64,8 @@ type Checklist struct {
 		TrackForeignKeys bool
 		TrackFunctions bool
 		*/
-		CommentsOnModels bool `supported:"yes"`
-		EnumTables       bool `supported:"no"` // TODO: Check
+		CommentsOnModels bool `supported:"yes"` // PROGRESS: DONE
+		EnumTables       bool `supported:"no"`  // TODO: Check
 		ApolloFederation bool `supported:"no"`
 	}
 

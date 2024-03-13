@@ -36,10 +36,9 @@ The go templating features are used for dynamic traversal of map[string]interfac
 
   Since only PG is currently supported, we just check according to `PostgresTableMetadata`.
   {{range $table := $source.tables}}
-    * {{$table.table}}
-    {{if $table.configuration.comment}}
-      * {{feature "Tables" "CommentsOnModels" }}
-    {{end}}
+		{{feature "Tables" "Used" }}
+    * Note: CommentsOnModels data isn't in metadata
+
     {{if $table.is_enum}}
       * {{feature "Tables" "EnumTables" }}
     {{end}}
@@ -298,6 +297,19 @@ Reiterating the sources, to find event triggers.
 			{{if regex "@cached" $query.query }}
 				* {{ feature "AllowLists" "CachingMetrics" }}
 			{{end}}
+		{{end}}
+	{{end}}
+{{end}}
+
+
+# Analysis of Internal State
+
+## Tables - Comments on models check:
+
+{{range $source := .State.sources}}
+	{{range $table := (index $source 1).tables }}
+		{{ if $table.core_info.description }}
+			FOOOO: {{feature "Tables" "CommentsOnModels" }}
 		{{end}}
 	{{end}}
 {{end}}
