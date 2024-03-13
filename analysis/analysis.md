@@ -310,6 +310,48 @@ Reiterating the sources, to find event triggers.
 {{end}}
 
 
+## Authentication
+
+Can't be detected.
+
+
+## Authorization
+
+Table based permissions:
+
+{{range $source := .Metadata.metadata.sources -}}
+	{{range $table := $source.tables}}
+		{{range $permission := $table.insert_permissions}}
+			{{feature "Authorization" "Used"}}
+		{{end}}
+	{{end}}
+{{end}}
+
+TODO: Other permission sources.
+
+
+## API Limits
+
+{{if .Metadata.metadata.api_limits}}
+	{{feature "APILimits" "Used"}}
+{{end}}
+{{if .Metadata.metadata.rate_limit}}
+	{{feature "APILimits" "RateLimits"}}
+{{end}}
+{{if .Metadata.metadata.depth_limit}}
+	{{feature "APILimits" "DepthLimits"}}
+{{end}}
+{{if .Metadata.metadata.node_limit}}
+	{{feature "APILimits" "NodeLimits"}}
+{{end}}
+{{if .Metadata.metadata.time_limit}}
+	{{feature "APILimits" "TimeLimits"}}
+{{end}}
+{{if .Metadata.metadata.batch_limit}}
+	{{feature "APILimits" "BatchLimits"}}
+{{end}}
+
+
 ## RESTified Endpoints
 
 {{ range $endpoint := .Metadata.metadata.rest_endpoints}}

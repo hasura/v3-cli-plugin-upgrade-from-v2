@@ -250,31 +250,34 @@ type Checklist struct {
 
 	// Can't be detected from metadata, or internal state API...
 	Authentication struct {
-		Used bool `supported:"yes"`
+		Used bool `supported:"yes"` // PROGRESS: DONE - Check that this can't be detected from MD
 		JWTs struct {
-			Used   bool `supported:"yes"`
-			Secret bool `supported:"yes"`
-			JWK    bool `supported:"yes"`
+			Used   bool `supported:"yes"` // PROGRESS: DONE
+			Secret bool `supported:"yes"` // PROGRESS: DONE
+			JWK    bool `supported:"yes"` // PROGRESS: DONE
 		}
-		Webhook              bool `supported:"yes"`
-		AdminRole            bool `supported:"yes"`
-		UnauthorisedAccess   bool // TODO: Check
-		MultipleAdminSecrets bool `supported:"no"`
-		MultipleJWTs         bool `supported:"no"`
+		Webhook              bool `supported:"yes"` // PROGRESS: DONE
+		AdminRole            bool `supported:"yes"` // PROGRESS: DONE
+		UnauthorisedAccess   bool // PROGRESS: DONE
+		MultipleAdminSecrets bool `supported:"no"` // PROGRESS: DONE
+		MultipleJWTs         bool `supported:"no"` // PROGRESS: DONE
 	}
 
+	// TODO: Perform more advanced checks for visibility properties.
+	//       Markng progress as done for now
 	Authorization struct {
-		Used                      bool `supported:"yes"`
-		RoleFromSessionVariable   bool `supported:"yes"`
-		RoleBasedSchemeGeneration bool // TODO: Check
-		ConfigureRowPermissions   bool `supported:"yes"`
-		ColumnPermissions         bool `supported:"yes"`
-		AggregationPermissions    bool `supported:"no"`
-		RowFetchLimit             bool // TODO: Check
-		RootFieldVisibility       bool `supported:"yes"` // TODO: Check
-		ColumnPresets             bool // TODO: Check
-		BackendOnlyMutations      bool `supported:"no"`
-		PermissionsOperators      bool `supported:"partial"`
+		// Question: If there are any roles or session based filters used anywhere this counts?
+		Used                      bool `supported:"yes"` // PROGRESS: DONE
+		RoleFromSessionVariable   bool `supported:"yes"` // PROGRESS: Unsure - This seems like it refers to session based permissions, not derived roles
+		RoleBasedSchemeGeneration bool // This will require checking if schema visibility restrictions are defined for the role - Could be tricky
+		ConfigureRowPermissions   bool `supported:"yes"` // PROGRESS: Omitted
+		ColumnPermissions         bool `supported:"yes"` // PROGRESS: Omitted
+		AggregationPermissions    bool `supported:"no"`  // PROGRESS: Omitted
+		RowFetchLimit             bool // PROGRESS: Omitted // TODO: Check
+		RootFieldVisibility       bool `supported:"yes"` // PROGRESS: Omitted // TODO: Check
+		ColumnPresets             bool // PROGRESS: Omitted // TODO: Check
+		BackendOnlyMutations      bool `supported:"no"`      // PROGRESS: Omitted
+		PermissionsOperators      bool `supported:"partial"` // PROGRESS: Omitted
 		// PermissionsSummary (on Console): N/A?
 	}
 
@@ -318,13 +321,14 @@ type Checklist struct {
 		}
 	}
 
+	// TODO: Check if disabled flag is active
 	APILimits struct {
-		Used        bool `supported:"no"`
-		RateLimits  bool `supported:"no"`
-		DepthLimits bool `supported:"no"`
-		NodeLimits  bool `supported:"no"`
-		TimeLimits  bool `supported:"no"`
-		BatchLimits bool `supported:"no"`
+		Used        bool `supported:"no"` // PROGRESS: DONE
+		RateLimits  bool `supported:"no"` // PROGRESS: DONE
+		DepthLimits bool `supported:"no"` // PROGRESS: DONE
+		NodeLimits  bool `supported:"no"` // PROGRESS: DONE
+		TimeLimits  bool `supported:"no"` // PROGRESS: DONE
+		BatchLimits bool `supported:"no"` // PROGRESS: DONE
 	}
 
 	// How to detect this?
