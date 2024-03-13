@@ -269,7 +269,7 @@ Reiterating the sources, to find event triggers.
 {{ range $endpoint := .Metadata.metadata.rest_endpoints}}
 	* {{ feature "RESTifiedEndpoints" "Used" }}
 	* {{ feature "RESTifiedEndpoints" "BasicGraphql" }}
-	{{if gt 0 (len $endpoint.methods)}}
+	{{if gt (len $endpoint.methods) 1}}
 		* {{ feature "RESTifiedEndpoints" "DifferentHTTPMethods" }}
 	{{end}}
 {{end}}

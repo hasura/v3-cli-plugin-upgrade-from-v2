@@ -367,6 +367,10 @@ It may not be possible to detect usage of this feature...
 
 {{if test .CheckList.RESTifiedEndpoints.Used -}}
 ### RESTified Endpoints
+
+{{if test .CheckList.RESTifiedEndpoints.DifferentHTTPMethods -}}
+#### Multiple HTTP Methods
+{{end}}
 {{end}}
 
 {{if test .CheckList.AllowLists.Used -}}
