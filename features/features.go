@@ -333,8 +333,8 @@ type Checklist struct {
 
 	// How to detect this?
 	DynamicEnvironmentVariables struct {
-		Used                         bool `supported:"no"`
-		ZeroDowntimeSecretResolution bool `supported:"no"`
+		Used                         bool `supported:"no"` // PROGRESS: DONE - Don't think this can be detected
+		ZeroDowntimeSecretResolution bool `supported:"no"` // PROGRESS: DONE
 	}
 
 	/* // N/A?
@@ -349,23 +349,23 @@ type Checklist struct {
 	// --------------------------------------------------------
 
 	Subscriptions struct {
-		Used bool `supported:"no"`
+		Used bool `supported:"no"` // PROGRESS: DONE - Don't think this can be detected
 	}
 
 	// TODO: Check on this.
 	Observability struct {
-		Used             bool
-		OpenTelemetry    bool
-		MetricsURL       bool
-		TracePropogation bool
-		Headers          bool
-		Attrubutes       bool
+		Used             bool // PROGRESS: DONE - Don't think this can be detected
+		OpenTelemetry    bool // PROGRESS: DONE - Don't think this can be detected
+		MetricsURL       bool // PROGRESS: DONE - Don't think this can be detected
+		TracePropogation bool // PROGRESS: DONE - Don't think this can be detected
+		Headers          bool // PROGRESS: DONE - Don't think this can be detected
+		Attrubutes       bool // PROGRESS: DONE - Don't think this can be detected
 		APMIntegrations  struct {
-			Prometheus   bool
-			Datadog      bool
-			NewRelic     bool
-			AzureMonitor bool
+			Prometheus   bool // PROGRESS: DONE - Don't think this can be detected
+			Datadog      bool // PROGRESS: DONE - Don't think this can be detected
+			NewRelic     bool // PROGRESS: DONE - Don't think this can be detected
+			AzureMonitor bool // PROGRESS: DONE - Don't think this can be detected
 		}
-		QueryTags bool
+		QueryTags bool // PROGRESS: DONE - Don't think this can be detected
 	}
 }

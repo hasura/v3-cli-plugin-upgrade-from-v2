@@ -330,28 +330,6 @@ Table based permissions:
 TODO: Other permission sources.
 
 
-## API Limits
-
-{{if .Metadata.metadata.api_limits}}
-	{{feature "APILimits" "Used"}}
-{{end}}
-{{if .Metadata.metadata.rate_limit}}
-	{{feature "APILimits" "RateLimits"}}
-{{end}}
-{{if .Metadata.metadata.depth_limit}}
-	{{feature "APILimits" "DepthLimits"}}
-{{end}}
-{{if .Metadata.metadata.node_limit}}
-	{{feature "APILimits" "NodeLimits"}}
-{{end}}
-{{if .Metadata.metadata.time_limit}}
-	{{feature "APILimits" "TimeLimits"}}
-{{end}}
-{{if .Metadata.metadata.batch_limit}}
-	{{feature "APILimits" "BatchLimits"}}
-{{end}}
-
-
 ## RESTified Endpoints
 
 {{ range $endpoint := .Metadata.metadata.rest_endpoints}}
@@ -374,6 +352,43 @@ TODO: Other permission sources.
 		{{end}}
 	{{end}}
 {{end}}
+
+
+## API Limits
+
+{{if .Metadata.metadata.api_limits}}
+	{{feature "APILimits" "Used"}}
+{{end}}
+{{if .Metadata.metadata.rate_limit}}
+	{{feature "APILimits" "RateLimits"}}
+{{end}}
+{{if .Metadata.metadata.depth_limit}}
+	{{feature "APILimits" "DepthLimits"}}
+{{end}}
+{{if .Metadata.metadata.node_limit}}
+	{{feature "APILimits" "NodeLimits"}}
+{{end}}
+{{if .Metadata.metadata.time_limit}}
+	{{feature "APILimits" "TimeLimits"}}
+{{end}}
+{{if .Metadata.metadata.batch_limit}}
+	{{feature "APILimits" "BatchLimits"}}
+{{end}}
+
+
+## DynamicEnvironmentVariables
+
+This doesn't seem to be able to be detected.
+
+
+## Subscriptions
+
+This doesn't seem to be able to be detected.
+
+
+## Observability
+
+This doesn't seem to be able to be detected.
 
 
 # Analysis of Internal State
