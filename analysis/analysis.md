@@ -101,6 +101,34 @@ The go templating features are used for dynamic traversal of map[string]interfac
 {{end}}
 
 
+## Queries
+
+These can't be detected by metadata inspection.
+
+Will need telemetry information.
+
+
+## Mutations
+
+Likewise, will need query information to mark these features.
+
+
+## Logical Models and Native Queries
+
+{{range $source := .Metadata.metadata.sources -}}
+	{{range $model := $source.logical_models}}
+		{{feature "LogicalModels" "Used"}}
+		{{if $model.select_permissions}}
+			This should be moved to logical models feature rather than NQs.
+			{{feature "NativeQueries" "Queries" "Permissions"}}
+		{{end}}
+	{{end}}
+
+	{{range $model := $source.native_queries}}
+		{{feature "NativeQueries" "Used"}}
+	{{end}}
+{{end}}
+
 
 ## Actions
 
