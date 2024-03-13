@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"reflect"
+	"regexp"
 	"strings"
 	"text/template"
 
@@ -37,8 +38,14 @@ func Analysis(debugging bool, data *report.ReportData) {
 		return strings.Join(path[:], ".")
 	}
 
+	regexTest := func(pattern string, value string) bool {
+		re := regexp.MustCompile(pattern)
+		return re.MatchString(value)
+	}
+
 	var funcs = template.FuncMap{
 		"feature": usesFeature,
+		"regex":   regexTest,
 	}
 
 	// Parse template

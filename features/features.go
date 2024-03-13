@@ -246,6 +246,7 @@ type Checklist struct {
 		*/
 	}
 
+	// Can't be detected from metadata, or internal state API...
 	Authentication struct {
 		Used bool `supported:"yes"`
 		JWTs struct {
@@ -275,24 +276,25 @@ type Checklist struct {
 		// PermissionsSummary (on Console): N/A?
 	}
 
+	// There's no real way to determine that the user is using Relay features since this isn't saved in the project
 	Relay struct {
-		Used    bool `supported:"yes"`
+		Used    bool `supported:"yes"` // PROGRESS: DONE - Verify that this is ok to skip since we can't detect relay
 		Queries struct {
-			Used                        bool `supported:"yes"`
-			GlobalID                    bool `supported:"yes"`
-			ConnectionObjectsNodesEdges bool // TODO: Check
-			ConnectionSpec              bool `supported:"no"`
+			Used                        bool `supported:"yes"` // PROGRESS: DONE
+			GlobalID                    bool `supported:"yes"` // PROGRESS: DONE
+			ConnectionObjectsNodesEdges bool // PROGRESS: DONE - TODO: Check
+			ConnectionSpec              bool `supported:"no"` // PROGRESS: DONE
 		}
-		Subscriptions bool `supported:"no"`
-		Mutations     bool `supported:"no"`
+		Subscriptions bool `supported:"no"` // PROGRESS: DONE
+		Mutations     bool `supported:"no"` // PROGRESS: DONE
 	}
 
 	RESTifiedEndpoints struct {
-		Used                     bool `supported:"no"`
-		BasicGraphql             bool `supported:"no"`
-		ArgumentsFromPayloadBody bool `supported:"no"`
-		ArgumentsFromURLParams   bool `supported:"no"`
-		DifferentHTTPMethods     bool `supported:"no"`
+		Used                     bool `supported:"no"` // PROGRESS: DONE
+		BasicGraphql             bool `supported:"no"` // PROGRESS: DONE - How is this different from General USED?
+		ArgumentsFromPayloadBody bool `supported:"no"` // PROGRESS: DONE - No good way to detect this. Check.
+		ArgumentsFromURLParams   bool `supported:"no"` // PROGRESS: DONE - No good way to detect this
+		DifferentHTTPMethods     bool `supported:"no"` // PROGRESS: DONE
 		// * RESTified endpoint playground (like GraphiQL UI, to test REST endpoints): N/A?
 	}
 
@@ -304,13 +306,13 @@ type Checklist struct {
 	*/
 
 	AllowLists struct {
-		Used                                    bool `supported:"no"`
-		ConfigureQueryCollectionsWithRoleAccess bool `supported:"no"`
-		MultipleQueryColectionsAndRoles         bool `supported:"no"`
-		CachingMetrics                          bool `supported:"no"`
+		Used                                    bool `supported:"no"` // PROGRESS: DONE - Should this be separate from the REST feature?
+		ConfigureQueryCollectionsWithRoleAccess bool `supported:"no"` // PROGRESS: Unsure - Where is this configured?
+		MultipleQueryColectionsAndRoles         bool `supported:"no"` // PROGRESS: Unsure - How to detect this?
+		CachingMetrics                          bool `supported:"no"` // PROGRESS: Unsure - Does this just refere to the use of @cached?
 		EnterpriseSuppport                      struct {
-			Used                      bool `supported:"no"`
-			CustomRedisConfigurations bool `supported:"no"`
+			Used                      bool `supported:"no"` // PROGRESS: Unsure - How to detect this?
+			CustomRedisConfigurations bool `supported:"no"` // PROGRESS: Unsure - How to detect this?
 		}
 	}
 

@@ -262,3 +262,27 @@ Reiterating the sources, to find event triggers.
 		{{end}}
 	{{end}}
 {{end}}
+
+
+## RESTified Endpoints
+
+{{ range $endpoint := .Metadata.metadata.rest_endpoints}}
+	* {{ feature "RESTifiedEndpoints" "Used" }}
+	* {{ feature "RESTifiedEndpoints" "BasicGraphql" }}
+	{{if gt 0 (len $endpoint.methods)}}
+		* {{ feature "RESTifiedEndpoints" "DifferentHTTPMethods" }}
+	{{end}}
+{{end}}
+
+## Allow Lists
+
+{{ range $collection := .Metadata.metadata.query_collections}}
+	{{if eq $collection.name "allowed-queries"}}
+		* {{ feature "AllowLists" "Used" }}
+		{{ range $query := $collection.definition.queries}}
+			{{if regex "@cached" $query.query }}
+				* {{ feature "AllowLists" "CachingMetrics" }}
+			{{end}}
+		{{end}}
+	{{end}}
+{{end}}
