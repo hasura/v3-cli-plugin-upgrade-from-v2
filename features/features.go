@@ -65,15 +65,15 @@ type Checklist struct {
 		TrackFunctions bool
 		*/
 		CommentsOnModels bool `supported:"yes"` // PROGRESS: DONE
-		EnumTables       bool `supported:"no"`  // TODO: Check
-		ApolloFederation bool `supported:"no"`
+		EnumTables       bool `supported:"no"`  // PROGRESS: DONE
+		ApolloFederation bool `supported:"no"`  // PROGRESS: DONE - This isn't specified on the table level
 	}
 
 	Relationships struct {
-		Used                               bool `supported:"yes"`
-		LocalRelationshipWithForeignKey    bool `supported:"yes"`
-		LocalRelationshipWithoutForeignKey bool `supported:"yes"` // TODO: Check
-		RemoteRelationship                 bool `supported:"yes"`
+		Used                               bool `supported:"yes"` // PROGRESS: DONE
+		LocalRelationshipWithForeignKey    bool `supported:"yes"` // PROGRESS: DONE
+		LocalRelationshipWithoutForeignKey bool `supported:"yes"` // PROGRESS: Unknown - Can this be left to the else block?
+		RemoteRelationships                bool `supported:"yes"` // PROGRESS: DONE
 	}
 
 	RemoteSchemas struct {

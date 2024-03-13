@@ -53,6 +53,7 @@ The go templating features are used for dynamic traversal of map[string]interfac
       {{if $rel.using.foreign_key_constraint_on}}
         {{feature "Relationships" "LocalRelationshipWithForeignKey"}}
       {{else}}
+				Not sure if this gets triggered.
         {{feature "Relationships" "LocalRelationshipWithoutForeignKey"}}
       {{end}}
     {{end}}
@@ -66,6 +67,9 @@ The go templating features are used for dynamic traversal of map[string]interfac
       {{end}}
     {{end}}
 
+    {{range $rel := $table.remote_relationships}}
+			{{feature "Relationships" "RemoteRelationships"}}
+    {{end}}
   {{end}}
 
   TODO: Dataconnector sources, such as SQLite, Mongo, etc.

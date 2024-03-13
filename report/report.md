@@ -60,7 +60,7 @@ These are the features used by your project:
 #### Local Relationships without Foreign Keys [?]
 {{- end}}
 
-{{if test .CheckList.Relationships.RemoteRelationship -}}
+{{if test .CheckList.Relationships.RemoteRelationships -}}
 #### Remote Relationships [?]
 {{- end}}
 {{end}}
