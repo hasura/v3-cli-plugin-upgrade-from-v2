@@ -77,22 +77,22 @@ type Checklist struct {
 	}
 
 	RemoteSchemas struct {
-		Used          bool `supported:"no"`
+		Used          bool `supported:"no"` // PROGRESS: DONE
 		Configuration struct {
 			Used           bool `supported:"no"`
-			FromEnv        bool `supported:"no"`
-			Timeout        bool `supported:"no"`
-			Headers        bool `supported:"no"`
-			DynamicHeaders bool `supported:"no"`
+			FromEnv        bool `supported:"no"` // PROGRESS: DONE
+			Timeout        bool `supported:"no"` // PROGRESS: DONE
+			Headers        bool `supported:"no"` // PROGRESS: DONE
+			DynamicHeaders bool `supported:"no"` // PROGRESS: DONE
 		}
 		Relationships struct {
-			Used            bool `supported:"no"`
-			ToDatabase      bool `supported:"no"`
-			ToRemoteSchema  bool `supported:"no"`
-			ArgumentPresets bool `supported:"no"`
+			Used            bool `supported:"no"` // PROGRESS: Unsure - Not visible in SuperApp currently
+			ToDatabase      bool `supported:"no"` // PROGRESS: Unsure - Not visible in SuperApp currently
+			ToRemoteSchema  bool `supported:"no"` // PROGRESS: Unsure - Not visible in SuperApp currently
+			ArgumentPresets bool `supported:"no"` // PROGRESS: Unsure - Not visible in SuperApp currently
 		}
-		Permissions bool `supported:"no"`
-		BypassAuth  bool `supported:"no"`
+		Permissions bool `supported:"no"` // PROGRESS: Unsure - Not visible in SuperApp currently
+		BypassAuth  bool `supported:"no"` // PROGRESS: Unsure - Not visible in SuperApp currently
 	}
 
 	Queries struct {

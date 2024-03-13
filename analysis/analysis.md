@@ -79,7 +79,22 @@ The go templating features are used for dynamic traversal of map[string]interfac
 
   Is it really worth stepping through all the RS features, when none of them are available?
 
-  TODO: Step through config, permissions, etc.
+	{{if $schema.definition.url_from_env}}
+		{{feature "RemoteSchemas" "Configuration" "Used"}}
+		{{feature "RemoteSchemas" "Configuration" "FromEnv"}}
+	{{end}}
+
+	{{if ne $schema.definition.timeout_seconds 60.0}}
+		Default Timeout is 60 seconds
+		{{feature "RemoteSchemas" "Configuration" "Timeout"}}
+	{{end}}
+
+	{{range $header := $schema.definition.headers}}
+		{{feature "RemoteSchemas" "Configuration" "Headers"}}
+		{{if $header.value_from_env}}
+			{{feature "RemoteSchemas" "Configuration" "DynamicHeaders"}}
+		{{end}}
+	{{end}}
 {{end}}
 
 
