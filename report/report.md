@@ -378,11 +378,46 @@ These are the features used by your project:
 
 
 {{if test .CheckList.EventTriggers.Used}}
-## Event Triggers
+## Event Triggers [Unsupported]
+
+Further breakdown of the feature is not included as there is currently no V3 support for event triggers.
 {{end}}
+
 
 {{if test .CheckList.Authentication.Used}}
 ## Authentication
+{{end}}
+
+{{if test .CheckList.Authentication.JWTs.Used}}
+### JWTs [Supported]
+{{end}}
+
+{{if test .CheckList.Authentication.JWTs.Secret}}
+#### Secret [Supported]
+{{end}}
+
+{{if test .CheckList.Authentication.JWTs.JWK}}
+#### JWK [Supported]
+{{end}}
+
+{{if test .CheckList.Authentication.Webhook}}
+### Webhook [Supported]
+{{end}}
+
+{{if test .CheckList.Authentication.AdminRole}}
+### Admin Role [Supported]
+{{end}}
+
+{{if test .CheckList.Authentication.UnauthorisedAccess}}
+### Unauthorised Access [?]
+{{end}}
+
+{{if test .CheckList.Authentication.MultipleAdminSecrets}}
+### Multiple Admin Secrets [Unsupported]
+{{end}}
+
+{{if test .CheckList.Authentication.MultipleJWTs}}
+### Multiple JWTs [Unsupported]
 {{end}}
 
 {{if test .CheckList.Authorization.Used}}
