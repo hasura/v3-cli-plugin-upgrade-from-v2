@@ -420,8 +420,49 @@ Further breakdown of the feature is not included as there is currently no V3 sup
 ### Multiple JWTs [Unsupported]
 {{end}}
 
+
 {{if test .CheckList.Authorization.Used}}
 ## Authorization
+{{end}}
+
+{{if test .CheckList.Authorization.RoleFromSessionVariable}}
+### Role From Session Variable [Supported]
+{{end}}
+
+{{if test .CheckList.Authorization.RoleBasedSchemeGeneration}}
+### Role Based Scheme Generation [?]
+{{end}}
+
+{{if test .CheckList.Authorization.ConfigureRowPermissions}}
+### Configure Row Permissions [Supported]
+{{end}}
+
+{{if test .CheckList.Authorization.ColumnPermissions}}
+### Column Permissions [Supported]
+{{end}}
+
+{{if test .CheckList.Authorization.AggregationPermissions}}
+### Aggregation Permissions [Unsupported]
+{{end}}
+
+{{if test .CheckList.Authorization.RowFetchLimit}}
+### Row Fetch Limit [?]
+{{end}}
+
+{{if test .CheckList.Authorization.RootFieldVisibility}}
+### Root Field Visibility [Supported]
+{{end}}
+
+{{if test .CheckList.Authorization.ColumnPresets}}
+### Column Presets [?]
+{{end}}
+
+{{if test .CheckList.Authorization.BackendOnlyMutations}}
+### Backend Only Mutations [Unsupported]
+{{end}}
+
+{{if test .CheckList.Authorization.PermissionsOperators}}
+### Permissions Operators [Partially Supported]
 {{end}}
 
 {{if test .CheckList.Relay.Used}}
