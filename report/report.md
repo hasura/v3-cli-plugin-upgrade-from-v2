@@ -465,8 +465,33 @@ Further breakdown of the feature is not included as there is currently no V3 sup
 ### Permissions Operators [Partially Supported]
 {{end}}
 
+
 {{if test .CheckList.Relay.Used}}
 ## Relay
+{{end}}
+
+{{if test .CheckList.Relay.Queries.Used}}
+### Queries [Supported]
+{{end}}
+
+{{if test .CheckList.Relay.Queries.GlobalID}}
+#### GlobalID [Supported]
+{{end}}
+
+{{if test .CheckList.Relay.Queries.ConnectionObjectsNodesEdges}}
+#### Connection Objects Nodes Edges [?]
+{{end}}
+
+{{if test .CheckList.Relay.Queries.ConnectionSpec}}
+#### ConnectionSpec [Unsupported]
+{{end}}
+
+{{if test .CheckList.Relay.Subscriptions}}
+### Subscriptions [Unsupported]
+{{end}}
+
+{{if test .CheckList.Relay.Mutations}}
+### Mutations [Unsupported]
 {{end}}
 
 {{if test .CheckList.RESTifiedEndpoints.Used}}
