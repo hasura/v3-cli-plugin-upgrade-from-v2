@@ -227,12 +227,14 @@ These are the features used by your project:
 ### Complex Mutations [Unsupported]
 {{end}}
 
+
 {{if test .CheckList.LogicalModels.Used}}
 ## Logical Models [Supported]
 {{end}}
 
+
 {{if test .CheckList.NativeQueries.Used}}
-## Native Queries [Partially Supported]
+## Native Queries
 {{end}}
 
 {{if test .CheckList.NativeQueries.Queries.Used}}
@@ -250,6 +252,7 @@ These are the features used by your project:
 {{if test .CheckList.NativeQueries.Mutations.Permissions}}
 #### Permissions [Unsupported]
 {{end}}
+
 
 {{if test .CheckList.Actions.Used}}
 ## Actions
