@@ -259,118 +259,123 @@ These are the features used by your project:
 {{end}}
 
 {{if test .CheckList.Actions.Queries}}
-### Query Actions [?]
+### Query Actions [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.Mutations}}
-### Mutation Actions [?]
+### Mutation Actions [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.Types.Used}}
-### Types [?]
+### Types [Supported]
 {{end}}
 
-*Note: All V2 actions use custom types.*
-
 {{if test .CheckList.Actions.Types.CustomTypes}}
-#### Custom Types [?]
+#### Custom Types [Supported]
+
+*Note: All V2 actions use custom types.*
 {{end}}
 
 {{if test .CheckList.Actions.Types.CustomScalarTypes}}
-#### Custom Scalar Types [?]
+#### Custom Scalar Types [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.HttpConfiguration.Used}}
-### Http Configuration [?]
+### Http Configuration [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.HttpConfiguration.ConfiguredEndpoints}}
-#### Endpoints [?]
+#### Endpoints [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.HttpConfiguration.URLTemplating}}
-#### URL Templating [?]
+#### URL Templating [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.HttpConfiguration.RequestMethod}}
-#### Request Method [?]
+#### Request Method [Partially Supported]
 {{end}}
 
 {{if test .CheckList.Actions.HttpConfiguration.StaticHeaders}}
-#### Static Headers [?]
+#### Static Headers [Partially Supported]
 {{end}}
 
 {{if test .CheckList.Actions.HttpConfiguration.DynamicHeaders}}
-#### Dynamic Headers [?]
+#### Dynamic Headers [Partially Supported]
 {{end}}
 
 {{if test .CheckList.Actions.HttpConfiguration.ForwardClientHeaders}}
-#### Forward Client Headers [?]
+#### Forward Client Headers [Unsupported]
 {{end}}
 
 {{if test .CheckList.Actions.AsyncActions}}
-### Async Actions [?]
+### Async Actions [Unsupported]
 {{end}}
 
 {{if test .CheckList.Actions.BasicPermissions}}
-### Basic Permissions [?]
+### Basic Permissions [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.Relationships.Used}}
-### Relationships [?]
+### Relationships [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.Relationships.ActionToDB}}
-#### To Database [?]
+#### To Database [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.Relationships.ActionToRS}}
-#### To Remote Schema [?]
+#### To Remote Schema [Unsupported]
+{{end}}
+
+{{if test .CheckList.Actions.Relationships.ActionToAction}}
+#### To Action [Supported]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.Used}}
-### Transforms [?]
+### Transforms [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.RequestTransforms.Used}}
-#### Request Transforms [?]
+#### Request Transforms [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.RequestTransforms.ContextObjects}}
-##### Context Objects [?]
+##### Context Objects [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.RequestTransforms.RequestMethod}}
-##### Request Method [?]
+##### Request Method [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.RequestTransforms.RequestURL}}
-##### Request URL [?]
+##### Request URL [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.RequestTransforms.RequestBody}}
-##### Request Body [?]
+##### Request Body [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.ResponseTransforms.Used}}
-#### Response Transforms [?]
+#### Response Transforms [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.ResponseTransforms.ContextObjects}}
-##### Context Objects [?]
+##### Context Objects [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.ResponseTransforms.DebuggingMode}}
-##### Debugging Mode [?]
+##### Debugging Mode [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.PayloadTransforms.Used}}
-#### Payload Transforms [?]
+#### Payload Transforms [Manual Configuration Required]
 {{end}}
 
 {{if test .CheckList.Actions.Transforms.PayloadTransforms.ResponseBodyTransforms}}
-##### Response Body Transforms [?]
+##### Response Body Transforms [Manual Configuration Required]
 {{end}}
+
 
 {{if test .CheckList.EventTriggers.Used}}
 ## Event Triggers
