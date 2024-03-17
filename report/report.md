@@ -567,15 +567,22 @@ Further breakdown of the feature is not included as there is currently no V3 sup
 
 
 {{if test .CheckList.DynamicEnvironmentVariables.Used}}
-## Dynamic Environment Variables
+## Dynamic Environment Variables [Unsupported]
 {{end}}
 
+{{if test .CheckList.DynamicEnvironmentVariables.ZeroDowntimeSecretResolution}}
+### Zero Downtime Secret Resolution [Unsupported]
+{{end}}
+
+
 {{if test .CheckList.Subscriptions.Used}}
-## Subscriptions
+## Subscriptions [Unsupported]
 {{end}}
 
 {{if test .CheckList.Observability.Used}}
-## Obervability
+## Obervability [?]
+
+This is not currently able to be detected.
 {{end}}
 
 
