@@ -542,8 +542,29 @@ Further breakdown of the feature is not included as there is currently no V3 sup
 
 
 {{if test .CheckList.APILimits.Used}}
-## API Limits
+## API Limits [Unsupported]
 {{end}}
+
+{{if test .CheckList.APILimits.RateLimits}}
+## Rate Limits [Unsupported]
+{{end}}
+
+{{if test .CheckList.APILimits.DepthLimits}}
+## Depth Limits [Unsupported]
+{{end}}
+
+{{if test .CheckList.APILimits.NodeLimits}}
+## Node Limits [Unsupported]
+{{end}}
+
+{{if test .CheckList.APILimits.TimeLimits}}
+## Time Limits [Unsupported]
+{{end}}
+
+{{if test .CheckList.APILimits.BatchLimits}}
+## Batch Limits [Unsupported]
+{{end}}
+
 
 {{if test .CheckList.DynamicEnvironmentVariables.Used}}
 ## Dynamic Environment Variables
