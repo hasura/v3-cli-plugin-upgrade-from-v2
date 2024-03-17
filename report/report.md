@@ -7,27 +7,31 @@ These are the features used by your project:
 
 
 {{if test .CheckList.Sources.Used}}
-## Sources [Supported]
+## Sources
 {{end}}
 
 {{if test .CheckList.Sources.FromEnv}}
-### FromENV [?]
+### FromENV [Supported]
 {{end}}
 
 {{if test .CheckList.Sources.PG}}
 ### Postgres [Supported]
 {{end}}
 
+{{if test .CheckList.Sources.Citus}}
+### Citus [Unsupported]
+{{end}}
+
+{{if test .CheckList.Sources.Cockroach}}
+### Cockroach [Unsupported]
+{{end}}
+
 {{if test .CheckList.Sources.SQLServer}}
-### SQL Server [?]
+### SQL Server [Unsupported]
 {{end}}
 
-{{if test .CheckList.Sources.MySQL}}
-### MySQL [?]
-{{end}}
-
-{{if test .CheckList.Sources.Mongo}}
-### MongoDB [?]
+{{if test .CheckList.Sources.BigQuery}}
+### BigQuery [Unsupported]
 {{end}}
 
 
@@ -36,15 +40,15 @@ These are the features used by your project:
 {{end}}
 
 {{if test .CheckList.Tables.CommentsOnModels}}
-### Comments On Models [?]
+### Comments On Models [Supported]
 {{end}}
 
 {{if test .CheckList.Tables.EnumTables}}
-### Enum Tables [?]
+### Enum Tables [Unsupported]
 {{end}}
 
 {{if test .CheckList.Tables.ApolloFederation}}
-### Apollo Federation [?]
+### Apollo Federation [Unsupported]
 {{end}}
 
 
@@ -53,15 +57,64 @@ These are the features used by your project:
 {{end}}
 
 {{if test .CheckList.Relationships.LocalRelationshipWithForeignKey}}
-### Local Relationships with Foreign Keys [?]
+### Local Relationships with Foreign Keys [Supported]
 {{end}}
 
 {{if test .CheckList.Relationships.LocalRelationshipWithoutForeignKey}}
-### Local Relationships without Foreign Keys [?]
+### Local Relationships without Foreign Keys [Supported]
 {{end}}
 
 {{if test .CheckList.Relationships.RemoteRelationships}}
-### Remote Relationships [?]
+### Remote Relationships [Supported]
+{{end}}
+
+
+{{if test .CheckList.RemoteSchemas.Used}}
+## Remote Schemas
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Configuration.Used}}
+### Configuration [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Configuration.FromEnv}}
+#### FromEnv [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Configuration.Timeout}}
+#### Timeout [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Configuration.Headers}}
+#### Headers [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Configuration.DynamicHeaders}}
+#### Dynamic Headers [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Relationships.Used}}
+### Relationships [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Relationships.ToDatabase}}
+#### To Databases [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Relationships.ToRemoteSchema}}
+#### To Remote Schemas [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Relationships.ArgumentPresets}}
+#### Argument Presets [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.Permissions}}
+### Permissions [Unsupported]
+{{end}}
+
+{{if test .CheckList.RemoteSchemas.BypassAuth}}
+### Bypass Auth [Unsupported]
 {{end}}
 
 
@@ -309,38 +362,6 @@ These are the features used by your project:
 
 {{if test .CheckList.Actions.Transforms.PayloadTransforms.ResponseBodyTransforms}}
 ##### Response Body Transforms [?]
-{{end}}
-
-{{if test .CheckList.RemoteSchemas.Used}}
-## Remote Schemas
-{{end}}
-
-{{if test .CheckList.RemoteSchemas.Configuration.Used}}
-### Configuration [?]
-{{end}}
-
-{{if test .CheckList.RemoteSchemas.Configuration.FromEnv}}
-#### FromEnv [?]
-{{end}}
-
-{{if test .CheckList.RemoteSchemas.Configuration.Timeout}}
-#### Timeout [?]
-{{end}}
-
-{{if test .CheckList.RemoteSchemas.Configuration.Headers}}
-#### Headers [?]
-{{end}}
-
-{{if test .CheckList.RemoteSchemas.Configuration.DynamicHeaders}}
-#### Dynamic Headers [?]
-{{end}}
-
-{{if test .CheckList.RemoteSchemas.Relationships.Used}}
-### Relationships [?]
-{{end}}
-
-{{if test .CheckList.RemoteSchemas.Relationships.Used}}
-#### Relationships [?]
 {{end}}
 
 {{if test .CheckList.EventTriggers.Used}}
