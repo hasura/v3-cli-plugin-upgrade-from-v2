@@ -122,93 +122,98 @@ These are the features used by your project:
 ## Queries
 {{end}}
 
+{{if test .CheckList.Queries.QueryList}}
+### Query List [Supported]
+{{end}}
+
 {{if test .CheckList.Queries.QueryByPrimaryKey}}
-### Query by Primary Key [?]
+### Query by Primary Key [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.DistinctOn}}
-### Uses "DISTINCT ON" [?]
+### Uses "DISTINCT ON" [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Where.Used}}
-### Uses "WHERE" [?]
+### Uses "WHERE" [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Where.BasicUsage}}
-#### Basic Usage [?]
+#### Basic Usage [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Where.WithBoolExpression}}
-#### With Boolean Expressions [?]
+#### With Boolean Expressions [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Where.Operators}}
-#### Operators [?]
+#### Operators [Partially Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Where.AggregateExpressions}}
-#### Aggregate Expressions [?]
+#### Aggregate Expressions [Unsupported]
 {{end}}
 
 {{if test .CheckList.Queries.Pagination}}
-### Pagination [?]
+### Pagination [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Limit}}
-### Limits [?]
+### Limits [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Offset}}
-### Offsets [?]
+### Offsets [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.OrderBy}}
-### Uses "ORDER BY" [?]
+### Uses "ORDER BY" [Supported]
 {{end}}
 
-{{if test .CheckList.Queries.Aggregate}}
-### Aggregates [?]
+{{if test .CheckList.Queries.Aggregates}}
+### Aggregates [Unsupported]
 {{end}}
 
 {{if test .CheckList.Queries.SimpleObjectQueries.Used}}
-### Simple Object Queries [?]
+### Simple Object Queries [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.SimpleObjectQueries.ScalarIntegerAndText}}
-#### Scalar Integers and Text [?]
+#### Scalar Integers and Text [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.SimpleObjectQueries.ScalarJSON}}
-#### Scalar JSON [?]
+#### Scalar JSON [Unsupported]
 {{end}}
 
 {{if test .CheckList.Queries.SimpleObjectQueries.NestedObjects}}
-#### Nested Objects [?]
+#### Nested Objects [Unsupported]
 {{end}}
 
 {{if test .CheckList.Queries.SimpleObjectQueries.AggregateNestedObjects}}
-#### Aggregate Nested Objects [?]
+#### Aggregate Nested Objects [Unsupported]
 {{end}}
 
 {{if test .CheckList.Queries.BoolExpressions}}
-### Boolean Expressions [?]
+### Boolean Expressions [Partially Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Introspection}}
-### Introspection [?]
+### Introspection [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Permissions.Used}}
-### Permissions [?]
+### Permissions [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Permissions.ColumnPermisisons}}
-#### Column Permisisons [?]
+#### Column Permisisons [Supported]
 {{end}}
 
 {{if test .CheckList.Queries.Permissions.PermissionRules}}
 #### Permission Rules [?]
 {{end}}
+
 
 {{if test .CheckList.Mutations.Used}}
 ## Mutations [Unsupported]

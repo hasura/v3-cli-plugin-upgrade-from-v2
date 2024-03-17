@@ -114,7 +114,7 @@ type Checklist struct {
 		Limit               bool `supported:"yes"` // PROGRESS: Unsure
 		Offset              bool `supported:"yes"` // PROGRESS: Unsure
 		OrderBy             bool `supported:"yes"` // PROGRESS: Unsure
-		Aggregate           bool `supported:"no"`  // PROGRESS: Unsure
+		Aggregates          bool `supported:"no"`  // PROGRESS: Unsure
 		SimpleObjectQueries struct {
 			Used                   bool `supported:"yes"` // PROGRESS: Unsure
 			ScalarIntegerAndText   bool `supported:"yes"` // PROGRESS: Unsure
