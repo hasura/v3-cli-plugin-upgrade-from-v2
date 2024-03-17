@@ -515,9 +515,31 @@ Further breakdown of the feature is not included as there is currently no V3 sup
 ### Multiple HTTP Methods [Unsupported]
 {{end}}
 
+
 {{if test .CheckList.AllowLists.Used}}
-## Allow Lists
+## Allow Lists [Unsupported]
 {{end}}
+
+{{if test .CheckList.AllowLists.ConfigureQueryCollectionsWithRoleAccess}}
+## Configure Query Collections With Role Access [Unsupported]
+{{end}}
+
+{{if test .CheckList.AllowLists.MultipleQueryColectionsAndRoles}}
+## Multiple Query Colections And Roles [Unsupported]
+{{end}}
+
+{{if test .CheckList.AllowLists.CachingMetrics}}
+## Caching Metrics [Unsupported]
+{{end}}
+
+{{if test .CheckList.AllowLists.EnterpriseSuppport.Used}}
+## Enterprise Suppport [Unsupported]
+{{end}}
+
+{{if test .CheckList.AllowLists.EnterpriseSuppport.CustomRedisConfigurations}}
+## Custom Redis Configurations [Unsupported]
+{{end}}
+
 
 {{if test .CheckList.APILimits.Used}}
 ## API Limits
