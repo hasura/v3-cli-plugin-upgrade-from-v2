@@ -494,12 +494,25 @@ Further breakdown of the feature is not included as there is currently no V3 sup
 ### Mutations [Unsupported]
 {{end}}
 
+
 {{if test .CheckList.RESTifiedEndpoints.Used}}
-## RESTified Endpoints
+## RESTified Endpoints [Unsupported]
+{{end}}
+
+{{if test .CheckList.RESTifiedEndpoints.BasicGraphql}}
+### Basic Graphql [Unsupported]
+{{end}}
+
+{{if test .CheckList.RESTifiedEndpoints.ArgumentsFromPayloadBody}}
+### Arguments From Payload Body [Unsupported]
+{{end}}
+
+{{if test .CheckList.RESTifiedEndpoints.ArgumentsFromURLParams}}
+### Arguments From URL Params [Unsupported]
 {{end}}
 
 {{if test .CheckList.RESTifiedEndpoints.DifferentHTTPMethods}}
-### Multiple HTTP Methods
+### Multiple HTTP Methods [Unsupported]
 {{end}}
 
 {{if test .CheckList.AllowLists.Used}}
