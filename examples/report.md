@@ -1,209 +1,89 @@
-
 # V2 to V3 Upgrade Report
 
 This report outlines the compatibility of your Hasura V2 project with Hasura V3.
 
-
-## Features
-
 These are the features used by your project:
 
+## Sources
 
-### Sources [Supported]
+### FromENV [Supported]
 
-#### FromENV [?]
+### Postgres [Supported]
 
-#### Postgres [?]
+## Tables
 
-#### SQL Server [?]
+### Comments On Models [Supported]
 
-#### MySQL [?]
+### Enum Tables [Unsupported]
 
-#### MongoDB [?]
+## Relationships
 
+### Local Relationships with Foreign Keys [Supported]
 
-### Tables
+### Remote Relationships [Supported]
 
-#### Comments On Models [?]
+## Actions
 
-#### Enum Tables [?]
+### Query Actions [Supported]
 
-#### Apollo Federation [?]
+### Mutation Actions [Supported]
 
+### Types [Supported]
 
-### Relationships
-
-#### Local Relationships with Foreign Keys [?]
-
-#### Local Relationships without Foreign Keys [?]
-
-#### Remote Relationships [?]
-
-
-### Queries and Mutations
-
-#### Query by Primary Key [?]
-
-#### Uses "DISTINCT ON" [?]
-
-#### Uses "WHERE" [?]
-
-##### Basic Usage [?]
-
-##### With Boolean Expressions [?]
-
-##### Operators [?]
-
-##### Aggregate Expressions [?]
-
-#### Pagination [?]
-
-#### Limits [?]
-
-#### Offsets [?]
-
-#### Uses "ORDER BY" [?]
-
-#### Aggregates [?]
-
-#### Simple Object Queries [?]
-
-##### Scalar Integers and Text [?]
-
-##### Scalar JSON [?]
-
-##### Nested Objects [?]
-
-##### Aggregate Nested Objects [?]
-
-#### Boolean Expressions [?]
-
-#### Introspection [?]
-
-#### RunSQL [?]
-
-It may not be possible to detect usage of this feature...
-
-#### Permissions [?]
-
-##### Column Permisisons [?]
-
-##### Permission Rules [?]
-
-
-### Actions
-
-#### Query Actions [?]
-
-#### Mutation Actions [?]
-
-#### Types [?]
+#### Custom Types [Supported]
 
 *Note: All V2 actions use custom types.*
 
-##### Custom Types [?]
+#### Custom Scalar Types [Supported]
 
-##### Custom Scalar Types [?]
+### Http Configuration [Supported]
 
-#### Http Configuration [?]
+#### Endpoints [Supported]
 
-##### Endpoints [?]
+#### URL Templating [Manual Configuration Required]
 
-##### URL Templating [?]
+#### Dynamic Headers [Partially Supported]
 
-##### Request Method [?]
+#### Forward Client Headers [Unsupported]
 
-##### Static Headers [?]
+### Async Actions [Unsupported]
 
-##### Dynamic Headers [?]
+### Basic Permissions [Supported]
 
-##### Forward Client Headers [?]
+### Transforms [Manual Configuration Required]
 
-#### Async Actions [?]
+#### Request Transforms [Manual Configuration Required]
 
-#### Basic Permissions [?]
+##### Request URL [Manual Configuration Required]
 
-#### Relationships [?]
+##### Request Body [Manual Configuration Required]
 
-##### To Database [?]
+## Event Triggers [Unsupported]
 
-##### To Remote Schema [?]
+Further breakdown of the feature is not included as there is currently no V3 support for event triggers.
 
-#### Transforms [?]
+## Authorization
 
-##### Request Transforms [?]
+## RESTified Endpoints [Unsupported]
 
-###### Context Objects [?]
+### Basic Graphql [Unsupported]
 
-###### Request Method [?]
+### Multiple HTTP Methods [Unsupported]
 
-###### Request URL [?]
+## Allow Lists [Unsupported]
 
-###### Request Body [?]
+## Caching Metrics [Unsupported]
 
-##### Response Transforms [?]
-
-###### Context Objects [?]
-
-###### Debugging Mode [?]
-
-##### Payload Transforms [?]
-
-###### Response Body Transforms [?]
-
-
-### Remote Schemas
-
-#### Configuration [?]
-
-##### FromEnv [?]
-
-##### Timeout [?]
-
-##### Headers [?]
-
-##### Dynamic Headers [?]
-
-#### Relationships [?]
-
-##### Relationships [?]
-
-
-### Event Triggers
-
-
-### Authentication
-
-
-### Authorization
-
-
-### Relay
-
-
-### RESTified Endpoints
-
-
-### Allow Lists
-
-
-### API Limits
-
-
-### Dynamic Environment Variables
-
-
-### Subscriptions
-
-
-### Obervability
-
-
-
-## Executive Summary
+# Executive Summary
 
 The following categories of feature support were detected in your Hasura V2 project:
 
-| Supported | 2 |
-| Uncategorized | 186 |
+| Support | Count |
+| --- | --- |
+| manual | 5 |
+| no | 20 |
+| partial | 1 |
+| unknown | 123 |
+| yes | 18 |
+
 
