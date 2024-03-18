@@ -388,7 +388,10 @@ This doesn't seem to be able to be detected.
 
 ## Observability
 
-This doesn't seem to be able to be detected.
+{{if eq .Metadata.metadata.opentelemetry.status "enabled"}}
+	{{feature "Observability" "Used"}}
+	{{feature "Observability" "OpenTelemetry"}}
+{{end}}
 
 
 # Analysis of Internal State
