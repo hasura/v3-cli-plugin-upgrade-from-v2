@@ -74,7 +74,7 @@ Run:
 make test
 ```
 
-If you wish to update test output you can simply delete the previous `test_data/*.analysis.json` file
+If you wish to update test output you can simply delete the previous `test_data/*.analysis.json` file.
 
 
 ## Links
