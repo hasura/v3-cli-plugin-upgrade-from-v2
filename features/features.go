@@ -359,7 +359,7 @@ type Checklist struct {
 		MetricsURL       bool // PROGRESS: DONE - Don't think this can be detected
 		TracePropagation bool // PROGRESS: DONE - Don't think this can be detected
 		Headers          bool // PROGRESS: DONE
-		Attrubutes       bool // PROGRESS: DONE - Is this "Resource Attributes"?
+		Attributes       bool // PROGRESS: DONE - Is this "Resource Attributes"?
 		APMIntegrations  struct {
 			Prometheus   bool // PROGRESS: DONE - Don't think this can be detected
 			Datadog      bool // PROGRESS: DONE - Don't think this can be detected
