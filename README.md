@@ -74,7 +74,7 @@ Run:
 make test
 ```
 
-If you wish to update test output you can run reporting on a metadata file and output the report in json format.
+If you wish to update test output you can simply delete the previous `test_data/*.analysis.json` file
 
 
 ## Links
