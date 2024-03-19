@@ -354,12 +354,12 @@ type Checklist struct {
 
 	// TODO: Check on this.
 	Observability struct {
-		Used             bool // PROGRESS: DONE - Don't think this can be detected
-		OpenTelemetry    bool // PROGRESS: DONE - Don't think this can be detected
+		Used             bool // PROGRESS: DONE
+		OpenTelemetry    bool // PROGRESS: DONE
 		MetricsURL       bool // PROGRESS: DONE - Don't think this can be detected
-		TracePropogation bool // PROGRESS: DONE - Don't think this can be detected
-		Headers          bool // PROGRESS: DONE - Don't think this can be detected
-		Attrubutes       bool // PROGRESS: DONE - Don't think this can be detected
+		TracePropagation bool // PROGRESS: DONE - Don't think this can be detected
+		Headers          bool // PROGRESS: DONE
+		Attributes       bool // PROGRESS: DONE
 		APMIntegrations  struct {
 			Prometheus   bool // PROGRESS: DONE - Don't think this can be detected
 			Datadog      bool // PROGRESS: DONE - Don't think this can be detected
