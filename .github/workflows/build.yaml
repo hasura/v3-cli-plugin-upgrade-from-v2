@@ -1,15 +1,16 @@
-name: Build
+name: Distribution
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Tests"]
     branches:
       - main
+  push:
     tags:        
       - v*
 
-
 jobs:
-  build:
+  distribute:
 
     runs-on: ubuntu-latest
     # strategy:
