@@ -391,6 +391,12 @@ This doesn't seem to be able to be detected.
 {{if eq .Metadata.metadata.opentelemetry.status "enabled"}}
 	{{feature "Observability" "Used"}}
 	{{feature "Observability" "OpenTelemetry"}}
+	{{if gt (len .Metadata.metadata.opentelemetry.exporter_oltp.headers) 0}}
+		{{feature "Observability" "Headers"}}
+	{{end}}
+	{{if gt (len .Metadata.metadata.opentelemetry.exporter_oltp.resource_attributes) 0}}
+		{{feature "Observability" "Attrubutes"}}
+	{{end}}
 {{end}}
 
 
