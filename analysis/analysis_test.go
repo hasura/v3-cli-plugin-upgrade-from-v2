@@ -11,7 +11,6 @@ package analysis_test
 import (
 	"encoding/json"
 	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -20,26 +19,12 @@ import (
 
 	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/analysis"
 	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/report"
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/util"
 )
 
-func readJSON(filePath string) map[string]interface{} {
-	bytes, err := os.ReadFile(filePath)
-	if err != nil {
-		panic(fmt.Sprintf("Error reading file %s: %s", filePath, err))
-	}
-
-	var jsonData map[string]interface{}
-	err = json.Unmarshal(bytes, &jsonData)
-	if err != nil {
-		panic(fmt.Sprintf("Error unmarshalling JSON %s: %s", filePath, err))
-	}
-
-	return jsonData
-}
-
 func compareAnalysis(t *testing.T, filePath, expectedPath string) {
-	metadata := readJSON(filePath)
-	expectedFeatures := readJSON(expectedPath)
+	metadata := util.ReadJSON(filePath)
+	expectedFeatures := util.ReadJSON(expectedPath)
 
 	reportdata := report.ReportData{Metadata: metadata}
 	analysis.Analysis(false, &reportdata) // Set debugging to true if desired

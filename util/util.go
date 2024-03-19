@@ -4,6 +4,8 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package util
 
 import (
+	"encoding/json"
+	"fmt"
 	"os"
 	"strings"
 )
@@ -21,4 +23,19 @@ func GetenvStringWithDefault(name string, default_value string) string {
 	} else {
 		return val
 	}
+}
+
+func ReadJSON(filePath string) map[string]interface{} {
+	bytes, err := os.ReadFile(filePath)
+	if err != nil {
+		panic(fmt.Sprintf("Error reading file %s: %s", filePath, err))
+	}
+
+	var jsonData map[string]interface{}
+	err = json.Unmarshal(bytes, &jsonData)
+	if err != nil {
+		panic(fmt.Sprintf("Error unmarshalling JSON %s: %s", filePath, err))
+	}
+
+	return jsonData
 }
