@@ -63,6 +63,8 @@ func main() {
 		}
 		fmt.Println(string(jsonData))
 
+	default:
+		panic(`Only md and json formats are supported`)
 	}
 	fmt.Println("")
 }
