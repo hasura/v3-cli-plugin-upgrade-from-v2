@@ -357,7 +357,7 @@ type Checklist struct {
 		Used             bool // PROGRESS: DONE
 		OpenTelemetry    bool // PROGRESS: DONE
 		MetricsURL       bool // PROGRESS: DONE - Don't think this can be detected
-		TracePropogation bool // PROGRESS: DONE - Don't think this can be detected
+		TracePropagation bool // PROGRESS: DONE - Don't think this can be detected
 		Headers          bool // PROGRESS: DONE
 		Attrubutes       bool // PROGRESS: DONE - Is this "Resource Attributes"?
 		APMIntegrations  struct {
