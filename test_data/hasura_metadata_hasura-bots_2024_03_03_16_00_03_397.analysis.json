@@ -235,9 +235,9 @@
     "Used": false,
     "OpenTelemetry": false,
     "MetricsURL": false,
-    "TracePropogation": false,
+    "TracePropagation": false,
     "Headers": false,
-    "Attrubutes": false,
+    "Attributes": false,
     "APMIntegrations": {
       "Prometheus": false,
       "Datadog": false,
