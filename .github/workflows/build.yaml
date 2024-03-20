@@ -1,15 +1,16 @@
-name: Build
+name: Distribution
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Tests"]
     branches:
       - main
+  push:
     tags:        
       - v*
 
-
 jobs:
-  build:
+  distribute:
 
     runs-on: ubuntu-latest
     # strategy:
@@ -17,6 +18,9 @@ jobs:
     #     go-version: [ '1.19', '1.20', '1.21.x' ]
 
     steps:
+      - name: Check test success
+        if: ${{ github.event.workflow_run.conclusion != 'success' }}
+        run: echo 'Previous test-run failed' && exit 1
       - uses: actions/checkout@v4
       - name: Setup Go # ${{ matrix.go-version }}
         uses: actions/setup-go@v4

@@ -38,7 +38,9 @@ func FetchV2Common(v3URL string, payload string, adminSecret string) map[string]
 
 	// Add the authorization header and content-type to the request
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("x-hasura-admin-secret", adminSecret)
+	if adminSecret != "" {
+		req.Header.Set("x-hasura-admin-secret", adminSecret)
+	}
 
 	// Make the request
 	response, err := client.Do(req)

@@ -24,7 +24,7 @@ install: clean ## Compile sources and build binary
 .PHONY: run
 run: install ## Run your application
 	@echo "--> running application..."
-	@go run main.go
+	@go run main.go report
 
 .PHONY: dev
 dev:

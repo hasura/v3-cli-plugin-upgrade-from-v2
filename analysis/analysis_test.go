@@ -10,6 +10,7 @@ package analysis_test
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -20,29 +21,24 @@ import (
 
 	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/analysis"
 	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/report"
+	"github.com/hasura/v3-cli-plugin-upgrade-from-v2/util"
 )
 
-func readJSON(filePath string) map[string]interface{} {
-	bytes, err := os.ReadFile(filePath)
-	if err != nil {
-		panic(fmt.Sprintf("Error reading file %s: %s", filePath, err))
-	}
-
-	var jsonData map[string]interface{}
-	err = json.Unmarshal(bytes, &jsonData)
-	if err != nil {
-		panic(fmt.Sprintf("Error unmarshalling JSON %s: %s", filePath, err))
-	}
-
-	return jsonData
-}
-
 func compareAnalysis(t *testing.T, filePath, expectedPath string) {
-	metadata := readJSON(filePath)
-	expectedFeatures := readJSON(expectedPath)
+	metadata := util.ReadJSON(filePath)
 
 	reportdata := report.ReportData{Metadata: metadata}
 	analysis.Analysis(false, &reportdata) // Set debugging to true if desired
+
+	if _, err := os.Stat(expectedPath); errors.Is(err, os.ErrNotExist) {
+		fmt.Printf("No analysis expectation found. Writing to: %s\n", expectedPath)
+		rankingsJson, _ := json.MarshalIndent(reportdata.CheckList, "", "  ")
+		if err := os.WriteFile(expectedPath, rankingsJson, 0644); err != nil {
+			panic(fmt.Sprintf(`Error writing expectation data to file %s: %s`, expectedPath, err))
+		}
+	}
+
+	expectedFeatures := util.ReadJSON(expectedPath)
 
 	patch, err := jsondiff.Compare(expectedFeatures, reportdata.CheckList)
 	if err != nil {

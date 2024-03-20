@@ -5,7 +5,7 @@ This is a Hasura V3 CLI plugin. It attempts to create a compatible V3 project ba
 Usage:
 
 ```
-hasura3 upgrade-from-v2 --v2-project https://myproject.cloud.hasura.com --admin-secret "$HASURA_ADMIN_SECRET" --v3-project .
+hasura3 upgrade-from-v2 report --v2-project https://myproject.cloud.hasura.com --admin-secret "$HASURA_ADMIN_SECRET" --v3-project
 ```
 
 Design:
@@ -20,8 +20,6 @@ Then it outputs:
 
 * A compatibility report
 * A V3 project that attempts to be as compatible as possible
-
-It will read configuration from the v3 project directory: `.upgrade-from-v2.yml` or create this file with defaults if not present.
 
 
 ## Distribution of the plugin
@@ -52,11 +50,8 @@ Github Actions CI builds and distributes releases of this plugin:
 
 Create markdown:
 
-HASURA_V2_URL=https://foobar.hasura.app HASURA_V2_ADMIN_SECRET=XXX HASURA_V3_DIRECTORY=. make run > report.md
+HASURA_V2_URL=https://foobar.hasura.app HASURA_V2_ADMIN_SECRET=XXX hasura3 upgrade-from-v2 report > report.md
 
-Convert to HTML:
-
-> cat report.md | docker run -v (pwd)/report.md:/data/report.md pandoc/minimal -f markdown -t html --toc -s report.md > report.html
 
 ## Developing and Publishing
 
@@ -67,8 +62,9 @@ Once you are happy with your changes, you should update the CLI plugins index he
 Development loop:
 
 ```sh
-HASURA_V2_PROJECT=https://XYZ.hasura.app HASURA_V2_ADMIN_SECRET=XXX HASURA_V3_PROJECT=. make dev
+HASURA_V2_PROJECT=https://XYZ.hasura.app HASURA_V2_ADMIN_SECRET=XXX make dev
 ```
+
 
 ## Testing
 
@@ -77,6 +73,8 @@ Run:
 ```
 make test
 ```
+
+If you wish to update test output you can simply delete the previous `test_data/*.analysis.json` file.
 
 
 ## Links

@@ -11,7 +11,7 @@
     "Mongo": false
   },
   "Tables": {
-    "Used": false,
+    "Used": true,
     "CommentsOnModels": false,
     "EnumTables": true,
     "ApolloFederation": false
@@ -20,7 +20,7 @@
     "Used": true,
     "LocalRelationshipWithForeignKey": true,
     "LocalRelationshipWithoutForeignKey": false,
-    "RemoteRelationship": false
+    "RemoteRelationships": false
   },
   "RemoteSchemas": {
     "Used": false,
@@ -56,7 +56,7 @@
     "Limit": false,
     "Offset": false,
     "OrderBy": false,
-    "Aggregate": false,
+    "Aggregates": false,
     "SimpleObjectQueries": {
       "Used": false,
       "ScalarIntegerAndText": false,
@@ -111,7 +111,7 @@
       "ForwardClientHeaders": false
     },
     "AsyncActions": false,
-    "BasicPermissions": false,
+    "BasicPermissions": true,
     "Relationships": {
       "Used": false,
       "ActionToDB": false,
@@ -144,27 +144,22 @@
       "Insert": false,
       "Update": false,
       "Delete": false,
+      "Console": false,
       "ColumnSpecificUpdates": false
     },
     "TriggerProtocols": {
       "Webhook": false
     },
     "RequestTransforms": {
-      "UsesRequestTransforms": false,
+      "Used": false,
       "Headers": false,
       "RequestMethod": false,
       "RequestURL": false,
       "RequestBody": false,
       "Context": false
     },
-    "ResponseTransforms": {
-      "Used": false,
-      "UsesResponseTransforms": false
-    },
-    "PayloadTransform": {
-      "Used": false,
-      "ResponseBodyTransforms": false
-    },
+    "ResponseTransforms": false,
+    "PayloadTransform": false,
     "RetryLogicConfiguration": false
   },
   "Authentication": {
@@ -181,7 +176,7 @@
     "MultipleJWTs": false
   },
   "Authorization": {
-    "Used": false,
+    "Used": true,
     "RoleFromSessionVariable": false,
     "RoleBasedSchemeGeneration": false,
     "ConfigureRowPermissions": false,
