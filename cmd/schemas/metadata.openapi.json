@@ -159,7 +159,7 @@
                 "type": "object"
             },
             "ActionMetadata": {
-                "$tags": ["report", "generate"],
+                "$tags": ["generate"],
                 "properties": {
                     "comment": {
                         "type": "string"
