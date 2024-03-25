@@ -25,6 +25,7 @@ func GetenvStringWithDefault(name string, default_value string) string {
 	}
 }
 
+// Panics if there are any errors
 func ReadJSON(filePath string) map[string]interface{} {
 	bytes, err := os.ReadFile(filePath)
 	if err != nil {
