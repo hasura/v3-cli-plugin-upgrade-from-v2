@@ -4,7 +4,8 @@ go 1.21.4
 
 // replace github.com/xeipuuv/gojsonschema => /Users/lyndon/code/gojsonschema
 
-replace github.com/santhosh-tekuri/jsonschema/v5 => /Users/lyndon/code/jsonschema-go
+// replace github.com/santhosh-tekuri/jsonschema/v5 => /Users/lyndon/code/jsonschema-go
+replace github.com/santhosh-tekuri/jsonschema/v5 v5.3.1 => github.com/sordina/jsonschema-go/v5 v5.3.2
 
 require (
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.1
