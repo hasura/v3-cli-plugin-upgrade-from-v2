@@ -159,6 +159,7 @@
                 "type": "object"
             },
             "ActionMetadata": {
+                "$callback": "action",
                 "properties": {
                     "comment": {
                         "type": "string"

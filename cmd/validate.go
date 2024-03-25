@@ -37,9 +37,15 @@ func runValidator() {
 		panic(err)
 	}
 
-	sch, err := jsonschema.CompileString("https://github.com/hasura/graphql-engine-mono/blob/main/metadata.openapi.json", string(schemaBytes))
+	sch, err := jsonschema.CompileString("https://github.com/hasura/graphql-engine/blob/main/metadata.openapi.json", string(schemaBytes))
 	if err != nil {
 		panic(fmt.Sprintf("%#v", err))
+	}
+
+	jsonschema.Callback = func(t string, s string, o map[string]interface{}) {
+		fmt.Println(t)
+		fmt.Println(s)
+		fmt.Println(util.FormatJSON(o))
 	}
 
 	md := util.ReadJSON(metadata)

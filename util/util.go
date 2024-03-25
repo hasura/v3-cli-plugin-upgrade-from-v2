@@ -40,3 +40,11 @@ func ReadJSON(filePath string) map[string]interface{} {
 
 	return jsonData
 }
+
+func FormatJSON(o interface{}) string {
+	jsonData, err := json.Marshal(o)
+	if err != nil {
+		panic(fmt.Sprintf("Error marshalling JSON: %s", err))
+	}
+	return string(jsonData)
+}

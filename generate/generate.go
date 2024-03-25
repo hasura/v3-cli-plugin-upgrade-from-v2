@@ -21,7 +21,7 @@ func Generate(location_template string, content_template_path string, data map[s
 	e3 := t2.Execute(os.Stdout, data)
 
 	fmt.Println(e3)
-	// TODO: Return something
+	// TODO: Write the file
 
 	return nil
 }
