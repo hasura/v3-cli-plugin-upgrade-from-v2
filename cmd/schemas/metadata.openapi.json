@@ -159,7 +159,6 @@
                 "type": "object"
             },
             "ActionMetadata": {
-                "$tags": ["generate"],
                 "properties": {
                     "comment": {
                         "type": "string"
@@ -7616,6 +7615,7 @@
                 "type": "object"
             },
             "PostgresSourceMetadata": {
+                "$tags": "generate",
                 "properties": {
                     "configuration": {
                         "$ref": "#/components/schemas/PostgresConnConfiguration"

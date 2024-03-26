@@ -3,7 +3,7 @@ module github.com/hasura/v3-cli-plugin-upgrade-from-v2
 go 1.21.4
 
 // replace github.com/santhosh-tekuri/jsonschema/v5 => /Users/lyndon/code/jsonschema-go
-replace github.com/santhosh-tekuri/jsonschema/v5 v5.3.1 => github.com/sordina/jsonschema-go/v5 v5.3.2
+replace github.com/santhosh-tekuri/jsonschema/v5 v5.3.1 => github.com/sordina/jsonschema-go/v5 v5.3.3
 
 require (
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.1
