@@ -25,6 +25,7 @@ func GetenvStringWithDefault(name string, default_value string) string {
 	}
 }
 
+// Panics if there are any errors
 func ReadJSON(filePath string) map[string]interface{} {
 	bytes, err := os.ReadFile(filePath)
 	if err != nil {
@@ -38,4 +39,12 @@ func ReadJSON(filePath string) map[string]interface{} {
 	}
 
 	return jsonData
+}
+
+func FormatJSON(o interface{}) string {
+	jsonData, err := json.Marshal(o)
+	if err != nil {
+		panic(fmt.Sprintf("Error marshalling JSON: %s", err))
+	}
+	return string(jsonData)
 }

@@ -592,6 +592,6 @@ The following categories of feature support were detected in your Hasura V2 proj
 
 | Support | Count |
 | --- | --- |
-{{ range $k, $v := .Summary -}}
+{{ range $k, $v := .Summary -}}{{- if ne $k "unknown" -}}
 | {{$k}} | {{$v}} |
-{{end}}
+{{end}}{{end}}
