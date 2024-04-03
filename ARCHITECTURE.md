@@ -20,3 +20,5 @@ graph LR;
   Upgrade --> DetectComponents;
   DetectComponents --> InvokeCLIIterator;
 ```
+
+The entity scanning functionality is implemented by adding optional callback annotations via `$tags` in a modified V2 metadata jsonschema. This is then used to traverse the projects metadata and invoke callbacks specific to reporting and upgrading.
