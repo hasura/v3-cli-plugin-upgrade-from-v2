@@ -20,7 +20,9 @@ var generateCmd = &cobra.Command{
 	},
 }
 
-// E.g. cd ~/hasura/v3-cli-iteration/app && npx ts-node index.ts internal upgrade-from-v2 --projectDir "$1" --sm "$2" -s "$3" --metadata "$4"
+// E.g. cd ~/hasura/v3-cli-iteration/app && npx ts-node index.ts internal upgrade-from-v2 \
+// --projectDir "$1" --sm "$2" -s "$3" \
+// --metadata "$4" --tag "$5" --path "$6"
 var generatorCommand string
 var subgraphLocation string
 var supergraphManifestName string
@@ -62,17 +64,16 @@ func invoke_generator(t string, s string, o map[string]interface{}) {
 	}
 
 	if projectDir == "" {
+		// Assume that subgraphs can't be nested deeper than this.
 		projectDir = fmt.Sprintf("%s/..", subgraphLocation)
 	}
 
-	cmd := exec.Command("/bin/sh", "-c", generatorCommand, "_", projectDir, supergraphManifestName, subgraphLocation, util.FormatJSON(o))
-	stdout, err := cmd.Output()
+	cmd := exec.Command("/bin/sh", "-c", generatorCommand, "_", projectDir, supergraphManifestName, subgraphLocation, util.FormatJSON(o), t, s)
+	output, err := cmd.CombinedOutput()
+
+	fmt.Println(string(output))
 
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		panic(err.Error())
 	}
-
-	// Print the output
-	fmt.Println(string(stdout))
 }
