@@ -7615,7 +7615,7 @@
                 "type": "object"
             },
             "PostgresSourceMetadata": {
-                "$tags": "generate",
+                "$tags": ["report", "generate"],
                 "properties": {
                     "configuration": {
                         "$ref": "#/components/schemas/PostgresConnConfiguration"
