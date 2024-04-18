@@ -39,3 +39,19 @@ component is detected the [CLI Iterator](https://github.com/hasura/v3-cli-iterat
 invoked with the location and data of the component. The CLI Iterator is
 designed up update an existing project and has been extended to do this with
 information derived from this upgrade plugin.
+
+## Roadmap
+
+The roadmap for incremental delivery of the upgrade project is:
+
+1. Report
+  a. Detect compatibility of features used in V2 projects
+2. Upgrade
+  a. PG
+  b. Actions
+  c. Kriti
+  d. Other DBs
+
+Our first upgrade deliverable is a MVP - Upgrade a simple PG project to V3.
+
+The limitations here are that we will be constrained to simple supported features and customisations.
