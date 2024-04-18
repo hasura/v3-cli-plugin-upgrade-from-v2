@@ -41,7 +41,7 @@ Github Actions CI builds and distributes releases of this plugin:
 * [x] Output report
 * [x] Analysis golden tests
 * [ ] Output V3 Template
-* [ ] Update to new V3 format
+* [x] Update to new V3 format
 * [ ] Schema diff
 * [ ] Create TS implementations for actions
 * [ ] Create TS lib for Kriti
@@ -51,6 +51,17 @@ Github Actions CI builds and distributes releases of this plugin:
 Create markdown:
 
 HASURA_V2_URL=https://foobar.hasura.app HASURA_V2_ADMIN_SECRET=XXX hasura3 upgrade-from-v2 report > report.md
+
+Create json:
+
+HASURA_V2_URL=https://foobar.hasura.app HASURA_V2_ADMIN_SECRET=XXX hasura3 upgrade-from-v2 report --format json > report.md
+
+
+## Run the Generator [WIP]
+
+Generate a DDN Subgraph:
+
+HASURA_V2_URL=https://foobar.hasura.app HASURA_V2_ADMIN_SECRET=XXX hasura3 upgrade-from-v2 generate --v3-subgraph-location ~/hasura/ddn-apps/my-app/subgraph1
 
 
 ## Developing and Publishing
